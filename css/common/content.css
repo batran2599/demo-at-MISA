@@ -2,7 +2,7 @@
     float: left;
     width: calc(100% - 221px);
     height: calc(100vh - 61px);
-    background-color: #e9ebee;
+    background-color: #ffffff;
 }
 
     .content .header-title {
@@ -30,7 +30,7 @@
     .content .filter {
         background-color: #ffffff;
         width: 100%;
-        height: 55px;
+        height: 42px;
         display: flex;
         justify-content: space-between;
     }
@@ -57,8 +57,43 @@
     
     .content .content-table {
         height: calc(100% - 65px - 55px - 56px);
+        overflow-y: scroll;
         
     }
+
+    .content .content-table::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .content .content-table::-webkit-scrollbar-thumb {
+        background: #454545 ; 
+      }
+
+        .content .content-table .data-table {
+            border-collapse: collapse;
+            width: 100%;
+        }   
+
+                    .content .content-table .data-table > thead > tr > th{
+                        height: 40px;
+                    }
+
+                .content .content-table .data-table > tbody > tr:nth-child(odd) {
+                    background-color: #E9EBEE;
+                }
+
+                    .content .content-table .data-table > tbody > tr > td {
+                        height: 40px;
+                        line-height: 40px;
+                        text-align: center;
+                    }
+
+                    .content .content-table .data-table > tbody > tr > td:nth-child(8) {
+                        max-width: 250px;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
 
     .content .list-order-table {
         height: 56px;
