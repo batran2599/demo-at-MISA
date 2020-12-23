@@ -1,0 +1,45 @@
+.header {
+    width: calc(100% - 221px);
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .header .left {
+        margin-left: 16px;
+    }
+
+    .header .right {
+        margin-right: 16px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .header .right .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url(/public/icon/avatar-default.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        cursor: pointer;
+    }
+
+    .header .right .admin-name {
+        margin-left: 16px;
+        cursor: pointer;
+    }
+
+    .header .right .option {
+        width: 20px;
+        height: 20px;
+        background-image: url(/public/icon/option.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-left: 16px;
+        cursor: pointer;
+    }

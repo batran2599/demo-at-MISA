@@ -1,0 +1,102 @@
+/*
+*
+Tạo Dropdown 
+*
+*/
+/* Begin */
+.dropdown {
+    width: 250px;
+    height: 40px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+}
+
+.list-option {
+
+}
+/* End */
+
+
+/*
+*
+Tạo Button 
+*
+*/
+/* Begin */
+.tdb-button {
+    height: 40px;
+    /* width: 170px; */
+    background-color: #019160;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.tdb-button:hover {
+    background-color: #2FBE8E;
+}
+
+    .tdb-button .button-icon {
+        width: 20px;
+        height: 20px;
+        margin-left: 16px;
+        background-image: url(/public/icon/add.png);
+        background-size: contain;
+    }
+
+    .tdb-button .content-icon {
+        color: white;
+        margin-left: 8px;
+        padding-right: 16px;
+    }
+/* End */
+
+/*
+*
+Tạo Input 
+*
+*/
+/* Begin */
+.tdb-input {
+    width: 150px;
+    padding-left: 40px;
+    padding-right: 10px;
+    background-image: url(/public/icon/search.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position-x: 16px;
+    background-position-y: 12px;
+    height: 40px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    outline: none;
+    font-style: Google-Regular;
+}
+
+    .tdb-input::placeholder {
+        color: #bbbbbb;
+    }
+/* End */
+
+/*
+*
+Tạo Arrow Button
+*
+*/
+/* Begin */
+.arrow-button {
+    width: 30px;
+    height: 30px;
+    background-image: url(/public/icon/btn-next-page.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+}
+/* End */
