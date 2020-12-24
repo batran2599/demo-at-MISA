@@ -33,29 +33,39 @@ Tạo Dropdown
         left: 0px;
         border-radius: 4px;
         background-color: #ffffff;
-        box-shadow: 0px 5px 10px #E9EBEE;
+        box-shadow: 0px 5px 10px #BBBBBB;
         height: 0px;
         overflow: hidden;
+        z-index: 6969;
 
     }
 
         .tdb-dropdown .tdb-list-option .tdb-option {
             height: 40px;
-            padding-left: 52px;
-            padding-right: 16px;
-            line-height: 40px;
             cursor: pointer;
             border-bottom: 1px solid #BBBBBB;
             max-width: 100%;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            background-image: url(/public/icon/tick.svg);
-            background-repeat: no-repeat;
-            background-size: 24px 24px;
-            background-position-y: 50%;
-            background-position-x: calc(10px);
+            display: flex;
+            align-items: center;
+            /* background-color: #019160; */
         }
+
+            .tdb-dropdown .tdb-list-option .tdb-option .tdb-icon{
+                width: 18px;
+                height: 18px;
+                margin-left: 10px;
+                margin-right: 10px;
+                /* background-image: url(/public/icon/tick.svg); */
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+
+            .tdb-dropdown .tdb-list-option .tdb-content {
+                max-width: calc(100% - 54px);
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
 
         .tdb-dropdown .tdb-list-option .tdb-option:last-child {
             border-bottom: none;

@@ -76,6 +76,9 @@
 
                     .content .content-table .data-table > thead > tr > th{
                         height: 40px;
+                        position: sticky;
+                        top: 0;
+                        background-color: #ffffff;
                     }
 
                 .content .content-table .data-table > tbody > tr:nth-child(odd) {
