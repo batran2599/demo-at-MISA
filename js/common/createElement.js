@@ -7,6 +7,7 @@ function CreateElement(tagName, attribute = {}, style = {}) {
     // Thêm phần tử con cho thẻ
     this.AddChild = function(tagChild) {
         this.element.appendChild(tagChild);
+        return this;
     };
 
     // Thêm các thuộc tính thẻ
@@ -14,6 +15,7 @@ function CreateElement(tagName, attribute = {}, style = {}) {
         for(let attbName in objAttribute) {
             this.element[attbName] = objAttribute[attbName];
         }
+        return this;
     }
 
     // Thêm các style cho thẻ
@@ -21,6 +23,7 @@ function CreateElement(tagName, attribute = {}, style = {}) {
         for(let styleName in objStyle) {
             this.element.style[styleName] = objStyle[styleName];
         }
+        return this;
     }   
 
     // Tạo thẻ và trả về đối tượng đang chứa thẻ
@@ -30,6 +33,8 @@ function CreateElement(tagName, attribute = {}, style = {}) {
         this.AddStyle(this.style);
         return this;
     };
+
+    // Xóa thẻ
 
     // Trả lại thẻ vừa được tạo
     this.GetTag() = function() {

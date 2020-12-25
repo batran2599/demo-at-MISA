@@ -57,7 +57,7 @@
     
     .content .content-table {
         height: calc(100% - 65px - 55px - 56px);
-        overflow-y: scroll;
+        overflow: scroll;
         
     }
 
@@ -71,7 +71,8 @@
 
         .content .content-table .data-table {
             border-collapse: collapse;
-            width: 100%;
+            width: 110%;
+            margin-left: 18px;
         }   
 
                     .content .content-table .data-table > thead > tr > th{
@@ -79,6 +80,16 @@
                         position: sticky;
                         top: 0;
                         background-color: #ffffff;
+                        text-align: left;
+                        padding-left: 18px;
+                    }
+
+                    .content .content-table .data-table > thead > tr > th:nth-child(4) {
+                        text-align: center;
+                    }
+
+                    .content .content-table .data-table > thead > tr > th:nth-child(9) {
+                        text-align: right;
                     }
 
                 .content .content-table .data-table > tbody > tr:nth-child(odd) {
@@ -88,14 +99,19 @@
                     .content .content-table .data-table > tbody > tr > td {
                         height: 40px;
                         line-height: 40px;
-                        text-align: center;
-                    }
-
-                    .content .content-table .data-table > tbody > tr > td:nth-child(8) {
+                        padding-left: 18px;
                         max-width: 250px;
                         text-overflow: ellipsis;
                         white-space: nowrap;
                         overflow: hidden;
+                    }
+
+                    .content .content-table .data-table > tbody > tr > td:nth-child(4) {
+                        text-align: center;
+                    }
+
+                    .content .content-table .data-table > tbody > tr > td:nth-child(9) {
+                        text-align: right;
                     }
 
     .content .list-order-table {
