@@ -45,7 +45,7 @@
         .content .filter .refresh {
             margin-right: 16px;
             width: 46px;
-            height: 36px;
+            height: 40px;
             background-color: #ffffff;
             border: 1px solid #bbbbbb;
             background-image: url(/public/icon/refresh.png);
@@ -53,6 +53,7 @@
             background-size: 16px 16px;
             background-position: center;
             cursor: pointer;
+            outline: none;
         }
     
     .content .content-table {

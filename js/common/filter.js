@@ -1,6 +1,13 @@
+/**---------------------------------------------------------
+ * Đối tượng chứa các method phục vụ cho việc format dữ liệu
+ * CreatedBy: Trần Duy Bá (24/12/2020)
+ */
 function Filter() {
-
-    // Chuyển đổi các dữ liệu từ dạng trống, null,
+    /**---------------------------------------------------------------
+     * Chuyển đổi các dữ liệu từ dạng chống, null sang dạng text "..."
+     * @param {any} value Bất kỳ kiểu dữ liệu gì 
+     * CreatedBy: Trần Duy Bá (24/12/2020)
+     */
     this.General = function(value) {
         if(value == "" || value == null) {
             return "...";
@@ -8,54 +15,80 @@ function Filter() {
         return value;
     }
     
-    // Chuyển đổi giới tính từ dạng số sáng dạng dữ 1 = Nam, 2 = Nữ, 3 = GT thứ 3
+    /**--------------------------------------------------------------------------
+     * Chuyển đổi giới tính từ dạng số sáng dạng dữ 0 = Nam, 1 = Nữ, 2 = Khác, 3, null, ... = Không xác định thứ 3
+     * @param {int} gender Các số 0,1,2 hoặc 3 
+     * CreatedBy: Trần Duy Bá (24/12/2020)
+     */
     this.Gender = function(gender) {
-        if(gender == 0 || gender == null || gender == undefined) {
-            return "..."
-        } else if(gender == 1) {
+        if(gender == 0) {
             return "Nam";
-        } else if(gender == 2) {
+        } else if(gender == 1) {
             return "Nữ"
-        } else if(gender == 3) {
-            return "GT số 3";
+        } else if(gender == 2) {
+            return "Khác";
         }
-
-        return "...";
+        return "Không xác định";
     }
 
-    // Convert lại kiểu ngày tháng từ định dạng 1999-05-02T00:00:00 sang 02/05/1999
-    this.BirthDay = function(value) {
-        let bDay = this.General(value); // Check xem chuỗi rỗng hay null không
-        if(bDay != "...") {
-            bDay = bDay.substr(0, 10);
-            bDay = bDay.split("-");
-            bDay = bDay[2] + "/" + bDay[1] + "/" + bDay[0]; // Ghép chuỗi
+    this.GenderCheckBox = function(gender) {
+        if(gender == 0) {
+            return "<input type='checkbox' checked />";
         }
-        return bDay;
+        return "<input type='checkbox' />";
     }
 
-    // Định dạng dãy số về dạng tiền tệ cứ 3 số ngăn cách nhau bởi dấu ,
-    this.ConvertMoney = function(value) {
+    /**--------------------------------------------------
+     * Chuyển dữ liệu ngày tháng thô sang dạng dd/MM/yyyy
+     * @param {any} date Bất kể kiểu dữ liệu gì
+     * CreatedBy: Trần Duy Bá (24/12/2020)
+     */
+    this.FormatDate = function(_date) {
+        let date = new Date(_date);
+        if(!Number.isNaN(date.getTime())) {
+            let day = date.getDate() + 1;
+            day = day < 10 ? "0" + day : day;
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            return day + "/" + month + "/" + year;
+        } else {
+            return "...";
+        }
+    }
+
+    /**-------------------------------------------------------------------
+     * Định dạng dãy số về dạng tiền tệ cứ 3 số ngăn cách nhau bởi dấu ","
+     * @param {float} value Số có độ dài bất kỳ 
+     * @param {string} typeMoney Ký hiệu tiền tệ 
+     * CreatedBy: Trần Duy Bá (24/12/2020)
+     */
+    this.ConvertMoney = function(value, typeMoneyBefore = "", typeMoneyAfter = "") {
         value = this.General(value);
         if(value != "...") {
             let money = value.toString();
             let localOfDot = money.indexOf(".");
-            let moneyInt = "0";
+            let moneyLeft = "";
+            let moneyRight = "";
             if(localOfDot >= 0) {
-                moneyInt = money.substr(0, localOfDot);
+                moneyLeft = money.substr(0, localOfDot);
+                moneyRight = money.splice(localOfDot);
             } else {
-                moneyInt = money;
+                moneyLeft = money;
             }
-            moneyInt = moneyInt.split("");
-            let length = moneyInt.length;
-            let step = Math.floor(length / 3); // Tính số lần nhảy thêm dấu ","
+            moneyLeft = moneyLeft.split("");
+            let length = moneyLeft.length;
+            let step = Math.floor(length / 3) ; // Tính số lần nhảy thêm dấu ","
+
+            if(length%3 == 0)
+                step -= 1;
+
             let index = length; // Đặt vị trí bắt đầu nhảy ở cuối chuỗi
             for(let i = 0; i < step; i++) {
-                index -= 2 + i; // Do sau mỗi lần thêm dấu "," thì độ dài chuỗi sẽ tăng lên => tắng độ dài bước nhảy lên
-                moneyInt.splice(index, 0, ",");
+                index -= 3; // Do sau mỗi lần thêm dấu "," thì độ dài chuỗi sẽ tăng lên => tắng độ dài bước nhảy lên
+                moneyLeft.splice(index, 0, ",");
             }
             
-            return moneyInt.join("") + money.substr(localOfDot); // Nối phần nguyên trước và sau sấu "," lại với nhau
+            return typeMoneyBefore + moneyLeft.join("") + moneyRight + typeMoneyAfter; // Nối phần nguyên trước và sau sấu "," lại với nhau
         }
         return value;
     }
