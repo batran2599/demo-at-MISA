@@ -4,23 +4,33 @@
  * @param {string} listOption Tên Class của các thẻ option
  * CreatedBy: Trần Duy Bá (24/12/2020)
  */
-function DropDown(displayOption, listOption) {
+class DropDown_tdb {
+    constructor(displayOption, listOption) {
+        this.displayOption = document.getElementById(displayOption);
+        this.listOption = document.getElementsByClassName(listOption);
 
-    this.displayOption = document.getElementById(displayOption);
-    this.listOption = document.getElementsByClassName(listOption);
+        this.bgFocus = "#019160";
+        this.textColorFocus = "#ffffff";
+        this.tickIcon = "/public/icon/tick.svg";
 
-    this.bgFocus = "#019160";
-    this.textColorFocus = "#ffffff";
-    this.tickIcon = "/public/icon/tick.svg";
+        if(this.listOption.length > 0) {
+            for(let i = 0; i < this.listOption.length; i++) {
+                this.listOption[i].onclick = ()=>{
+                    this.FoucusOption.call(this, this.listOption[i]);
+                };
+            }
+            this.listOption[0].click();
+        }
+    }
 
     /**
      * Tạo kiện khi focus vào option
      * @param {HTMLElement} option List các đối tượng thẻ option
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    this.foucusOption = function(option) {
+    FoucusOption(option) {
 
-        this.unfocusAllOption(); // unfocus tất cả các option trước khi tạo focus cho một option
+        this.UnfocusAllOption(); // unfocus tất cả các option trước khi tạo focus cho một option
         let tagChild = option.childNodes;
         
         tagChild[1].style.backgroundImage = `url(${this.tickIcon})`;
@@ -36,7 +46,7 @@ function DropDown(displayOption, listOption) {
      * @param {HTMLElement} option List các đối tượng thẻ option
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    this.unfocusOption = function(option) {
+    UnfocusOption(option) {
         let tagChild = option.childNodes;
         
         tagChild[1].style = "";
@@ -51,28 +61,9 @@ function DropDown(displayOption, listOption) {
      * Unfocus tất cả các option
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    this.unfocusAllOption = function() {
+    UnfocusAllOption() {
         for(let i = 0; i < this.listOption.length; i++) {
-            this.unfocusOption(this.listOption[i]);
+            this.UnfocusOption(this.listOption[i]);
         }
     }
-
-    /**
-     * Gán dự kiện focus cho các option
-     * CreatedBy: Trần Duy Bá (24/12/2020)
-     */
-    this.run = function() {
-        if(this.listOption.length > 0) {
-            for(let i = 0; i < this.listOption.length; i++) {
-                this.listOption[i].onclick = ()=>{
-                    this.foucusOption.call(this, this.listOption[i]);
-                };
-            }
-            this.listOption[0].click();
-        }
-    };
-
-
-};
-
-new DropDown("tdb-display-option", "tdb-option").run();
+}
