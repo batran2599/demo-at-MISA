@@ -1,10 +1,10 @@
-/**---------------------------------------------------------------------------------
- * Tạo sự kiện cho dropedown
- * @param {string} displayOption Tên Id của thẻ muốn hiển thị giá trị option đã chọn
- * @param {string} listOption Tên Class của các thẻ option
- * CreatedBy: Trần Duy Bá (24/12/2020)
- */
 class DropDown_tdb {
+    /**---------------------------------------------------------------------------------
+     * Tạo sự kiện cho dropedown
+     * @param {string} displayOption Tên Id của thẻ muốn hiển thị giá trị option đã chọn
+     * @param {string} listOption Tên Class của các thẻ option
+     * CreatedBy: Trần Duy Bá (24/12/2020)
+     */
     constructor(displayOption, listOption) {
         this.displayOption = document.getElementById(displayOption);
         this.listOption = document.getElementsByClassName(listOption);
