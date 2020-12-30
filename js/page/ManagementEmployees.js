@@ -1,40 +1,43 @@
 class ManagementEmployees extends Table_tdb{
-    constructor(urlAPI, method, tableSelector, configTabel) {
-        super(tableSelector, configTabel);
+    constructor(urlAPI, method, tableSelector, configTable) {
+        super(tableSelector, configTable);
         this.urlAPI = urlAPI;
         this.method = method;
-        this.configTabel = configTabel;
-        this.LoadDataForTable();
-    }
+        // this.LoadDataForTable();
+    } 
 
     /**
-     * Load dư liệu cho bảng quản lý nhân viên
+     * Load dữ liệu cho bảng quản lý nhân viên
      */
     LoadDataForTable() {
-        this.SetDataForTable(this.urlAPI, this.method, this.configTabel);
+        this.SetDataWithAPI(this.urlAPI, this.method);
     }
 
     /**
      * Load lại dữ liệu trong bảng
      */
     RefreshTable() {
-        $(`${this.tableSelector} > tbody > tr`).remove();
-        $(`${this.tableSelector} > thead > tr`).remove();
+        this.RemoveTitleColumn();
+        this.RemoveContentTable();
         this.LoadDataForTable();
     }
 
 
 }
 
-// Cấu hình cho việc đẩy data vào bảng
+/**
+ * -----------------------------------------------------------------
+ * Cấu hình cho đối tượng quản lý dữ liệu cho bảng quản lý nhân viên
+ * -----------------------------------------------------------------
+ * */
 let ManaEmployees = new ManagementEmployees();
 ManaEmployees.urlAPI = "http://api.manhnv.net/api/employees";
 ManaEmployees.method = "GET";
 ManaEmployees.tableSelector = ".data-table";
-ManaEmployees.configTabel = {
+ManaEmployees.configTable = {
     EmployeeCode: {
         CName: "Mã nhân viên", // Tiêu đề cột
-        FName: Filter.Type.General // Tên filter
+        FName: Filter.Type.General // Tên loại filter
     },
     FullName: {
         CName: "Họ tên",
@@ -77,6 +80,7 @@ ManaEmployees.configTabel = {
         FName: Filter.Type.General
     }
 };
+ManaEmployees.LoadDataForTable();
 
 document.getElementsByClassName("refresh")[0].onclick = ManaEmployees.RefreshTable.bind(ManaEmployees); // Xét sự kiện cho button Refresh
 
