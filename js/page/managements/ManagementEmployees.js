@@ -1,29 +1,4 @@
-class ManagementEmployees extends Table_tdb{
-    constructor(urlAPI, method, tableSelector, configTable) {
-        super(tableSelector, configTable);
-        this.urlAPI = urlAPI;
-        this.method = method;
-        // this.LoadDataForTable();
-    } 
-
-    /**
-     * Load dữ liệu cho bảng quản lý nhân viên
-     */
-    LoadDataForTable() {
-        this.SetDataWithAPI(this.urlAPI, this.method);
-    }
-
-    /**
-     * Load lại dữ liệu trong bảng
-     */
-    RefreshTable() {
-        this.RemoveTitleColumn();
-        this.RemoveContentTable();
-        this.LoadDataForTable();
-    }
-
-
-}
+class ManagementEmployees extends ManagementPage {}
 
 /**
  * -----------------------------------------------------------------
@@ -80,8 +55,15 @@ ManaEmployees.configTable = {
         FName: Filter.Type.General
     }
 };
-ManaEmployees.LoadDataForTable();
 
-document.getElementsByClassName("refresh")[0].onclick = ManaEmployees.RefreshTable.bind(ManaEmployees); // Xét sự kiện cho button Refresh
+/**
+ * Đặt sự kiện khi click chọn danh mục quản lý nhân viên
+ * CreatedBy: Trần Duy Bá (31/12/2020)
+ */
+$("#employeesList").click(function() {
 
-new DropDown_tdb("tdb-display-option", "tdb-option"); // Xét sự kiện cho dropdown
+    $("#titleManagementPage").text("Quản lý nhân viên")
+    ManaEmployees.RefreshTable();
+
+    document.getElementsByClassName("refresh")[0].onclick = ManaEmployees.RefreshTable.bind(ManaEmployees); // Xét sự kiện cho button Refresh
+});

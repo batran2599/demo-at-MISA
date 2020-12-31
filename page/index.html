@@ -27,11 +27,11 @@
                     <div class="icon-option"></div>
                     <div class="option-content">Mua hàng</div>
                 </div>
-                <div class="option-menu">
+                <div id="employeesList" class="option-menu">
                     <div class="icon-option"></div>
-                    <div class="option-content">Danh mục khách hàng</div>
+                    <div class="option-content">Danh sách nhân viên</div>
                 </div>
-                <div class="option-menu">
+                <div id="customersList" class="option-menu">
                     <div class="icon-option"></div>
                     <div class="option-content">Danh mục khách hàng</div>
                 </div>
@@ -74,7 +74,7 @@
         </div>
         <div class="content">
             <div class="header-title">
-                <div class="title">Danh sách khách hàng</div>
+                <div id="titleManagementPage" class="title">Danh sách khách hàng</div>
                 <div class="feature">
                     <button class="tdb-button add-customer">
                         <div class="button-icon"></div>
@@ -87,300 +87,13 @@
                 <button class="refresh"></button>
             </div>
             <!-- Bảng dữ liệu -->
-            <div class="content-table">
+            <div id="managementTable" class="content-table">
                 <table class="data-table">
                     <thead>
-                        <tr>
-                            <!-- <th>Mã nhân viên</th>
-                            <th>Họ tên</th>
-                            <th>Giới tính</th>
-                            <th>Ngày sinh</th>
-                            <th>Số điện thoại</th>
-                            <th>Email</th>
-                            <th>Chức vụ</th>
-                            <th>Phòng ban</th>
-                            <th>Mức lương hiện tại</th>
-                            <th>Địa chỉ</th>
-                            <th>Tinh trạng làm việc</th> -->
-                        </tr>
+                        <!-- Tiêu đề cột -->
                     </thead>
                     <tbody>
-                        <!-- <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr>
-                        <tr>
-                            <td>KH001</td>
-                            <td>Trần Duy Bá</td>
-                            <td>Nam</td>
-                            <td>02/05/1999</td>
-                            <td>Khách VIP</td>
-                            <td>0355309202</td>
-                            <td>tranduyba2599@gmail.com</td>
-                            <td>Lai Xá, Kim Chung, Hoài Đức, Hà Nội</td>
-                            <td>0đ</td>
-                            <td>TV001</td>
-                        </tr> -->
+                        <!-- Nội dung của bảng  -->
                     </tbody>
                 </table>
             </div>
@@ -411,6 +124,9 @@
         <script type="text/javascript" src="/js/base/Table_tdb.js"></script>
         <script type="text/javascript" src="/js/base/DropDown_tdb.js"></script>
         <script type="text/javascript" src="/js/common/titleTag.js"></script>
-        <script type="text/javascript" src="/js/page/ManagementEmployees.js"></script>
+        <script type="text/javascript" src="/js/common/managementPage.js"></script>
+        <script type="text/javascript" src="/js/page/managements/ManagementEmployees.js"></script>
+        <script type="text/javascript" src="/js/page/managements/ManagementCustomers.js"></script>
+        <script type="text/javascript" src="/js/page/managements/index.js"></script>
     </body>
 </html>

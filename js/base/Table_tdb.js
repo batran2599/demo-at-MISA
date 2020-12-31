@@ -14,6 +14,7 @@ class Table_tdb {
     constructor (tableSelector = "", configTable = {}) {
         this.tableSelector = tableSelector;
         this.configTable = configTable;
+        this.configAjax = {};
     }
 
     /**
@@ -38,7 +39,8 @@ class Table_tdb {
     SetDataWithAPI(urlAPI, method) {
         $.ajax({
             url: urlAPI,
-            method: method
+            method: method,
+            ...this.configAjax
         }).done((res)=>{
             this.SetDataForTable(res);
         }).fail(function(){
