@@ -24,6 +24,7 @@ Tạo Dropdown
         background-size: 24px 24px;
         background-position-y: 50%;
         background-position-x: calc(100% - 12px);
+        background-color: white;
     }
 
     .tdb-dropdown .tdb-list-option {

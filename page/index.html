@@ -131,16 +131,86 @@
                     <div class="dialog-body">
                         <div class="dialog-body-top">
                             <div class="avatar">
-                                
+                                <div class="avatar-img">
+                                    <img src="/public/img/default-avatar.jpg" />
+                                </div>
+                                <p class="discription-type-avatar">Vui lòng chọn ảnh có định dạng<br>
+                                    <b>.jpg, .jpge, .png, .gif</b>
+                                </p>
                             </div>
-                            <div class="info-form-top"></div>
+                            <div class="info-form-top">
+                                <div class="input-dialog">
+                                    <p>Mã khách hàng(<span style="color: red;">*</span>)</p>
+                                    <input name="customerCode" />
+                                </div>
+                                <div class="input-dialog">
+                                    <p>Họ và tên(<span style="color: red;">*</span>)</p>
+                                    <input name="fullName" />
+                                </div>
+                                <div class="input-dialog">
+                                    <p>Mã thẻ thành viên</p>
+                                    <input name="memberCardId" />
+                                </div>
+                                <div class="input-dialog">
+                                    <p>Nhóm khách hàng</p>
+                                    <div class="tdb-dropdown customer-group-list">
+                                        <div id="tdb-display-option-customer-group" class="tdb-value-of-dropdown"></div>
+                                        <div class="tdb-list-option">
+                                            <div class="tdb-option customer-group">
+                                                <div class="tdb-icon"></div>
+                                                <div class="tdb-content">Khách hàng loại 1</div>
+                                            </div>
+                                            <div class="tdb-option customer-group">
+                                                <div class="tdb-icon"></div>
+                                                <div class="tdb-content">Khách hàng loại 2</div>
+                                            </div>
+                                            <div class="tdb-option customer-group">
+                                                <div class="tdb-icon"></div>
+                                                <div class="tdb-content">Khách hàng loại 3</div>
+                                            </div>
+                                            <div class="tdb-option customer-group">
+                                                <div class="tdb-icon"></div>
+                                                <div class="tdb-content">Khách hàng loại 4</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-dialog">
+                                    <p>Mã khách hàng</p>
+                                    <input name="customerCode" />
+                                </div>
+                                <div class="input-dialog">
+                                    <p>Mã khách hàng</p>
+                                    <input name="customerCode" />
+                                </div>
+                            </div>
                         </div>
                         <div class="dialog-body-bottom">
-                            
+                            <div class="input-dialog">
+                                <p>Email</p>
+                                <input name="email" type="email" placeholder="example@domain.com" />
+                            </div>
+                            <div class="input-dialog">
+                                <p>Số điện thoại (<span style="color: red;">*</span>)</p>
+                                <input name="email" type="email" />
+                            </div>
+                            <div class="input-dialog">
+                                <p>Tên công ty</p>
+                                <input name="companyName"/>
+                            </div>
+                            <div class="input-dialog">
+                                <p>Mã số thuế</p>
+                                <input name="taxCode" placeholder="Mã số thuế công ty" />
+                            </div>
+                            <div class="input-dialog">
+                                <p>Địa chỉ</p>
+                                <input name="address" />
+                            </div>
                         </div>
                     </div>
                     <div class="dialog-bottom">
-
+                        <button class="cancel-dialog tdb-dialog-button">Hủy</button>
+                        <button class="save-dialog tdb-dialog-button"><b>Lưu</b></button>
                     </div>
                 </div>
             </div>

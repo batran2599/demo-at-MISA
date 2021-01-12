@@ -1,1 +1,2 @@
-new DropDown_tdb("tdb-display-option", "tdb-option"); // Xét sự kiện cho dropdown
+new DropDown_tdb("tdb-display-option", "tdb-option"); // Xét sự kiện cho dropdown loại page
+new DropDown_tdb("tdb-display-option-customer-group", "customer-group"); // Xét sự kiện cho dropdown danh mục khách hàng trong form dialog
