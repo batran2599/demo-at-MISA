@@ -39,6 +39,7 @@ class DropDown_tdb {
         option.style.backgroundColor = this.bgFocus;
 
         this.displayOption.innerText= tagChild[3].innerText;
+        this.displayOption.setAttribute("value", tagChild[3].getAttribute("value"));
     };
 
     /**

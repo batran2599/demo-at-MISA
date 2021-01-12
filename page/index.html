@@ -46,23 +46,23 @@
             <div class="left">
                 <!-- Menu dropdown  -->
                 <div class="tdb-dropdown restaurant-list">
-                    <div id="tdb-display-option" class="tdb-value-of-dropdown"></div>
+                    <div id="tdb-display-option-restaurant" class="tdb-value-of-dropdown"></div>
                     <div class="tdb-list-option">
-                        <div class="tdb-option">
+                        <div class="tdb-option restaurant-name">
                             <div class="tdb-icon"></div>
-                            <div class="tdb-content">Nhà hàng biển đông</div>
+                            <div class="tdb-content" value="NH001">Nhà hàng biển đông</div>
                         </div>
-                        <div class="tdb-option">
+                        <div class="tdb-option restaurant-name">
                             <div class="tdb-icon"></div>
-                            <div class="tdb-content">Nhà hàng biển tây</div>
+                            <div class="tdb-content" value="NH002">Nhà hàng biển tây</div>
                         </div>
-                        <div class="tdb-option">
+                        <div class="tdb-option restaurant-name">
                             <div class="tdb-icon"></div>
-                            <div class="tdb-content">Nhà hàng biển nam</div>
+                            <div class="tdb-content" value="NH003">Nhà hàng biển nam</div>
                         </div>
-                        <div class="tdb-option">
+                        <div class="tdb-option restaurant-name">
                             <div class="tdb-icon"></div>
-                            <div class="tdb-content">Nhà hàng biển bắc</div>
+                            <div class="tdb-content" value="NH004">Nhà hàng biển bắc</div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                 <div class="dialog-form">
                     <div class="dialog-header">
                         <p class="dialog-title"><b>Thông tin khách hàng</b></p>
-                        <button class="dialog-cancel">
+                        <button class="cancel-dialog">
                             <img class="icon-cancel" src="/public/icon/x.svg" />
                         </button>
                     </div>
@@ -141,15 +141,15 @@
                             <div class="info-form-top">
                                 <div class="input-dialog">
                                     <p>Mã khách hàng(<span style="color: red;">*</span>)</p>
-                                    <input name="customerCode" />
+                                    <input name="customerCode" required/>
                                 </div>
                                 <div class="input-dialog">
                                     <p>Họ và tên(<span style="color: red;">*</span>)</p>
-                                    <input name="fullName" />
+                                    <input name="fullName" required/>
                                 </div>
                                 <div class="input-dialog">
                                     <p>Mã thẻ thành viên</p>
-                                    <input name="memberCardId" />
+                                    <input name="memberCardCode" />
                                 </div>
                                 <div class="input-dialog">
                                     <p>Nhóm khách hàng</p>
@@ -158,30 +158,50 @@
                                         <div class="tdb-list-option">
                                             <div class="tdb-option customer-group">
                                                 <div class="tdb-icon"></div>
-                                                <div class="tdb-content">Khách hàng loại 1</div>
+                                                <div class="tdb-content" value="KH01">Khách hàng loại 1</div>
                                             </div>
                                             <div class="tdb-option customer-group">
                                                 <div class="tdb-icon"></div>
-                                                <div class="tdb-content">Khách hàng loại 2</div>
+                                                <div class="tdb-content" value="KH02">Khách hàng loại 2</div>
                                             </div>
                                             <div class="tdb-option customer-group">
                                                 <div class="tdb-icon"></div>
-                                                <div class="tdb-content">Khách hàng loại 3</div>
+                                                <div class="tdb-content" value="KH03">Khách hàng loại 3</div>
                                             </div>
                                             <div class="tdb-option customer-group">
                                                 <div class="tdb-icon"></div>
-                                                <div class="tdb-content">Khách hàng loại 4</div>
+                                                <div class="tdb-content" value="KH04">Khách hàng loại 4</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="input-dialog">
-                                    <p>Mã khách hàng</p>
-                                    <input name="customerCode" />
+                                    <p>Ngày sinh</p>
+                                    <input name="dateOfBirth" placeholder="mm/dd/yyyy"/>
                                 </div>
                                 <div class="input-dialog">
-                                    <p>Mã khách hàng</p>
-                                    <input name="customerCode" />
+                                    <p>Giới tính</p>
+                                    <div class="tdb-radio gender-radio" >
+                                        <p>Nam</p> <!--Content-->
+                                        <div>
+                                            <input type="radio" name="gender" value="0"/>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="tdb-radio gender-radio">
+                                        <p>Nữ</p> <!--Content-->
+                                        <div>
+                                            <input type="radio" name="gender" value="1"/>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="tdb-radio gender-radio">
+                                        <p>Khác</p>
+                                        <div>
+                                            <input type="radio" name="gender" value="3"/>
+                                            <span></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +212,7 @@
                             </div>
                             <div class="input-dialog">
                                 <p>Số điện thoại (<span style="color: red;">*</span>)</p>
-                                <input name="email" type="email" />
+                                <input name="phoneNumber" required/>
                             </div>
                             <div class="input-dialog">
                                 <p>Tên công ty</p>
@@ -217,6 +237,7 @@
         </div>
         <script type="text/javascript" src="/js/lib/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="/js/base/Filter_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Validate_tdb.js"></script>
         <script type="text/javascript" src="/js/base/Table_tdb.js"></script>
         <script type="text/javascript" src="/js/base/DropDown_tdb.js"></script>
         <script type="text/javascript" src="/js/common/titleTag.js"></script>

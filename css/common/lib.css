@@ -1,6 +1,21 @@
 /*
 *
-Tạo Dropdown 
+*Tạo Dropdown có cấu trúc như sau
+<div class="tdb-dropdown restaurant-list">
+    <div id="tdb-display-option-restaurant" class="tdb-value-of-dropdown"></div>
+    <div class="tdb-list-option">
+        <div class="tdb-option restaurant-name">
+            <div class="tdb-icon"></div>
+            <div class="tdb-content">Nhà hàng biển đông</div>
+        </div>
+        <div class="tdb-option restaurant-name">
+            <div class="tdb-icon"></div>
+            <div class="tdb-content">Nhà hàng biển tây</div>
+        </div>
+        ....
+    </div>
+</div>
+*CreatedBy: Trần Duy Bá
 *
 */
 /* Begin */
@@ -82,12 +97,12 @@ Tạo Dropdown
 /* End */
 
 
-/*
+/* ----------------------------------------------------------------------------------------------------- 
 *
-Tạo Button 
+*Tạo Button 
+*CreatedBy: Trần Duy Bá
 *
-*/
-/* Begin */
+*--->Begin */
 .tdb-button {
     height: 40px;
     /* width: 170px; */
@@ -118,7 +133,7 @@ Tạo Button
         padding-right: 16px;
     }
 /* End */
-
+/* ----------------------------------------------------------------------------------------------------- */
 /*
 *
 Tạo Input 
@@ -145,7 +160,7 @@ Tạo Input
         color: #bbbbbb;
     }
 /* End */
-
+/* ----------------------------------------------------------------------------------------------------- */
 /*
 *
 Tạo Arrow Button
@@ -164,4 +179,65 @@ Tạo Arrow Button
     border: none;
     outline: none;
 }
+/* End */
+/* ----------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------- 
+*
+*Tạo Radio Button
+<div class="tdb-radio" >
+    <p>Nam</p>      <!--Content-->
+    <div>
+        <input type="radio" name="gender" value="0"/>
+        <span></span>
+    </div>
+</div>
+*CreatedBy: Trần Duy Bá
+*
+*--->Begin */
+    .tdb-radio {
+        display: inline-block;
+    }   
+
+        .tdb-radio > p {
+            float: left;
+        }
+
+        .tdb-radio > div {
+            float: left;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid #019160;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            position: relative;
+        }
+
+            .tdb-radio > div > input {
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                cursor: pointer;
+            }
+
+            .tdb-radio > div > input:checked + span {
+                display: block;
+            }
+
+            .tdb-radio > div > span {
+                display: none;
+                width: 70%;
+                height: 70%;
+                background-color:#019160;
+                border-radius: 50%;
+                position: absolute;
+                top: 15%;
+                left: 15%;
+            }
 /* End */
