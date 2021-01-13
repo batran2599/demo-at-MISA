@@ -2,18 +2,20 @@ class DropDown_tdb {
     /**
      * Tạo một DropDown
      * @param {String} selectorContainingObject Selector đến đối tượng HTML chứa Dropdown
-     * @param {Object} attribute Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để cấu hình các attribute cho đối tượng hiển thị option đã chọn trong Menu
+     * @param {String} nameOfInput Tên của thẻ input có type=hidden chứa dữ liệu đã chọn.
      * @param {Object} configData Đối tượng chứa 2 thuộc tính là title, value có giá trị là tên trường title và value muốn lấy trong đối tượng data
      * @param {Object} data Đối tượng chứa các trường dữ liệu là đối tượng configData yêu cầu, nếu lấy dữ liệu qua API thì bỏ qua
      * CreatedBy: Trần Duy Bá (13/01/2021)
      */
-    constructor(selectorContainingObject, attribute, configData, data = null) {
-        this.displayOption;
-        this.listOption = [];
+    constructor(selectorContainingObject, nameOfInputSaveOption, configData = null, data = null) {
         this.containingObject = document.querySelector(selectorContainingObject);
-        this.attrOfObjDisplayOption = attribute;
+        this.nameOfInputSaveOption = nameOfInputSaveOption;
         this.configData = configData;
         this.data = data;
+
+        this.displayOption;
+        this.inputSaveOption; // Thẻ input chứa value của option đã chọn
+        this.listOption = [];
         this.bgFocus = "#019160";
         this.textColorFocus = "#ffffff";
         this.tickIcon = "/public/icon/tick.svg";
@@ -70,7 +72,7 @@ class DropDown_tdb {
         option.style.backgroundColor = this.bgFocus;
 
         this.displayOption.innerText= tagChild[1].innerText;
-        this.displayOption.setAttribute("value", tagChild[1].getAttribute("value"));
+        this.inputSaveOption.value = tagChild[1].getAttribute("value");
     };
 
     /**
@@ -125,10 +127,13 @@ class DropDown_tdb {
      * CreatedBy: Trần Duy Bá (13/01/2021)
      */
     Create() {
-        if(this.data != null) {
+        if(this.data != null || this.configData == null) {
             this.containingObject.classList.add("tdb-dropdown");
 
-            this.displayOption = this.CreateHTMLTag("div", {class: "tdb-value-of-dropdown",...this.attrOfObjDisplayOption});
+            this.inputSaveOption = this.CreateHTMLTag("input", {type: "hidden", name: this.nameOfInputSaveOption});
+            this.containingObject.appendChild(this.inputSaveOption);
+
+            this.displayOption = this.CreateHTMLTag("div", {class: "tdb-value-of-dropdown"});
             this.containingObject.appendChild(this.displayOption);
 
             let containOption, option, icon, content;
@@ -149,7 +154,7 @@ class DropDown_tdb {
             this.containingObject.appendChild(containOption);
             this.SetEventChooseOption();
         } else {
-            alert("Chưa có data cho DropDown");
+            alert("Chưa có data hoặc chưa cấu hình data cho DropDown");
         }
 
     }

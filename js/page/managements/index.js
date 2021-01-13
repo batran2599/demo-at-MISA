@@ -1,4 +1,4 @@
-let dropDownCustomerGrop = new DropDown_tdb(".customer-group-list", {"id": "tdb-display-option-customer-group"}, {title: "CustomerGroupName", value: "CustomerGroupId"});
+let dropDownCustomerGrop = new DropDown_tdb(".customer-group-list", "customerGroupId", {title: "CustomerGroupName", value: "CustomerGroupId"});
 dropDownCustomerGrop.SetDataWithAPI(" http://api.manhnv.net/api/customergroups");
 
 let data = [
@@ -20,7 +20,7 @@ let data = [
     }
 ];
 
-let dropDownRestaurant = new DropDown_tdb(".restaurant-list", {"id": "tdb-display-option-restaurant"}, {title: "restaurantName", value: "restaurantCode"}, data);
+let dropDownRestaurant = new DropDown_tdb(".restaurant-list", "tdb-display-option-restaurant", {title: "restaurantName", value: "restaurantCode"}, data);
 dropDownRestaurant.Create();
 
 /**
@@ -60,21 +60,19 @@ $(".save-dialog").click(function(){
             $(this).trigger("blur");
         });
         $('input[validate="false"]')[0].focus();
-    } else {
-        let infoCustomer = {
-            "CustomerCode": $('input[name="customerCode"]').val(),
-            "FullName": $('input[name="fullName"]').val(),
-            "Gender": $('input[type="gender", checked]').val(),
-            "Address": $('input[name="address"]').val(),
-            "DateOfBirth": $('input[name="dateOfBirth"]').val(),
-            "Email": $('input[name="email"]').val(),
-            "PhoneNumber": $('input[name="phoneNumber"]').val(),
-            "CustomerGroupId": "00000000-0000-0000-0000-000000000000",
-            "MemberCardCode": $('input[name="memberCardCode"]').val(),
-            "CompanyName": $('input[name="companyName"]').val(),
-            "CompanyTaxCode": $('input[name="taxCode"]').val()
-        };
-        console.log(JSON.stringify(infoCustomer));
+    } else {    
+
+        let infoCustomer = {};
+
+        let inputData = $(".tdb-dialog input");
+        $.each(inputData, function(){
+            if(this.name != "Gender") {
+                infoCustomer[this.name] = this.value;
+            } else {
+                infoCustomer[this.name] =  $('.tdb-dialog input[name="Gender"]:checked').val();
+            }
+        });
+
         $.ajax({
             url: "http://api.manhnv.net/api/customers",
             method: "POST",
