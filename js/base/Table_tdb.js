@@ -44,7 +44,7 @@ class Table_tdb {
         }).done((res)=>{
             this.SetDataForTable(res);
         }).fail(function(){
-            alert("Lỗi !");
+            alert("Lỗi khi lấy dữ liệu cho bảng !");
         });
     }
 

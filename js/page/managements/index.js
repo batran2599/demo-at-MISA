@@ -1,5 +1,27 @@
-new DropDown_tdb("tdb-display-option-restaurant", "restaurant-name"); // Xét sự kiện cho dropdown loại page
-new DropDown_tdb("tdb-display-option-customer-group", "customer-group"); // Xét sự kiện cho dropdown danh mục khách hàng trong form dialog
+let dropDownCustomerGrop = new DropDown_tdb(".customer-group-list", {"id": "tdb-display-option-customer-group"}, {title: "CustomerGroupName", value: "CustomerGroupId"});
+dropDownCustomerGrop.SetDataWithAPI(" http://api.manhnv.net/api/customergroups");
+
+let data = [
+    {
+        "restaurantName": "Nhà hàng biển đông",
+        "restaurantCode": "NH001"
+    },
+    {
+        "restaurantName": "Nhà hàng biển tây",
+        "restaurantCode": "NH002"
+    },
+    {
+        "restaurantName": "Nhà hàng biển nam",
+        "restaurantCode": "NH003"
+    },
+    {
+        "restaurantName": "Nhà hàng biển bắc",
+        "restaurantCode": "NH004"
+    }
+];
+
+let dropDownRestaurant = new DropDown_tdb(".restaurant-list", {"id": "tdb-display-option-restaurant"}, {title: "restaurantName", value: "restaurantCode"}, data);
+dropDownRestaurant.Create();
 
 /**
  * Thực hiện các sự kiện ẩn hiện form dialog
@@ -24,7 +46,7 @@ new DropDown_tdb("tdb-display-option-customer-group", "customer-group"); // Xét
  */
 Validate.Required(".input-dialog > input[required]");
 
-Validate.Email(".input-dialog > input[type=email]");
+Validate.Email(".input-dialog > input[type=email]"); // Cảnh báo khi nhập sai định dạn email
 
 
 // Gửi dữ liệu
@@ -42,7 +64,7 @@ $(".save-dialog").click(function(){
         let infoCustomer = {
             "CustomerCode": $('input[name="customerCode"]').val(),
             "FullName": $('input[name="fullName"]').val(),
-            "Gender": 0,
+            "Gender": $('input[type="gender", checked]').val(),
             "Address": $('input[name="address"]').val(),
             "DateOfBirth": $('input[name="dateOfBirth"]').val(),
             "Email": $('input[name="email"]').val(),
