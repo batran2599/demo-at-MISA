@@ -1,4 +1,4 @@
-class ManagementCustomers extends ManagementPage{
+class ManagementCustomers extends ManagementPage {
     RefreshTable() {
         this.configAjax = {
             async: false
