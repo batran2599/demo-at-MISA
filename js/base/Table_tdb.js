@@ -10,11 +10,14 @@ class Table_tdb {
      *      }
      * }
      * CreatedBy: Trần Duy Bá (30/12/2020)
+     * UpdateBy: Trần Duy Bá (14/01/2021)
      */
     constructor (tableSelector = "", configTable = {}) {
         this.tableSelector = tableSelector;
         this.configTable = configTable;
         this.configAjax = {};
+        this.recordId = null;
+        this.loader = new Loader_tdb();
     }
 
     /**
@@ -35,8 +38,10 @@ class Table_tdb {
      * @param {string} urlAPI  Đường dẫn API
      * @param {string} method Phương thức truyền dẫn dữ liệu GET, POST, ...
      * CreatedBy: Trần Duy Bá (30/12/2020)
+     * UpdateBy: Trần Duy Bá (14/01/2021)
      */
     SetDataWithAPI(urlAPI, method) {
+        this.loader.Create();
         $.ajax({
             url: urlAPI,
             method: method,
@@ -44,6 +49,7 @@ class Table_tdb {
         }).done((res)=>{
             this.SetDataForTable(res);
         }).fail(function(){
+            this.loader.Remove();
             alert("Lỗi khi lấy dữ liệu cho bảng !");
         });
     }
@@ -60,8 +66,10 @@ class Table_tdb {
      *      ...
      * };
      * CreatedBy: Trần Duy Bá (30/12/2020)
+     * UpdateBy: Trần Duy Bá (14/01/2021)
      */
     SetDataWithObjData(data = null) {
+        this.loader.Create();
         if(data !== null) {
             this.SetDataForTable(data);
         }
@@ -79,8 +87,11 @@ class Table_tdb {
      *      ...
      * };
      * CreatedBy: Trần Duy Bá (24/12/2020)
+     * UpdateBy: Trần Duy Bá (14/01/2021)
      */
     SetDataForTable(data) {
+        this.RemoveTitleColumn();
+        this.RemoveContentTable()
         this.SetTitleForColumn();
         let rowData = "";
         let tdTag = "";
@@ -92,10 +103,19 @@ class Table_tdb {
                     tdTag += `<td>${itemRow[indexTd]}</td>`;
                 }
             });
-            rowData = `<tr>${tdTag}</tr>`;
+            if(this.recordId == null){
+                rowData = `<tr>${tdTag}</tr>`;
+            } else {
+                if(this.recordId.attrName != undefined) {
+                    rowData = `<tr ${this.recordId.attrName}="${itemRow[this.recordId.fieldName]}">${tdTag}</tr>`;
+                } else {
+                    rowData = `<tr recordId="${itemRow[this.recordId.fieldName]}">${tdTag}</tr>`;
+                }
+            }
             tdTag = "";
             $(`${this.tableSelector} > tbody`).append(rowData);
         });
+        this.loader.Remove();
     }
 
     /**

@@ -18,6 +18,7 @@ let ManaCustomers = new ManagementCustomers();
 ManaCustomers.urlAPI = "http://api.manhnv.net/api/customers";
 ManaCustomers.method = "GET";
 ManaCustomers.tableSelector = ".data-table";
+ManaCustomers.recordId = {attrName: "customerId", fieldName: "CustomerId"};
 ManaCustomers.configTable = {
     CustomerCode: {
         CName: "Mã nhân viên", // Tiêu đề cột

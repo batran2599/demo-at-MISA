@@ -105,7 +105,8 @@ class DropDown_tdb {
      * 
      * @param {String} tagName Tên thẻ HTML muốn tạo
      * @param {Object} configAttr Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để tạo các attribute cho thẻ HTML
-     * @param {*} configStyle Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để định kiểu style cho thẻ HTML
+     * @param {Object} configStyle Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để định kiểu style cho thẻ HTML
+     * CreatedBy: Trần Duy Bá (13/01/2021)
      */
     CreateHTMLTag(tagName = null, configAttr = null, configStyle = null) {
         let element = document.createElement(tagName);

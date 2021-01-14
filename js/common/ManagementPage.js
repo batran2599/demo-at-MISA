@@ -29,11 +29,10 @@ class ManagementPage extends Table_tdb{
     /**
      * Load lại dữ liệu trong bảng
      * CreatedBy: Trần Duy Bá (30/12/2020)
+     * UpdateBy: Trần Duy Bá (14/01/2021)
      */
     RefreshTable() {
         try {
-            this.RemoveTitleColumn();
-            this.RemoveContentTable();
             this.LoadDataForTable();
         } catch(e) {
             console.log("Có lỗi !");

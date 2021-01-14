@@ -9,6 +9,7 @@ let ManaEmployees = new ManagementEmployees();
 ManaEmployees.urlAPI = "http://api.manhnv.net/api/employees";
 ManaEmployees.method = "GET";
 ManaEmployees.tableSelector = ".data-table";
+ManaEmployees.recordId = {attrName: "employeeId", fieldName: "EmployeeId"};
 ManaEmployees.configTable = {
     EmployeeCode: {
         CName: "Mã nhân viên", // Tiêu đề cột
