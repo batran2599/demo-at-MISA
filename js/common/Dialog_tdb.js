@@ -1,9 +1,18 @@
-class Dialog extends Validate{
-    constructor(){
-        this.host = "http://api.manhnv.net/";
-        this.endPoin = "";
+class Dialog_tdb {
+    /**
+     * Cấu hình API để phục vụ gửi dữ liệu
+     * @param {URL} host Địa chỉ host lấy data
+     * @param {String} endPoin router lấy data
+     */
+    constructor(host = "", endPoin = ""){
+        this.host = host;
+        this.endPoin = endPoin;
+        this.customerGroup = new DropDown_tdb(".customer-group-list", "customerGroupId", {title: "CustomerGroupName", value: "CustomerGroupId"});
     }
 
+    /**
+     * Tạo sự kiện bật tắt dialog
+     */
     onOfDialogForm() {
         $(".add-customer").click(function(){
             $(".tdb-dialog").css("display", "block");
@@ -19,12 +28,23 @@ class Dialog extends Validate{
         });
     }
 
+    /**
+     * Tạo validate cho các thành phần yêu cầu bắt buộc nhập
+     * CreatedBy: Trần Duy Bá (14/01/2021)
+     */
     valiDate() {
-        this.Required(".input-dialog > input[required]");
+        Validate_tdb.Required(".input-dialog > input[required]");
 
-        this.Email(".input-dialog > input[type=email]");
+        Validate_tdb.Email(".input-dialog > input[type=email]");
     }
 
+    menuCustomerGroup(apiCustomerGroup) {
+        this.customerGroup.SetDataWithAPI(apiCustomerGroup);
+    }
+
+    /**
+     * Sự kiện thực hiện gửi dữ liệu qua API
+     */
     sendDialog() {
         $(".save-dialog").click(function(){
             $.each($('input[required], input[type=email]'), function(){

@@ -1,15 +1,4 @@
-class Validate{
-
-    // /**
-    //  * Định kiểu css cho các đối tượng HTML
-    //  * @param {HTMLObjectElement} object // Đối tượng HTML
-    //  * @param {Object} style // Đối tượng chứa các thuộc tính và giá trị tương ứng là tên thuộc tính css và giá trị
-    //  */
-    // setStyle(object, style) {
-    //     $.each(style, (index, value)=>{
-    //         object.style[index] = value;
-    //     });
-    // }
+class Validate_tdb {
 
     /**
      * Tạo cảnh báo yêu cầu bắt buộc nhập với các thẻ input nhập liệu

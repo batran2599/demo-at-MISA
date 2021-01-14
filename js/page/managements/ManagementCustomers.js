@@ -1,4 +1,13 @@
 class ManagementCustomers extends ManagementPage {
+    constructor() {
+        super();
+        this.dialog = new Dialog_tdb("http://api.manhnv.net", "/customers");
+        this.dialogCustomer();
+    }
+
+    /**
+     * Làm mới lại bảng dữ liệu khách hàng
+     */
     RefreshTable() {
         this.configAjax = {
             async: false
@@ -7,65 +16,14 @@ class ManagementCustomers extends ManagementPage {
         $(this.tableSelector + " > thead > tr > th").css("text-align", "left");
         $(this.tableSelector + " > tbody > tr > td").css("text-align", "left");
     }
-}
 
-/**
- * ------------------------------------------------------------------
- * Cấu hình cho đối tượng quản lý dữ liệu cho bảng quản lý khách hàng
- * ------------------------------------------------------------------
- * */
-let ManaCustomers = new ManagementCustomers();
-ManaCustomers.urlAPI = "http://api.manhnv.net/api/customers";
-ManaCustomers.method = "GET";
-ManaCustomers.tableSelector = ".data-table";
-ManaCustomers.recordId = {attrName: "customerId", fieldName: "CustomerId"};
-ManaCustomers.configTable = {
-    CustomerCode: {
-        CName: "Mã nhân viên", // Tiêu đề cột
-        FName: Filter.Type.General // Tên loại filter
-    },
-    FullName: {
-        CName: "Họ tên",
-        FName: Filter.Type.General
-    },
-    Gender: {
-        CName: "Giới tính",
-        FName: Filter.Type.Gender
-    },
-    DateOfBirth: {
-        CName: "Ngày sinh",
-        FName: Filter.Type.FormatDate
-    },
-    PhoneNumber: {
-        CName: "Số điện thoại",
-        FName: Filter.Type.General
-    },
-    Email: {
-        CName: "Email",
-        FName: Filter.Type.General
-    },
-    Address: {
-        CName: "Địa chỉ",
-        FName: Filter.Type.General
-    },
-    CompanyName: {
-        CName: "Tên công ty",
-        FName: Filter.Type.General
-    },
-    CustomerGroupName: {
-        CName: "Tên nhóm khách hàng",
-        FName: Filter.Type.General
+    /**
+     * Tạo các sự kiện phục vụ mở dialog
+     */
+    dialogCustomer() {
+        this.dialog.onOfDialogForm();
+        this.dialog.valiDate();
+        this.dialog.sendDialog();
+        this.dialog.menuCustomerGroup("http://api.manhnv.net/api/customergroups");
     }
-};
-
-/**
- * Đặt sự kiện khi click chọn danh mục quản lý khách hàng
- * CreatedBy: Trần Duy Bá (31/12/2020)
- */
-$("#customersList").click(function() {
-
-    $("#titleManagementPage").text("Quản lý khách hàng")
-    ManaCustomers.RefreshTable();
-
-    document.getElementsByClassName("refresh")[0].onclick = ManaCustomers.RefreshTable.bind(ManaCustomers); // Xét sự kiện cho button Refresh
-});
+}

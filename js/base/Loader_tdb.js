@@ -1,10 +1,10 @@
 class Loader_tdb {
     constructor(selectorView= "body") {
 
-        this.colorOfRuner = "#019160";
-        this.backgroundOfRuner = "#f3f3f3";
-        this.runerWidth = "10px";
-        this.borderWidth = "50px";
+        this.colorOfRuner = "#019160"; // Màu đường biên chạy
+        this.backgroundOfRuner = "#f3f3f3"; // Nền tròn
+        this.runerWidth = "10px"; // Bề dày 
+        this.objectRadius = "50px";
 
         this.view = document.querySelector(selectorView);
         this.container = null;
@@ -36,6 +36,8 @@ class Loader_tdb {
         this.container = this.CreateHTMLTag("div", null, {
             width: "100%",
             height: "100vh",
+            top: "0px",
+            left: "0px",
             position: "fixed",
             display: "flex",
             justifyContent: "center",
@@ -43,8 +45,8 @@ class Loader_tdb {
         });
 
         this.loaderObject = this.CreateHTMLTag("div", null, {
-            width: this.borderWidth,
-            height: this.borderWidth,
+            width: this.objectRadius,
+            height: this.objectRadius,
             
             borderWidth: this.runerWidth,
             borderStyle: "solid",
@@ -57,14 +59,14 @@ class Loader_tdb {
         });
         this.container.appendChild(this.loaderObject);
         this.view.appendChild(this.container);
-        this.Rotate();
+        this.RotateAnimation();
     }
 
     /**
      * Tạo animation xoay tròn cho đối tượng
      */
-    Rotate() {
-        this.loaderObject.animate([
+    RotateAnimation() {
+        this.loaderObject.animate([ 
             { transform: 'rotate(0)'},
             { transform: 'rotate(360deg)'}],
             {

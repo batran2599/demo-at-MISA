@@ -129,6 +129,7 @@ class DropDown_tdb {
      */
     Create() {
         if(this.data != null || this.configData == null) {
+            this.containingObject.innerHTML = "";
             this.containingObject.classList.add("tdb-dropdown");
 
             this.inputSaveOption = this.CreateHTMLTag("input", {type: "hidden", name: this.nameOfInputSaveOption});
@@ -151,7 +152,6 @@ class DropDown_tdb {
                 this.listOption.push(option);
                 containOption.appendChild(option);
             });
-
             this.containingObject.appendChild(containOption);
             this.SetEventChooseOption();
         } else {
