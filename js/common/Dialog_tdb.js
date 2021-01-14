@@ -4,9 +4,9 @@ class Dialog_tdb {
      * @param {URL} host Địa chỉ host lấy data
      * @param {String} endPoin router lấy data
      */
-    constructor(host = "", endPoin = ""){
+    constructor(host = "", endPoint = ""){
         this.host = host;
-        this.endPoin = endPoin;
+        this.endPoint = endPoint;
         this.customerGroup = new DropDown_tdb(".customer-group-list", "customerGroupId", {title: "CustomerGroupName", value: "CustomerGroupId"});
     }
 
@@ -46,13 +46,13 @@ class Dialog_tdb {
      * Sự kiện thực hiện gửi dữ liệu qua API
      */
     sendDialog() {
-        $(".save-dialog").click(function(){
-            $.each($('input[required], input[type=email]'), function(){
+        $(".save-dialog").click(()=>{
+            $.each($('input[required], input[type=email]'), ()=>{
                $(this).trigger("blur");
             });
         
             if($('input[validate="false"]').length > 0) {
-                $.each($('input[validate="false"]'), function(){
+                $.each($('input[validate="false"]'), ()=>{
                     $(this).trigger("blur");
                 });
                 $('input[validate="false"]')[0].focus();
@@ -70,14 +70,16 @@ class Dialog_tdb {
                 });
         
                 $.ajax({
-                    url: this.host + this.endPoin,
+                    url: this.host + this.endPoint,
                     method: "POST",
                     data: JSON.stringify(infoCustomer),
                     contentType: "application/json"
-                }).done(function(res){
+                }).done((res)=>{
                     alert("Thêm thành công !");
-                    ManaCustomers.RefreshTable();
-                }).fail(function(res){
+                    // ManaCustomers.RefreshTable();
+                }).fail((res)=>{
+                    console.log(this.host + this.endPoint);
+                    console.log(infoCustomer);
                     console.log(res);
                 });
             }

@@ -1,7 +1,7 @@
 class ManagementCustomers extends ManagementPage {
     constructor() {
         super();
-        this.dialog = new Dialog_tdb("http://api.manhnv.net", "/customers");
+        this.dialog = new Dialog_tdb("http://api.manhnv.net", "/api/customers");
         this.dialogCustomer();
     }
 
