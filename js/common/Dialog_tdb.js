@@ -3,15 +3,19 @@ class Dialog_tdb {
      * Cấu hình API để phục vụ gửi dữ liệu
      * @param {URL} host Địa chỉ host lấy data
      * @param {String} endPoin router lấy data
+     * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     constructor(host = "", endPoint = ""){
         this.host = host;
         this.endPoint = endPoint;
         this.customerGroup = new DropDown_tdb(".customer-group-list", "customerGroupId", {title: "CustomerGroupName", value: "CustomerGroupId"});
+        this.loader = new Loader_tdb();
+        this.recordId = "recordId";
     }
 
     /**
      * Tạo sự kiện bật tắt dialog
+     * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     onOfDialogForm() {
         $(".add-customer").click(function(){
@@ -20,10 +24,12 @@ class Dialog_tdb {
         
         $(".cancel-dialog").click(function(){
             $(".tdb-dialog").css("display", "none");
-            ManaCustomers.RefreshTable();
+            // ManaCustomers.RefreshTable();
         });
-    
-        $(".data-table > tbody").on("click", "tr", function(){
+        
+        let that = this;
+        $(".data-table > tbody").on("click", "tr",function(){
+            that.findObject($(this).data(that.recordId));
             $(".tdb-dialog").css("display", "block");
         });
     }
@@ -38,12 +44,47 @@ class Dialog_tdb {
         Validate_tdb.Email(".input-dialog > input[type=email]");
     }
 
+    /**
+     * 
+     * @param {url} apiCustomerGroup Địa chỉ API lấy dữ liệu về nhóm khách hàng để tạo menu dropdown
+     */
     menuCustomerGroup(apiCustomerGroup) {
         this.customerGroup.SetDataWithAPI(apiCustomerGroup);
     }
 
     /**
+     * Load dữ liệu của cho dialog
+     * @param {Object} data Dữ liệu cần load cho dialog
+     * CreatedBy: Trần Duy Bá (15/01/2021)
+     */
+    setDialog(data) {
+        $.each(data, (index, value)=>{
+            $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(value);
+        });
+    }
+
+    /**
+     * Tìm kiếm đối bản ghi theo Id
+     * @param {String} id Khóa tìm kiếm 
+     * CreatedBy: Trần Duy Bá (15/01/2021)
+     */
+    findObject(id) {
+        console.log(this.host + this.endPoint + "/" + id);
+        this.loader.Create();
+        $.ajax({
+            url: this.host + this.endPoint + "/" + id,
+            method: "GET",
+        }).done((res)=>{
+            this.loader.Remove();
+            this.setDialog(res);
+        }).fail((res)=>{
+            console.log(res);
+        });
+    }
+
+    /**
      * Sự kiện thực hiện gửi dữ liệu qua API
+     * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     sendDialog() {
         $(".save-dialog").click(()=>{

@@ -48,9 +48,9 @@ class Table_tdb {
             ...this.configAjax
         }).done((res)=>{
             this.SetDataForTable(res);
-        }).fail(function(){
+        }).fail(()=>{
             this.loader.Remove();
-            alert("Lỗi khi lấy dữ liệu cho bảng !");
+            console.error("Lỗi khi lấy dữ liệu cho bảng !");
         });
     }
 
@@ -107,9 +107,11 @@ class Table_tdb {
                 rowData = `<tr>${tdTag}</tr>`;
             } else {
                 if(this.recordId.attrName != undefined) {
-                    rowData = `<tr ${this.recordId.attrName}="${itemRow[this.recordId.fieldName]}">${tdTag}</tr>`;
+                    rowData = $(`<tr>${tdTag}</tr>`);
+                    $(rowData).data(this.recordId.attrName, itemRow[this.recordId.fieldName]);
                 } else {
-                    rowData = `<tr recordId="${itemRow[this.recordId.fieldName]}">${tdTag}</tr>`;
+                    rowData = $(`<tr>${tdTag}</tr>`);
+                    $(rowData).data("recordId", itemRow[this.recordId.fieldName]);
                 }
             }
             tdTag = "";

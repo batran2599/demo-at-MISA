@@ -153,5 +153,5 @@ $("#employeesList").click(function() {
     $("#titleManagementPage").text("Quản lý nhân viên")
     pageNow.RefreshTable();
 
-    document.getElementsByClassName("refresh")[0].onclick = pageNow.RefreshTable.bind(pageNow); // Xét sự kiện cho button Refresh
+    // document.getElementsByClassName("refresh")[0].onclick = pageNow.RefreshTable.bind(pageNow); // Xét sự kiện cho button Refresh
 });

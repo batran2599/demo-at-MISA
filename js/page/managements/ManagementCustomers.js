@@ -2,7 +2,6 @@ class ManagementCustomers extends ManagementPage {
     constructor() {
         super();
         this.dialog = new Dialog_tdb("http://api.manhnv.net", "/api/customers");
-        this.dialogCustomer();
     }
 
     /**
@@ -25,5 +24,6 @@ class ManagementCustomers extends ManagementPage {
         this.dialog.valiDate();
         this.dialog.sendDialog();
         this.dialog.menuCustomerGroup("http://api.manhnv.net/api/customergroups");
+        this.dialog.recordId = this.recordId.attrName == undefined ? "recordId" : this.recordId.attrName;
     }
 }
