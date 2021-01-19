@@ -44,6 +44,7 @@ class DropDown_tdb {
 
     /**
      * Tạo sự kiện click khi chọn option
+     * CreadtedBy: Trần Duy Bá (24/01/2020)
      */
     SetEventChooseOption() {
         if(this.listOption.length > 0) {

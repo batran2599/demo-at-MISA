@@ -6,6 +6,7 @@ class Filter {
 
     /**
      * Đối tượng chứa các loại filter, mỗi property có giá trị là tên của kiểu filter tương ứng
+     * CreadtedBy: Trần Duy Bá (24/12/200)
      */
     static Type = {
         General: "General",

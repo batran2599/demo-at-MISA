@@ -3,7 +3,7 @@ class Validate_tdb {
     /**
      * Tạo cảnh báo yêu cầu bắt buộc nhập với các thẻ input nhập liệu
      * @param {String} classNameOfInput Tên class của các thẻ input có yêu cầu bắt buộc nhập
-     * @param {Object} classNameOfInput Style cảnh báo cho input
+     * @param {Object} styleWarning Style cảnh báo cho input
      * CreatedBy: Trần Duy Bá 12/01/2021
      */
     static Required(classNameOfInput = null, styleWarning = {borderColor: "#F65454"}) {
@@ -25,6 +25,7 @@ class Validate_tdb {
     /**
      * Kiểm tra email đúng định dạng Không
      * @param {string} email Email cần kiểm tra định dạng
+     * @param {Object} styleWarning Style cảnh báo cho input
      * CopyIn: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
      * EditBy: Trần Duy Bá (12/01/2021)
      */
@@ -51,6 +52,12 @@ class Validate_tdb {
         });
     }
 
+    /**
+     * Kiểm tra chuỗi ngày tháng truyền vào có đúng định dạng không
+     * @param {Date} date Chuỗi ngày tháng truyền vào
+     * @param {Object} styleWarning Style cảnh báo cho input
+     * CreatedBy: Trần Duy Bá
+     */
     static Date(date, styleWarning = {borderColor: "#F65454"}) {
         
     }

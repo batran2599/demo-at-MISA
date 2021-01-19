@@ -1,4 +1,8 @@
 class Loader_tdb {
+    /**
+     * Khởi tạo các giá ban đầu
+     * @param {querySelector} selectorView QuerySelector đến đối lượng HTML chứa đối tượng Loader
+     */
     constructor(selectorView= "body") {
 
         this.colorOfRuner = "#019160"; // Màu đường biên chạy
@@ -16,6 +20,7 @@ class Loader_tdb {
      * @param {String} tagName Tên thẻ HTML muốn tạo
      * @param {Object} configAttr Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để tạo các attribute cho thẻ HTML
      * @param {Object} configStyle Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để định kiểu style cho thẻ HTML
+     * CreadtedBy: Trần Duy Bá
      */
     CreateHTMLTag(tagName = null, configAttr = null, configStyle = null) {
         let element = document.createElement(tagName);
@@ -30,6 +35,7 @@ class Loader_tdb {
 
     /**
      * Tạo đối tượng loader và thêm vào bên trong phần tử cha
+     * CreadtedBy: Trần Duy Bá
      */
     Create() {
 
@@ -64,6 +70,7 @@ class Loader_tdb {
 
     /**
      * Tạo animation xoay tròn cho đối tượng
+     * CreadtedBy: Trần Duy Bá
      */
     RotateAnimation() {
         this.loaderObject.animate([ 
@@ -78,6 +85,7 @@ class Loader_tdb {
 
     /**
      * Xóa đối tượng loader
+     * CreadtedBy: Trần Duy Bá
      */
     Remove() {
         this.view.removeChild(this.container);
