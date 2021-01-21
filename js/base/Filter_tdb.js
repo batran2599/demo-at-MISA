@@ -8,13 +8,11 @@ class Filter {
      * Đối tượng chứa các loại filter, mỗi property có giá trị là tên của kiểu filter tương ứng
      * CreadtedBy: Trần Duy Bá (24/12/200)
      */
-    static Type = {
-        General: "General",
-        Gender: "Gender",
-        GenderCheckBox: "GenderCheckBox",
-        FormatDate: "FormatDate",
-        ConvertMoney: "ConvertMoney",
-        ConvertMoney: "ConvertMoney"
+    static type = {
+        general: "general",
+        gender: "gender",
+        formatDate: "formatDate",
+        convertMoney: "convertMoney"
     };
 
     /**---------------------------------------------------------------
@@ -22,7 +20,7 @@ class Filter {
      * @param {any} value Bất kỳ kiểu dữ liệu gì 
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    static General(value) {
+    static general(value) {
         if(value == "" || value == null) {
             return "...";
         }
@@ -34,7 +32,7 @@ class Filter {
      * @param {int} gender Các số 0,1,2 hoặc 3 
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    static Gender(gender) {
+    static gender(gender) {
         if(gender == 0) {
             return "Nam";
         } else if(gender == 1) {
@@ -45,19 +43,12 @@ class Filter {
         return "Không xác định";
     }
 
-    static GenderCheckBox(gender) {
-        if(gender == 0) {
-            return "<input type='checkbox' disabled checked />";
-        }
-        return "<input type='checkbox' disabled />";
-    }
-
     /**--------------------------------------------------
      * Chuyển dữ liệu ngày tháng thô sang dạng dd/MM/yyyy
      * @param {any} date Bất kể kiểu dữ liệu gì
      * CreatedBy: Trần Duy Bá (29/12/2020)
      */
-    static FormatDate(_date) {
+    static formatDate(_date) {
         let date = new Date(_date);
         if(!Number.isNaN(date.getTime())) {
             let day = date.getDate() + 1;
@@ -77,8 +68,8 @@ class Filter {
      * @param {string} typeMoneyAfter Ký hiệu tiền tệ đằng sau giá trị tiền
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    static ConvertMoney(value, typeMoneyBefore = "", typeMoneyAfter = "") {
-        value = this.General(value);
+    static convertMoney(value, typeMoneyBefore = "", typeMoneyAfter = "") {
+        value = this.general(value);
         if(value != "...") {
             let money = value.toString();
             let localOfDot = money.indexOf(".");

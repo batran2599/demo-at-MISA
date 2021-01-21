@@ -1,4 +1,4 @@
-class DropDown_tdb {
+class DropDown_tdb extends CreateHTMLTag_tdb{
     /**
      * Tạo một DropDown
      * @param {String} selectorContainingObject Selector đến đối tượng HTML chứa Dropdown
@@ -8,6 +8,7 @@ class DropDown_tdb {
      * CreatedBy: Trần Duy Bá (13/01/2021)
      */
     constructor(selectorContainingObject, nameOfInputSaveOption, configData = null, data = null) {
+        super();
         this.containingObject = document.querySelector(selectorContainingObject);
         this.nameOfInputSaveOption = nameOfInputSaveOption;
         this.configData = configData;
@@ -29,14 +30,14 @@ class DropDown_tdb {
      * @param {Object} configAjax Cấu hình thêm cho ajax
      * CreatedBy: Trần Duy Bá (13/01/2021)
      */
-    SetDataWithAPI(urlAPI, method = "GET", configAjax = {}) {
+    setDataWithAPI(urlAPI, method = "GET", configAjax = {}) {
         $.ajax({
             url: urlAPI,
             method: method,
             ...configAjax
         }).done((res)=>{
             this.data = res;
-            this.Create();
+            this.create();
         }).fail(function(){
             alert("Lỗi lấy dữ liệu cho DropDown!");
         });
@@ -46,11 +47,11 @@ class DropDown_tdb {
      * Tạo sự kiện click khi chọn option
      * CreadtedBy: Trần Duy Bá (24/01/2020)
      */
-    SetEventChooseOption() {
+    setEventChooseOption() {
         if(this.listOption.length > 0) {
             for(let i = 0; i < this.listOption.length; i++) {
                 this.listOption[i].onclick = ()=>{
-                    this.FoucusOption.call(this, this.listOption[i]);
+                    this.focusOption.call(this, this.listOption[i]);
                 };
             }
             this.listOption[0].click();
@@ -62,9 +63,9 @@ class DropDown_tdb {
      * @param {HTMLElement} option List các đối tượng thẻ option
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    FoucusOption(option) {
+    focusOption(option) {
 
-        this.UnfocusAllOption(); // unfocus tất cả các option trước khi tạo focus cho một option
+        this.unfocusAllOption(); // unfocus tất cả các option trước khi tạo focus cho một option
         let tagChild = option.childNodes;
         
         tagChild[0].style.backgroundImage = `url(${this.tickIcon})`;
@@ -81,7 +82,7 @@ class DropDown_tdb {
      * @param {HTMLElement} option List các đối tượng thẻ option
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    UnfocusOption(option) {
+    unfocusOption(option) {
         let tagChild = option.childNodes;
         
         tagChild[0].style = "";
@@ -96,28 +97,10 @@ class DropDown_tdb {
      * Unfocus tất cả các option
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    UnfocusAllOption() {
+    unfocusAllOption() {
         for(let i = 0; i < this.listOption.length; i++) {
-            this.UnfocusOption(this.listOption[i]);
+            this.unfocusOption(this.listOption[i]);
         }
-    }
-
-    /**
-     * 
-     * @param {String} tagName Tên thẻ HTML muốn tạo
-     * @param {Object} configAttr Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để tạo các attribute cho thẻ HTML
-     * @param {Object} configStyle Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để định kiểu style cho thẻ HTML
-     * CreatedBy: Trần Duy Bá (13/01/2021)
-     */
-    CreateHTMLTag(tagName = null, configAttr = null, configStyle = null) {
-        let element = document.createElement(tagName);
-        $.each(configAttr, function(attrName, value){
-            element.setAttribute(attrName, value);
-        });
-        $.each(configStyle, function(styleName, value){
-            element.style[styleName] = value;
-        });
-        return element;
     }
 
     /**
@@ -128,25 +111,25 @@ class DropDown_tdb {
      * @param {*} data Đối tượng chứa các trường dữ liệu là đối tượng configData yêu cầu
      * CreatedBy: Trần Duy Bá (13/01/2021)
      */
-    Create() {
+    create() {
         if(this.data != null || this.configData == null) {
             this.containingObject.innerHTML = "";
             this.containingObject.classList.add("tdb-dropdown");
 
-            this.inputSaveOption = this.CreateHTMLTag("input", {type: "hidden", name: this.nameOfInputSaveOption});
+            this.inputSaveOption = this.createHTMLTag("input", {type: "hidden", name: this.nameOfInputSaveOption});
             this.containingObject.appendChild(this.inputSaveOption);
 
-            this.displayOption = this.CreateHTMLTag("div", {class: "tdb-value-of-dropdown"});
+            this.displayOption = this.createHTMLTag("div", {class: "tdb-value-of-dropdown"});
             this.containingObject.appendChild(this.displayOption);
 
             let containOption, option, icon, content;
             
-            containOption = this.CreateHTMLTag("div", {class:"tdb-list-option"});
+            containOption = this.createHTMLTag("div", {class:"tdb-list-option"});
 
             $.each(this.data, (index, value)=>{
-                option = this.CreateHTMLTag("div", {class: "tdb-option"});
-                icon = this.CreateHTMLTag("div", {class: "tdb-icon"});
-                content = this.CreateHTMLTag("div", {class: "tdb-content", value: value[this.configData.value]});
+                option = this.createHTMLTag("div", {class: "tdb-option"});
+                icon = this.createHTMLTag("div", {class: "tdb-icon"});
+                content = this.createHTMLTag("div", {class: "tdb-content", value: value[this.configData.value]});
                 content.innerText = value[this.configData.title];
                 option.appendChild(icon);
                 option.appendChild(content);
@@ -154,9 +137,9 @@ class DropDown_tdb {
                 containOption.appendChild(option);
             });
             this.containingObject.appendChild(containOption);
-            this.SetEventChooseOption();
+            this.setEventChooseOption();
         } else {
-            alert("Chưa có data hoặc chưa cấu hình data cho DropDown");
+            console.error("Chưa có data hoặc chưa cấu hình data cho DropDown");
         }
 
     }

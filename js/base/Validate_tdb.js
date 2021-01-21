@@ -6,7 +6,7 @@ class Validate_tdb {
      * @param {Object} styleWarning Style cảnh báo cho input
      * CreatedBy: Trần Duy Bá 12/01/2021
      */
-    static Required(classNameOfInput = null, styleWarning = {borderColor: "#F65454"}) {
+    static required(classNameOfInput = null, styleWarning = {borderColor: "#F65454"}) {
         $(classNameOfInput).blur(function(){
             if(!$(this).val()) {
                 $(this).attr("title", "Không được để trống");
@@ -29,7 +29,7 @@ class Validate_tdb {
      * CopyIn: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
      * EditBy: Trần Duy Bá (12/01/2021)
      */
-    static Email(email, styleWarning = {borderColor: "#F65454"}) {
+    static email(email, styleWarning = {borderColor: "#F65454"}) {
         $(email).blur(function(){
             if(this.value != "") {
                 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -58,7 +58,7 @@ class Validate_tdb {
      * @param {Object} styleWarning Style cảnh báo cho input
      * CreatedBy: Trần Duy Bá
      */
-    static Date(date, styleWarning = {borderColor: "#F65454"}) {
+    static date(date, styleWarning = {borderColor: "#F65454"}) {
         
     }
 }

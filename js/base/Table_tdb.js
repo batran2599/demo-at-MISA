@@ -24,10 +24,10 @@ class Table_tdb {
      * Đặt tiêu đề cho cột trong bảng
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    SetTitleForColumn() {
+    setTitleForColumn() {
         let listTh = "";
         $.each(this.configTable, (index, value)=>{
-            listTh += `<th>${value.CName}</th>`;
+            listTh += `<th>${value.titleColumn}</th>`;
         });
         $(`${this.tableSelector} > thead`).append(`<tr>${listTh}</tr>`);
     };
@@ -40,16 +40,16 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    SetDataWithAPI(urlAPI, method) {
-        this.loader.Create();
+    setDataWithAPI(urlAPI, method) {
+        this.loader.create();
         $.ajax({
             url: urlAPI,
             method: method,
             ...this.configAjax
         }).done((res)=>{
-            this.SetDataForTable(res);
+            this.setDataForTable(res);
         }).fail(()=>{
-            this.loader.Remove();
+            this.loader.remove();
             console.error("Lỗi khi lấy dữ liệu cho bảng !");
         });
     }
@@ -68,10 +68,10 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    SetDataWithObjData(data = null) {
+    setDataWithObjData(data = null) {
         this.loader.Create();
         if(data !== null) {
-            this.SetDataForTable(data);
+            this.setDataForTable(data);
         }
     }
 
@@ -89,16 +89,16 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (24/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    SetDataForTable(data) {
-        this.RemoveTitleColumn();
-        this.RemoveContentTable()
-        this.SetTitleForColumn();
+    setDataForTable(data) {
+        this.removeTitleColumn();
+        this.removeContentTable()
+        this.setTitleForColumn();
         let rowData = "";
         let tdTag = "";
         $.each(data, (index, itemRow)=>{ // Lặp qua từng dòng dữ liệu
             $.each(this.configTable, (indexTd)=>{ // Lặp qua thông tin cấu hình của bảng để lấy thuộc tính tương ứng với từng dòng data và tên của cột data tương ứng
-                if(this.configTable[indexTd]["FName"] !== undefined) { // Kiểm tra xem loại dữ liệu hiện tại có dùng đến filter không có thì dùng Filter tương ứng còn không thì thôi
-                    tdTag += `<td>${Filter[this.configTable[indexTd]["FName"]](itemRow[indexTd])}</td>`;
+                if(this.configTable[indexTd]["filterName"] !== undefined) { // Kiểm tra xem loại dữ liệu hiện tại có dùng đến filter không có thì dùng Filter tương ứng còn không thì thôi
+                    tdTag += `<td>${Filter[this.configTable[indexTd]["filterName"]](itemRow[indexTd])}</td>`;
                 } else {
                     tdTag += `<td>${itemRow[indexTd]}</td>`;
                 }
@@ -117,20 +117,20 @@ class Table_tdb {
             tdTag = "";
             $(`${this.tableSelector} > tbody`).append(rowData);
         });
-        this.loader.Remove();
+        this.loader.remove();
     }
 
     /**
      * Xóa tiêu đề cột
      */
-    RemoveTitleColumn() {
+    removeTitleColumn() {
         $(`${this.tableSelector} > thead > tr`).remove();
     }
     
     /**
      * Xóa dữ liệu của bảng
      */
-    RemoveContentTable() {
+    removeContentTable() {
         $(`${this.tableSelector} > tbody > tr`).remove();
     }
 

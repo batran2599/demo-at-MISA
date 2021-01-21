@@ -18,7 +18,7 @@ let data = [
 ];
 
 let dropDownRestaurant = new DropDown_tdb(".restaurant-list", "tdb-display-option-restaurant", {title: "restaurantName", value: "restaurantCode"}, data);
-dropDownRestaurant.Create();
+dropDownRestaurant.create();
 
 
 let pageNow = {};
@@ -40,40 +40,40 @@ $("#customersList").click(function() {
     pageNow.recordId = {attrName: "customerId", fieldName: "CustomerId"};
     pageNow.configTable = {
         CustomerCode: {
-            CName: "Mã nhân viên", // Tiêu đề cột
-            FName: Filter.Type.General // Tên loại filter
+            titleColumn: "Mã nhân viên", // Tiêu đề cột
+            filterName: Filter.type.general // Tên loại filter
         },
         FullName: {
-            CName: "Họ tên",
-            FName: Filter.Type.General
+            titleColumn: "Họ tên",
+            filterName: Filter.type.general
         },
         Gender: {
-            CName: "Giới tính",
-            FName: Filter.Type.Gender
+            titleColumn: "Giới tính",
+            filterName: Filter.type.gender
         },
         DateOfBirth: {
-            CName: "Ngày sinh",
-            FName: Filter.Type.FormatDate
+            titleColumn: "Ngày sinh",
+            filterName: Filter.type.formatDate
         },
         PhoneNumber: {
-            CName: "Số điện thoại",
-            FName: Filter.Type.General
+            titleColumn: "Số điện thoại",
+            filterName: Filter.type.general
         },
         Email: {
-            CName: "Email",
-            FName: Filter.Type.General
+            titleColumn: "Email",
+            filterName: Filter.type.general
         },
         Address: {
-            CName: "Địa chỉ",
-            FName: Filter.Type.General
+            titleColumn: "Địa chỉ",
+            filterName: Filter.type.general
         },
         CompanyName: {
-            CName: "Tên công ty",
-            FName: Filter.Type.General
+            titleColumn: "Tên công ty",
+            filterName: Filter.type.general
         },
         CustomerGroupName: {
-            CName: "Tên nhóm khách hàng",
-            FName: Filter.Type.General
+            titleColumn: "Tên nhóm khách hàng",
+            filterName: Filter.type.general
         }
     };
 
@@ -105,53 +105,53 @@ $("#employeesList").click(function() {
     pageNow.recordId = {attrName: "employeeId", fieldName: "EmployeeId"};
     pageNow.configTable = {
         EmployeeCode: {
-            CName: "Mã nhân viên", // Tiêu đề cột
-            FName: Filter.Type.General // Tên loại filter
+            titleColumn: "Mã nhân viên", // Tiêu đề cột
+            filterName: Filter.type.general // Tên loại filter
         },
         FullName: {
-            CName: "Họ tên",
-            FName: Filter.Type.General
+            titleColumn: "Họ tên",
+            filterName: Filter.type.general
         },
         Gender: {
-            CName: "Giới tính",
-            FName: Filter.Type.Gender
+            titleColumn: "Giới tính",
+            filterName: Filter.type.gender
         },
         DateOfBirth: {
-            CName: "Ngày sinh",
-            FName: Filter.Type.FormatDate
+            titleColumn: "Ngày sinh",
+            filterName: Filter.type.formatDate
         },
         PhoneNumber: {
-            CName: "Số điện thoại",
-            FName: Filter.Type.General
+            titleColumn: "Số điện thoại",
+            filterName: Filter.type.general
         },
         Email: {
-            CName: "Email",
-            FName: Filter.Type.General
+            titleColumn: "Email",
+            filterName: Filter.type.general
         },
         QualificationName: {
-            CName: "Chức vụ",
-            FName: Filter.Type.General
+            titleColumn: "Chức vụ",
+            filterName: Filter.type.general
         },
         DepartmentName: {
-            CName: "Phòng ban",
-            FName: Filter.Type.General
+            titleColumn: "Phòng ban",
+            filterName: Filter.type.general
         },
         Salary: {
-            CName: "Mức lương hiện tại",
-            FName: Filter.Type.ConvertMoney
+            titleColumn: "Mức lương hiện tại",
+            filterName: Filter.type.convertMoney
         },
         Address: {
-            CName: "Địa chỉ",
-            FName: Filter.Type.General
+            titleColumn: "Địa chỉ",
+            filterName: Filter.type.general
         },
         WorkStatusName: {
-            CName: "Tình trạng công việc",
-            FName: Filter.Type.General
+            titleColumn: "Tình trạng công việc",
+            filterName: Filter.type.general
         }
     };
 
     $("#titleManagementPage").text("Quản lý nhân viên")
-    pageNow.RefreshTable();
+    pageNow.refreshTable();
 
     // document.getElementsByClassName("refresh")[0].onclick = pageNow.RefreshTable.bind(pageNow); // Xét sự kiện cho button Refresh
 });

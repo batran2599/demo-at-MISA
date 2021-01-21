@@ -39,9 +39,9 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     valiDate() {
-        Validate_tdb.Required(".input-dialog > input[required]");
+        Validate_tdb.required(".input-dialog > input[required]");
 
-        Validate_tdb.Email(".input-dialog > input[type=email]");
+        Validate_tdb.email(".input-dialog > input[type=email]");
     }
 
     /**
@@ -49,7 +49,7 @@ class Dialog_tdb {
      * @param {url} apiCustomerGroup Địa chỉ API lấy dữ liệu về nhóm khách hàng để tạo menu dropdown
      */
     menuCustomerGroup(apiCustomerGroup) {
-        this.customerGroup.SetDataWithAPI(apiCustomerGroup);
+        this.customerGroup.setDataWithAPI(apiCustomerGroup);
     }
 
     /**

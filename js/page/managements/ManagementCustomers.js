@@ -11,7 +11,7 @@ class ManagementCustomers extends ManagementPage {
         this.configAjax = {
             async: false
         };
-        super.RefreshTable();
+        super.refreshTable();
         $(this.tableSelector + " > thead > tr > th").css("text-align", "left");
         $(this.tableSelector + " > tbody > tr > td").css("text-align", "left");
     }

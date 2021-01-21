@@ -18,9 +18,9 @@ class ManagementPage extends Table_tdb{
      * Load dữ liệu cho bảng quản lý
      * CreatedBy: Trần Duy Bá (30/12/2020)
      */
-    LoadDataForTable() {
+    loadDataForTable() {
         try {
-            this.SetDataWithAPI(this.urlAPI, this.method);
+            this.setDataWithAPI(this.urlAPI, this.method);
         } catch(e) {
             console.log("Có lỗi !");
         }
@@ -31,9 +31,9 @@ class ManagementPage extends Table_tdb{
      * CreatedBy: Trần Duy Bá (30/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    RefreshTable() {
+    refreshTable() {
         try {
-            this.LoadDataForTable();
+            this.loadDataForTable();
         } catch(e) {
             console.log("Có lỗi !");
         }
