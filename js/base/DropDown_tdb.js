@@ -1,8 +1,8 @@
-class DropDown_tdb extends CreateHTMLTag_tdb{
+class DropDown_tdb extends CreateHTMLTag_tdb {
     /**
      * Tạo một DropDown
-     * @param {String} selectorContainingObject Selector đến đối tượng HTML chứa Dropdown
-     * @param {String} nameOfInput Tên của thẻ input có type=hidden chứa dữ liệu đã chọn.
+     * @param {querySelector} selectorContainingObject Selector đến đối tượng HTML chứa Dropdown
+     * @param {String} nameOfInputSaveOption Tên của thẻ input có type=hidden chứa dữ liệu đã chọn.
      * @param {Object} configData Đối tượng chứa 2 thuộc tính là title, value có giá trị là tên trường title và value muốn lấy trong đối tượng data
      * @param {Object} data Đối tượng chứa các trường dữ liệu là đối tượng configData yêu cầu, nếu lấy dữ liệu qua API thì bỏ qua
      * CreatedBy: Trần Duy Bá (13/01/2021)

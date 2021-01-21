@@ -3,7 +3,7 @@ class Loader_tdb extends CreateHTMLTag_tdb{
      * Khởi tạo các giá ban đầu
      * @param {querySelector} selectorView QuerySelector đến đối lượng HTML chứa đối tượng Loader
      */
-    constructor(selectorView= "body") {
+    constructor(selectorView = "body") {
         super();
         this.colorOfRuner = "#019160"; // Màu đường biên chạy
         this.backgroundOfRuner = "#f3f3f3"; // Nền tròn

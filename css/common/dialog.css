@@ -16,10 +16,10 @@
 
     .tdb-dialog .dialog-form {
         position: absolute;
-        top: calc((100% - 600px)/2);
+        top: 24px;
         left: calc((100% - 900px)/2);
         width: 800px;
-        height: 600px;
+        height: calc(100% - 48px);
         background-color: #ffffff;
         margin: auto 0px;
         border-radius: 4px;
@@ -61,23 +61,25 @@
 
             .tdb-dialog .dialog-form .dialog-body {
                 height: calc(100% - 110px);
-            }
+            }   
 
-                .tdb-dialog .dialog-form .dialog-body .dialog-body-top {
-                    height: 50%;
-                    display: flex;
+                .tdb-dialog .dialog-form .dialog-body .left {
+                    width: 190px;
+                    height: 100%;
+                    margin-left: 18px;
+                    float: left;
                 }
 
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-top .avatar {
-                        width: 30%;
-                        height: 100%;
+                    .tdb-dialog .dialog-form .dialog-body .left .avatar {
+                        width: 100%;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
+                        margin-top: 0px;
                     }
 
-                        .tdb-dialog .dialog-form .dialog-body .dialog-body-top .avatar .avatar-img {
+                        .tdb-dialog .dialog-form .dialog-body .left .avatar .avatar-img {
                             width: 190px;
                             height: 190px;
                             border: 1.5px solid #BBBBBB;
@@ -85,101 +87,90 @@
                             overflow: hidden;
                         }
 
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .avatar .avatar-img > img {
+                            .tdb-dialog .dialog-form .dialog-body .left .avatar .avatar-img > img {
                                 width: 100%;
                                 height: 100%;
                                 object-fit: cover;
                             }
-                        .tdb-dialog .dialog-form .dialog-body .dialog-body-top .avatar .discription-type-avatar {
-                            text-align: center;
-                        }
                     
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top {
-                        width: 70%;
-                        display: flex;
-                        align-items: center;
-                        flex-wrap: wrap;
+                    .tdb-dialog .dialog-form .dialog-body .left .avatar .discription-type-avatar {
+                        width: 100%;
+                        text-align: center;
                     }
 
-                        .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog {
-                            width: 46%;
-                        }
-
-                        .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog:nth-child(even) {
-                            margin-left: 18px;
-                        }
-
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog > p {
-                                font-size: 16px;
-                            }
-
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog > input {
-                                width: calc(100% - 16px);
-                                padding-left: 16px;
-                                height: 35px;
-                                border-radius: 4px;
-                                border: 1px solid #BBBBBB;
-                                outline: none;
-                            }
-
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog > input:focus {
-                                border-color: #019160;
-                            }
-
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog .customer-group-list {
-                                width: 100%;
-                                height: 35px;
-                            }
-
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog .customer-group-list .tdb-value-of-dropdown {
-                                line-height: 35px;
-                            }
-
-                            .tdb-dialog .dialog-form .dialog-body .dialog-body-top .info-form-top .input-dialog .gender-radio {
-                                margin-top: 10px;
-                                margin-right: 10px;
-                            }
-
-
-
-                .tdb-dialog .dialog-form .dialog-body .dialog-body-bottom {
+                .tdb-dialog .dialog-form .dialog-body .right .dialog-body-top {
+                    width: 100%;
                     height: 50%;
-                    display: flex;
-                    flex-wrap: wrap;
-                }   
+                }
 
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-bottom .input-dialog:nth-child(odd) {
-                        width: 60%;
-                        margin-left: 18px;
+                .tdb-dialog .dialog-form .dialog-body .right {
+                    width: calc(100% - 190px - 3*18px);
+                    margin-left: 18px;
+                    height: 100%;
+                    float: left;
+                    border: 1px solid red;
+                }       
+                    .tdb-dialog .dialog-form .dialog-body .right .info-type > div{
+                        border: 2px solid #019160;
+                        width: 70px;
+                    }
+                        .tdb-dialog .dialog-form .dialog-body .right .input-dialog {
+                            width: calc((100% - 10px - 2px)/2);
+                            float: left;
+                            margin-top: 15px;
+                        }
+
+                            .tdb-dialog .dialog-form .dialog-body .right .input-dialog:nth-child(even) {
+                                margin-left: 10px;
+                            }
+
+                                .tdb-dialog .dialog-form .dialog-body .right .input-dialog > p {
+                                    font-size: 16px;
+                                }
+
+                                .tdb-dialog .dialog-form .dialog-body .right .input-dialog > input {
+                                    width: calc(100% - 16px);
+                                    padding-left: 16px;
+                                    height: 35px;
+                                    border-radius: 4px;
+                                    border: 1px solid #BBBBBB;
+                                    outline: none;
+                                }
+                                    
+                                    .tdb-dialog .dialog-form .dialog-body .right .input-dialog > input:focus {
+                                        border-color: #019160;
+                                    }
+
+                                    .tdb-dialog .dialog-form .dialog-body .right .input-dialog .customer-group-list {
+                                        width: 100%;
+                                        height: 35px;
+                                    }
+        
+                                    .tdb-dialog .dialog-form .dialog-body .right .input-dialog .customer-group-list .tdb-value-of-dropdown {
+                                        line-height: 35px;
+                                    }
+
+                        .tdb-dialog .dialog-form .dialog-body .right .general-info {
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                    .tdb-dialog .dialog-form .dialog-body .right .dialog-body-bottom {
+                        width: 100%;
+                        height: 50%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
                     }
 
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-bottom .input-dialog:nth-child(even){
-                        width: 32%;
-                        margin-left: 18px;
-                    }
-
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-bottom .input-dialog:last-child {
-                        width: calc(100% - 36px - 10px);
-                    }
-
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-bottom .input-dialog > p {
-                        font-size: 16px;
-                    }
-
-                    .tdb-dialog .dialog-form .dialog-body .dialog-body-bottom .input-dialog > input {
-                        width: calc(100% - 16px);
-                        height: 35px;
-                        border-radius: 4px;
-                        border: 1px solid #BBBBBB;
-                        outline: none;
-                        padding-left: 18px;
-                        overflow: hidden;
-                    }
-
-                    
+                        .tdb-dialog .dialog-form .dialog-body .right .dialog-body-bottom .work-info {
+                            width: 100%;
+                            height: 100%;
+                        }
 
             .tdb-dialog .dialog-form .dialog-bottom {
                 height: 60px;
+                width: 100%;
                 background-color: #E5E5E5;
                 display: flex;
                 justify-content: flex-end;

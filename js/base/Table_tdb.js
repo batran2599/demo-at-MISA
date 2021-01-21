@@ -1,8 +1,8 @@
 class Table_tdb {
     /**
      * Khởi tạo các dữ liệu cần thiết
-     * @param {*} tableSelector // Selector của bảng muốn hiển thị dữ liệu
-     * @param {*} configTable // Đối tượng cấu hình cho việc hiển thị bảng và lấy dữ liệu từ đối tượng chứa dữ liệu có format:
+     * @param {querySelector} tableSelector // Selector của bảng muốn hiển thị dữ liệu
+     * @param {object} configTable // Đối tượng cấu hình cho việc hiển thị bảng và lấy dữ liệu từ đối tượng chứa dữ liệu có format:
      * configTable = {
      *      Tên_property_chứa_data_cần_lấy : {
      *          CName: "Tiêu đề cột tương ứng",

@@ -11,6 +11,12 @@
     .header .left {
         margin-left: 16px;
     }
+        .header .left .restaurant-list {
+            width: 200px;
+        }
+            .header .left .restaurant-list .tdb-value-of-dropdown {
+                border: none;
+            }
 
     .header .right {
         margin-right: 16px;

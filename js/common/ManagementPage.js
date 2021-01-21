@@ -8,7 +8,7 @@ class ManagementPage extends Table_tdb{
      * @param {*} configTable đối tượng cấu hình tên cột, kiểu filter và loại dữ liệu cần lấy
      * CreatedBy: Trần Duy Bá (30/12/2020)
      */
-    constructor(urlAPI, method, tableSelector, configTable) {
+    constructor(urlAPI = null, method = "GET", tableSelector = "", configTable = {}) {
         super(tableSelector, configTable);
         this.urlAPI = urlAPI;
         this.method = method;

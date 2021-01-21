@@ -33,16 +33,28 @@
         height: 42px;
         display: flex;
         justify-content: space-between;
-    }
-        .content .filter .search {
-            margin-left: 16px;
+    }   
+        .content .filter .left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+            .content .filter .left .search {
+                width: 250px;
+                margin-left: 16px;
+            }
 
-        .content .filter .search:focus {
+            .content .filter .left .dropdown-filter {
+                max-width: 200px;
+                margin-left: 16px;
+                top: 0px;
+            }
+
+        .content .filter .left .search:focus {
             border: 1px solid #019160;
         }
 
-        .content .filter .refresh {
+        .content .filter .right .refresh {
             margin-right: 16px;
             width: 46px;
             height: 40px;
@@ -50,11 +62,12 @@
             border: 1px solid #bbbbbb;
             background-image: url(/public/icon/refresh.png);
             background-repeat: no-repeat;
-            background-size: 16px 16px;
+            background-size: 50% auto;
             background-position: center;
             cursor: pointer;
             outline: none;
         }
+
     
     .content .content-table {
         height: calc(100% - 65px - 55px - 56px);
@@ -63,7 +76,12 @@
     }
 
     .content .content-table::-webkit-scrollbar {
-        width: 5px;
+        width: 8px;
+        height: 8px;
+    }
+
+    .content .content-table::-webkit-scrollbar-track-piece {
+        background: #bbbbbb; 
     }
 
     .content .content-table::-webkit-scrollbar-thumb {
@@ -155,7 +173,8 @@
                 }
 
                 .content .list-order-table .order-table .list-table-number .table-number:hover {
-                    background-color: #ffffff;
+                    background-color: #019160;
+                    color: white;
                 }
 
                 .content .list-order-table .order-table .list-table-number .table-number:nth-child(1) {

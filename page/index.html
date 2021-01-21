@@ -30,7 +30,7 @@
                 </div>
                 <div id="employeesList" class="option-menu">
                     <div class="icon-option"></div>
-                    <div class="option-content">Danh sách nhân viên</div>
+                    <div class="option-content">Danh mục nhân viên</div>
                 </div>
                 <div id="customersList" class="option-menu">
                     <div class="icon-option"></div>
@@ -64,8 +64,14 @@
                 </div>
             </div>
             <div class="filter">
-                <input class="tdb-input search" placeholder="Tìm theo mã, tên khác" />
-                <button class="refresh"></button>
+                <div class="left">
+                    <input class="tdb-input search" placeholder="Tìm theo mã, tên hoặc số điện thoại" />
+                    <div class="department-filter dropdown-filter"></div>
+                    <div class="qualification-filter dropdown-filter"></div>
+                </div>
+                <div class="right">
+                    <button class="refresh"></button>
+                </div>
             </div>
             <!-- Bảng dữ liệu -->
             <div id="managementTable" class="content-table">
@@ -103,13 +109,13 @@
                 <div class="dialog-modal"></div>
                 <div class="dialog-form">
                     <div class="dialog-header">
-                        <p class="dialog-title"><b>Thông tin khách hàng</b></p>
+                        <p class="dialog-title"><b>Thông tin nhân viên</b></p>
                         <button class="cancel-dialog">
                             <img class="icon-cancel" src="/public/icon/x.svg" />
                         </button>
                     </div>
                     <div class="dialog-body">
-                        <div class="dialog-body-top">
+                        <div class="left">
                             <div class="avatar">
                                 <div class="avatar-img">
                                     <img src="/public/img/default-avatar.jpg" />
@@ -118,73 +124,85 @@
                                     <b>.jpg, .jpge, .png, .gif</b>
                                 </p>
                             </div>
-                            <div class="info-form-top">
-                                <div class="input-dialog">
-                                    <p>Mã khách hàng(<span style="color: red;">*</span>)</p>
-                                    <input name="CustomerCode" required/>
-                                </div>
-                                <div class="input-dialog">
-                                    <p>Họ và tên(<span style="color: red;">*</span>)</p>
-                                    <input name="FullName" required/>
-                                </div>
-                                <div class="input-dialog">
-                                    <p>Mã thẻ thành viên</p>
-                                    <input name="MemberCardCode" />
-                                </div>
-                                <div class="input-dialog">
-                                    <p>Nhóm khách hàng</p>
-                                    <div class="customer-group-list"></div> <!--DropDown-->
-                                </div>
-                                <div class="input-dialog">
-                                    <p>Ngày sinh</p>
-                                    <input name="DateOfBirth" placeholder="mm/dd/yyyy"/>
-                                </div>
-                                <div class="input-dialog">
-                                    <p>Giới tính</p>
-                                    <div class="tdb-radio gender-radio" >
-                                        <p>Nam</p> <!--Content-->
-                                        <div>
-                                            <input type="radio" name="Gender" value="0"/>
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                    <div class="tdb-radio gender-radio">
-                                        <p>Nữ</p> <!--Content-->
-                                        <div>
-                                            <input type="radio" name="Gender" value="1"/>
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                    <div class="tdb-radio gender-radio">
-                                        <p>Khác</p>
-                                        <div>
-                                            <input type="radio" name="Gender" value="3"/>
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="dialog-body-bottom">
-                            <div class="input-dialog">
-                                <p>Email</p>
-                                <input name="Email" type="email" placeholder="example@domain.com" />
+                        <div class="right">
+                            <div class="dialog-body-top">
+                                <div class="info-type">
+                                    <p><b>A. THÔNG TIN CHUNG:</b></p>
+                                    <div></div>
+                                </div>
+                                <div class="general-info">
+                                    <div class="input-dialog">
+                                        <p>Mã nhân viên(<span style="color: red;">*</span>)</p>
+                                        <input name="CustomerCode" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Họ và tên(<span style="color: red;">*</span>)</p>
+                                        <input name="FullName" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Ngày sinh</p>
+                                        <input name="DateOfBirth" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Giới tính</p>
+                                        <div class="customer-group-list"></div>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Số CMTND/ Căn cước (<span style="color: red;">*</span>)</p>
+                                        <input name="FullName" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Ngày cấp</p>
+                                        <input name="DateOfBirth" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Nơi cấp</p>
+                                        <input name="FullName" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Email (<span style="color: red;">*</span>)</p>
+                                        <input name="FullName" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Số điện thoại (<span style="color: red;">*</span>)</p>
+                                        <input name="FullName" required/>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-dialog">
-                                <p>Số điện thoại (<span style="color: red;">*</span>)</p>
-                                <input name="PhoneNumber" required/>
-                            </div>
-                            <div class="input-dialog">
-                                <p>Tên công ty</p>
-                                <input name="CompanyName"/>
-                            </div>
-                            <div class="input-dialog">
-                                <p>Mã số thuế</p>
-                                <input name="CompanyTaxCode" placeholder="Mã số thuế công ty" />
-                            </div>
-                            <div class="input-dialog">
-                                <p>Địa chỉ</p>
-                                <input name="Address" />
+                            <div class="dialog-body-bottom">
+                                <div class="info-type">
+                                    <p><b>B. THÔNG CÔNG VIỆC:</b></p>
+                                    <div></div>
+                                </div> <br/>
+                                <div class="work-info">
+                                    <div class="input-dialog">
+                                        <p>Vị trí (<span style="color: red;">*</span>)</p>
+                                        <div class="customer-group-list"></div> <!--DropDown-->
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Phòng ban</p>
+                                        <div class="customer-group-list"></div> <!--DropDown-->
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Mã số thuế cá nhân</p>
+                                        <input name="CompanyTaxCode" placeholder="Mã số thuế công ty" />
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Mức lương cơ bản</p>
+                                        <input name="Address" />
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Ngày gia nhập công ty</p>
+                                        <input name="CompanyTaxCode" placeholder="Mã số thuế công ty" />
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Tình trạng công việc</p>
+                                        <div class="customer-group-list"></div> <!--DropDown-->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
