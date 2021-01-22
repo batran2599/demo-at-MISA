@@ -99,7 +99,7 @@
                     }
 
                 .tdb-dialog .dialog-form .dialog-body .right {
-                    width: calc(100% - 190px - 3*18px);
+                    width: calc(100% - 190px - 18px);
                     margin-left: 18px;
                     height: 100%;
                     float: left;

@@ -42,3 +42,5 @@ $("#employeesList").click(function() {
     document.getElementsByClassName("refresh")[0].display = "block";
     document.getElementsByClassName("refresh")[0].onclick = pageManagementEmployees.refreshTable.bind(pageManagementEmployees); // Xét sự kiện cho button Refresh
 });
+
+// new Modal_tdb().create();

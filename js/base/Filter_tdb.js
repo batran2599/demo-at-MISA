@@ -48,13 +48,32 @@ class Filter {
      * @param {any} date Bất kể kiểu dữ liệu gì
      * CreatedBy: Trần Duy Bá (29/12/2020)
      */
-    static formatDate(_date) {
+    static formatDate(_date, format = "dd/mm/yyyy") {
         let date = new Date(_date);
-        if(!Number.isNaN(date.getTime())) {
+        if(!Number.isNaN(date.getTime()) && date.getTime() != 0) {
             let day = date.getDate() + 1;
             day = day < 10 ? "0" + day : day;
             let month = date.getMonth() + 1;
+            month = month < 10 ? "0" + month : month;
             let year = date.getFullYear();
+
+            switch(format.toLowerCase()) {
+                case "dd/mm/yyyy":
+                    return day + "/" + month + "/" + year;
+                break;
+                case "mm/dd/yyyy":
+                    return month + "/" + day + "/" + year;
+                break;
+                case "dd-mm-yyyy":
+                    return day + "-" + month + "-" + year;
+                break;
+                case "mm-dd-yyyy":
+                    return month + "-" + day + "-" + year;
+                break;
+                case "yyyy-mm-dd":
+                    return year + "-" + month + "-" + day;
+                break;
+            }
             return day + "/" + month + "/" + year;
         } else {
             return "...";

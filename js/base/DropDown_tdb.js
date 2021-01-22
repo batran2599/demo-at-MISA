@@ -56,7 +56,6 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
                     this.focusOption.call(this, this.listOption[i]);
                 };
             }
-            this.listOption[0].click();
         }
     }
 
@@ -146,7 +145,21 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
 
     }
 
-    setOptionDefault(order) {
-
-    }
+    /**
+     * Chọn option nhất định
+     * @param {string} value Gía trị của option muốn chọn
+     */
+    chooseOption(value) {
+        let tagChild = null;
+        for(let i = 0; i < this.listOption.length; i++) {
+            tagChild = this.listOption[i].childNodes;
+            if(value != null && tagChild[1].getAttribute("value") == value.toString()) {
+                this.focusOption(this.listOption[i]);
+                break;
+            } else {
+                this.inputSaveOption.value = "";
+                this.displayOption.innerText= "";
+            }
+        }
+    } 
 }

@@ -254,11 +254,23 @@ Tạo Arrow Button
 Tạo Modal
 *
 */
+.contai-modal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #00000070;
+}
+
 .modal-tdb {
     width: 350px;
     border-radius: 5px;
     background-color: #ffffff;
     overflow: hidden;
+    position: absolute;
+    top: 24px;
+    left: calc((100% - 350px)/2);
 }
 
     .modal-tdb .header-modal {
@@ -284,7 +296,7 @@ Tạo Modal
         }
 
         .modal-tdb .header-modal .cancel-modal:hover {
-            color: #F65454;
+            font-size: 15px;
         }
 
     .modal-tdb .body-modal {
@@ -292,35 +304,35 @@ Tạo Modal
     }
 
         .modal-tdb .body-modal .content-modal {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 15px;
         }
 
-    .modal-tdb .footer-modal .button-modal {
+    .modal-tdb .footer-modal .contain-button-modal {
         float: right;
         margin-right: 15px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
 
-        .modal-tdb .footer-modal .button-modal .cancel-modal {
+        .modal-tdb .footer-modal .contain-button-modal .cancel-modal {
             background-color: #ffffff;
+            margin-right: 15px;
         }
 
-        .modal-tdb .footer-modal .button-modal .cancel-modal:hover {
+        .modal-tdb .footer-modal .contain-button-modal .cancel-modal:hover {
             border: 1px solid #E5E5E5;
         }
 
-        .modal-tdb .footer-modal .button-modal .confirm-modal {
+        .modal-tdb .footer-modal .contain-button-modal .confirm-modal {
             background-color: #01B075;
             color: #ffffff;
         }
 
-        .modal-tdb .footer-modal .button-modal .confirm-modal:hover {
+        .modal-tdb .footer-modal .contain-button-modal .confirm-modal:hover {
             background-color: #019160;
         }
 
-        .modal-tdb .footer-modal .button-modal .button {
+        .modal-tdb .footer-modal .contain-button-modal .button {
             outline: none;
             cursor: pointer;
             min-width: 70px;

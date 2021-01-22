@@ -7,6 +7,8 @@ class Dialog_tdb {
      */
     constructor(){
         this.listGender = null;
+
+        this.urlAPIFind = "http://api.manhnv.net/api/employees";
         
         this.urlAPIQualification = null;
         this.listQualification = null;
@@ -18,10 +20,27 @@ class Dialog_tdb {
         this.listWorkStatus = null;
 
         this.loader = new Loader_tdb();
-        this.recordId = "recordId";
+        this.recordId = "recordId"; // Tên record id mặc định, có thể cấu hình lại khi gọi (Đã được cấu hình lại bên ManagementEmployees.js)
 
         this.setMenuDropdown();
         this.formatSalary();
+
+        this.typeDialog = null;
+    }
+
+    /**
+     * Hiển thị dialog
+     */
+    openDialog() {
+        $(".tdb-dialog").css("display", "block");
+    }
+
+    /**
+     * Ẩn dialog
+     */
+    cancelDialog() {
+        $(".tdb-dialog").css("display", "none");
+        this.clearValueOfInput();
     }
 
     /**
@@ -29,27 +48,32 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     onOfDialogForm() {
-        $(".add-customer").click(function(){
+        $(".add-customer").click(()=>{
+            this.openDialog();
+            $(".input-dialog > input[name='EmployeeCode']").focus();
+        });
+        
+        let that = this;
+        $(".data-table > tbody").on("click", "tr",function(){
+            that.findObject($(this).data(that.recordId));
             $(".tdb-dialog").css("display", "block");
         });
-        
-        $(".cancel-dialog").click(function(){
-            $(".tdb-dialog").css("display", "none");
-            // ManaCustomers.RefreshTable();
+
+        $(".dialog-modal").click(()=>{
+            this.cancelDialog();
         });
         
-        // let that = this;
-        // $(".data-table > tbody").on("click", "tr",function(){
-        //     that.findObject($(this).data(that.recordId));
-        //     $(".tdb-dialog").css("display", "block");
-        // });
+        $(".cancel-dialog").click(()=>{
+            this.cancelDialog();
+            // ManaCustomers.RefreshTable();
+        });
     }
 
     /**
      * Làm sạch dữ liệu trong các thẻ input
      */
     clearValueOfInput() {
-        
+        $(".input-dialog > input").val("");
     }
 
     /**
@@ -59,7 +83,7 @@ class Dialog_tdb {
     valiDate() {
         Validate_tdb.required(".input-dialog > input[required]");
 
-        Validate_tdb.email(".input-dialog > input[type=email]");
+        // Validate_tdb.email(".input-dialog > input[type=email]");
     }
 
     /**
@@ -73,7 +97,6 @@ class Dialog_tdb {
                 salary = salary.replace(",", "");
             }
             if(!Number.isNaN(Number(salary))) {
-                console.log(salary);
                 $(this).val(Filter.convertMoney(salary,"","",false));
             }
         });
@@ -154,7 +177,28 @@ class Dialog_tdb {
      */
     setDialog(data) {
         $.each(data, (index, value)=>{
-            $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(value);
+            // if(index == "Salary") {
+            //     $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(Filter.convertMoney(value));
+            // } else if(index == "Gender") {
+            //     this.listGender.chooseOption(value);
+            // }else {
+            //     $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(value);
+            // }
+            switch(index) {
+                case "Salary":
+                    $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(Filter.convertMoney(value));
+                break;
+                case "Gender":
+                    this.listGender.chooseOption(value);
+                break;
+                case "DateOfBirth":
+                case "IdentityDate":
+                case "JoinDate":
+                    $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(Filter.formatDate(value, "yyyy-mm-dd"));
+                break;
+                default:
+                    $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(value);
+            }
         });
     }
 
@@ -164,13 +208,13 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (15/01/2021)
      */
     findObject(id) {
-        console.log(this.host + this.endPoint + "/" + id);
+        console.log(this.urlAPIFind + "/" + id);
         this.loader.create();
         $.ajax({
-            url: this.host + this.endPoint + "/" + id,
+            url: this.urlAPIFind + "/" + id,
             method: "GET",
         }).done((res)=>{
-            this.loader.Remove();
+            this.loader.remove();
             this.setDialog(res);
         }).fail((res)=>{
             console.log(res);
