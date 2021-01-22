@@ -75,9 +75,6 @@ pageManagementEmployees.configTable = {
         filterName: Filter.type.general
     }
 };
-pageManagementEmployees.dialog = new Dialog_tdb("http://api.manhnv.net", "/api/customers");
-pageManagementEmployees.filterDepartment = new DropDown_tdb(".department-filter", "departmentName", {title: "restaurantName", value: "restaurantCode"}, data);
-pageManagementEmployees.filterQualification = new DropDown_tdb(".qualification-filter", "departmentName", {title: "restaurantName", value: "restaurantCode"}, data);
 /**
  * Đặt sự kiện khi click chọn danh mục quản lý nhân viên
  * CreatedBy: Trần Duy Bá (31/12/2020)
@@ -90,5 +87,5 @@ $("#employeesList").click(function() {
     pageManagementEmployees.filterDepartment.create();
     pageManagementEmployees.filterQualification.create();
 
-    document.getElementsByClassName("refresh")[0].onclick = pageManagementEmployees.RefreshTable.bind(pageManagementEmployees); // Xét sự kiện cho button Refresh
+    document.getElementsByClassName("refresh")[0].onclick = pageManagementEmployees.refreshTable.bind(pageManagementEmployees); // Xét sự kiện cho button Refresh
 });

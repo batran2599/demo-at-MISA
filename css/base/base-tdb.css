@@ -42,6 +42,7 @@
         background-position-y: 50%;
         background-position-x: calc(100% - 12px);
         background-color: white;
+        box-sizing: border-box;
     }
 
     .tdb-dropdown .tdb-list-option {

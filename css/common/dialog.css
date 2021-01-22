@@ -5,13 +5,19 @@
     top: 0px;
     left: 0px;
     display: none;
+    overflow: scroll;
 }
+
+    .tdb-dialog::-webkit-scrollbar {
+        display: none;
+    }
 
     .tdb-dialog .dialog-modal {
         width: 100%;
         height: 100%;
         background-color: black;
         opacity: 0.5;
+        position: fixed;
     }
 
     .tdb-dialog .dialog-form {
@@ -19,7 +25,6 @@
         top: 24px;
         left: calc((100% - 900px)/2);
         width: 800px;
-        height: calc(100% - 48px);
         background-color: #ffffff;
         margin: auto 0px;
         border-radius: 4px;
@@ -60,11 +65,11 @@
                 }
 
             .tdb-dialog .dialog-form .dialog-body {
-                height: calc(100% - 110px);
+                /* height: calc(100% - 110px); */
             }   
 
                 .tdb-dialog .dialog-form .dialog-body .left {
-                    width: 190px;
+                    width: 150px;
                     height: 100%;
                     margin-left: 18px;
                     float: left;
@@ -76,12 +81,12 @@
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        margin-top: 0px;
+                        margin-top: 20px;
                     }
 
                         .tdb-dialog .dialog-form .dialog-body .left .avatar .avatar-img {
-                            width: 190px;
-                            height: 190px;
+                            width: 150px;
+                            height: 150px;
                             border: 1.5px solid #BBBBBB;
                             border-radius: 50%;
                             overflow: hidden;
@@ -98,25 +103,29 @@
                         text-align: center;
                     }
 
-                .tdb-dialog .dialog-form .dialog-body .right .dialog-body-top {
-                    width: 100%;
-                    height: 50%;
-                }
-
                 .tdb-dialog .dialog-form .dialog-body .right {
                     width: calc(100% - 190px - 3*18px);
                     margin-left: 18px;
                     height: 100%;
                     float: left;
-                    border: 1px solid red;
                 }       
-                    .tdb-dialog .dialog-form .dialog-body .right .info-type > div{
-                        border: 2px solid #019160;
-                        width: 70px;
+
+                    .tdb-dialog .dialog-form .dialog-body .right .dialog-body-top {
+                        width: 100%;
+                        height: 50%;
                     }
+                        .tdb-dialog .dialog-form .dialog-body .right .info-type {
+                            margin-top: 20px;
+                        }
+                    
+                        .tdb-dialog .dialog-form .dialog-body .right .info-type > div{
+                            background-color: #019160;
+                            height: 4px;
+                            width: 70px;
+                        }
+                        
                         .tdb-dialog .dialog-form .dialog-body .right .input-dialog {
-                            width: calc((100% - 10px - 2px)/2);
-                            float: left;
+                            width: calc((100% - 10px)/2);
                             margin-top: 15px;
                         }
 
@@ -126,15 +135,27 @@
 
                                 .tdb-dialog .dialog-form .dialog-body .right .input-dialog > p {
                                     font-size: 16px;
+                                    margin-bottom: 2.5px;
                                 }
 
                                 .tdb-dialog .dialog-form .dialog-body .right .input-dialog > input {
-                                    width: calc(100% - 16px);
+                                    width: 100%;
+                                    display: block;
                                     padding-left: 16px;
-                                    height: 35px;
+                                    height: 40px;
                                     border-radius: 4px;
                                     border: 1px solid #BBBBBB;
                                     outline: none;
+                                    box-sizing: border-box;
+                                }
+
+                                .tdb-dialog .dialog-form .dialog-body .right .input-dialog > div {
+                                    height: 40px !important;
+                                }
+
+                                .tdb-dialog .dialog-form .dialog-body .right .input-dialog > div > div:nth-child(2){
+                                    height: 40px !important;
+                                    line-height: 40px !important;
                                 }
                                     
                                     .tdb-dialog .dialog-form .dialog-body .right .input-dialog > input:focus {
@@ -150,22 +171,24 @@
                                         line-height: 35px;
                                     }
 
-                        .tdb-dialog .dialog-form .dialog-body .right .general-info {
-                            width: 100%;
-                            height: 100%;
-                        }
+                            .tdb-dialog .dialog-form .dialog-body .right .general-info {
+                                width: 100%;
+                                height: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                            }
 
                     .tdb-dialog .dialog-form .dialog-body .right .dialog-body-bottom {
                         width: 100%;
                         height: 50%;
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: space-between;
+                        margin-bottom: 20px;
                     }
 
                         .tdb-dialog .dialog-form .dialog-body .right .dialog-body-bottom .work-info {
                             width: 100%;
                             height: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
                         }
 
             .tdb-dialog .dialog-form .dialog-bottom {
@@ -175,6 +198,7 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+                margin-top: 30px;
             }
 
             .tdb-dialog .dialog-form .dialog-bottom .cancel-dialog{
