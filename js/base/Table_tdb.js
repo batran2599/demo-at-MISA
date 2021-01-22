@@ -12,10 +12,10 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    constructor (tableSelector = "", configTable = {}) {
-        this.tableSelector = tableSelector;
-        this.configTable = configTable;
-        this.configAjax = {};
+    constructor () {
+        this.tableSelector = null;
+        this.configTable = null;
+        this.configAjax = null;
         this.recordId = null;
         this.loader = new Loader_tdb();
     }

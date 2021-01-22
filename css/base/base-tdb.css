@@ -26,6 +26,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
     .tdb-dropdown .tdb-value-of-dropdown {
         width: 100%;
@@ -92,6 +93,10 @@
         .tdb-dropdown .tdb-list-option .tdb-option:hover {
             background-color: #E9EBEE;
         }
+
+.tdb-dropdown:hover {
+    overflow:initial;
+}
 
 .tdb-dropdown:hover > .tdb-list-option{
     height: auto;
@@ -163,6 +168,7 @@ Tạo Input
     }
 /* End */
 /* ----------------------------------------------------------------------------------------------------- */
+
 /*
 *
 Tạo Arrow Button
@@ -242,4 +248,84 @@ Tạo Arrow Button
                 top: 15%;
                 left: 15%;
             }
+/* End */
+/*
+*
+Tạo Modal
+*
+*/
+.modal-tdb {
+    width: 350px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+    .modal-tdb .header-modal {
+        height: 30px;
+        background-color: #01B075;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .modal-tdb .header-modal .modal-name {
+            color: #ffffff;
+            padding-left: 10px;
+        }
+        .modal-tdb .header-modal .cancel-modal {
+            width: 30px;
+            height: 30px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #ffffff;
+            background-color: #01B075;
+        }
+
+        .modal-tdb .header-modal .cancel-modal:hover {
+            color: #F65454;
+        }
+
+    .modal-tdb .body-modal {
+        border-bottom: 1px solid #E5E5E5;
+    }
+
+        .modal-tdb .body-modal .content-modal {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+    .modal-tdb .footer-modal .button-modal {
+        float: right;
+        margin-right: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .modal-tdb .footer-modal .button-modal .cancel-modal {
+            background-color: #ffffff;
+        }
+
+        .modal-tdb .footer-modal .button-modal .cancel-modal:hover {
+            border: 1px solid #E5E5E5;
+        }
+
+        .modal-tdb .footer-modal .button-modal .confirm-modal {
+            background-color: #01B075;
+            color: #ffffff;
+        }
+
+        .modal-tdb .footer-modal .button-modal .confirm-modal:hover {
+            background-color: #019160;
+        }
+
+        .modal-tdb .footer-modal .button-modal .button {
+            outline: none;
+            cursor: pointer;
+            min-width: 70px;
+            min-height: 30px;
+            font-weight: bold;
+            border: none;
+        }
 /* End */

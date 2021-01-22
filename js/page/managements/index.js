@@ -1,91 +1,44 @@
+// Cài đặt hiển thị danh sách các nhà hàng
 let data = [
     {
-        "restaurantName": "Nhà hàng biển đông",
-        "restaurantCode": "NH001"
+        restaurantName: "Nhà hàng biển đông",
+        restaurantCode: "NH001"
     },
     {
-        "restaurantName": "Nhà hàng biển tây",
-        "restaurantCode": "NH002"
+        restaurantName: "Nhà hàng biển tây",
+        restaurantCode: "NH002"
     },
     {
-        "restaurantName": "Nhà hàng biển nam",
-        "restaurantCode": "NH003"
+        restaurantName: "Nhà hàng biển nam",
+        restaurantCode: "NH003"
     },
     {
-        "restaurantName": "Nhà hàng biển bắc",
-        "restaurantCode": "NH004"
+        restaurantName: "Nhà hàng biển bắc",
+        restaurantCode: "NH004"
     }
 ];
 
-let dropDownRestaurant = new DropDown_tdb(".restaurant-list", "tdb-display-option-restaurant", {title: "restaurantName", value: "restaurantCode"}, data);
-dropDownRestaurant.create();
+this.listDownRestaurant = new DropDown_tdb(".restaurant-list", "tdb-display-option-restaurant", {title: "restaurantName", value: "restaurantCode"}, data);
+this.listDownRestaurant.create();
+
 /**
  * -----------------------------------------------------------------
- * Cấu hình cho đối tượng quản lý dữ liệu cho bảng quản lý nhân viên
+ * Tạo đối tượng quản lý dữ liệu cho bảng quản lý nhân viên
  * -----------------------------------------------------------------
  * */
 let pageManagementEmployees = new ManagementEmployees();
-pageManagementEmployees.urlAPI = "http://api.manhnv.net/api/employees";
-pageManagementEmployees.method = "GET";
-pageManagementEmployees.tableSelector = ".data-table";
-pageManagementEmployees.recordId = {attrName: "employeeId", fieldName: "EmployeeId"};
-pageManagementEmployees.configTable = {
-    EmployeeCode: {
-        titleColumn: "Mã nhân viên", // Tiêu đề cột
-        filterName: Filter.type.general // Tên loại filter
-    },
-    FullName: {
-        titleColumn: "Họ tên",
-        filterName: Filter.type.general
-    },
-    Gender: {
-        titleColumn: "Giới tính",
-        filterName: Filter.type.gender
-    },
-    DateOfBirth: {
-        titleColumn: "Ngày sinh",
-        filterName: Filter.type.formatDate
-    },
-    PhoneNumber: {
-        titleColumn: "Số điện thoại",
-        filterName: Filter.type.general
-    },
-    Email: {
-        titleColumn: "Email",
-        filterName: Filter.type.general
-    },
-    QualificationName: {
-        titleColumn: "Chức vụ",
-        filterName: Filter.type.general
-    },
-    DepartmentName: {
-        titleColumn: "Phòng ban",
-        filterName: Filter.type.general
-    },
-    Salary: {
-        titleColumn: "Mức lương hiện tại",
-        filterName: Filter.type.convertMoney
-    },
-    Address: {
-        titleColumn: "Địa chỉ",
-        filterName: Filter.type.general
-    },
-    WorkStatusName: {
-        titleColumn: "Tình trạng công việc",
-        filterName: Filter.type.general
-    }
-};
+
 /**
  * Đặt sự kiện khi click chọn danh mục quản lý nhân viên
  * CreatedBy: Trần Duy Bá (31/12/2020)
  */
 $("#employeesList").click(function() { 
 
-    $("#titleManagementPage").text("Quản lý nhân viên")
+    $("#titleManagementPage").text("Danh mục nhân viên")
     pageManagementEmployees.refreshTable();
     pageManagementEmployees.dialogEmployees();
-    pageManagementEmployees.filterDepartment.create();
-    pageManagementEmployees.filterQualification.create();
+    pageManagementEmployees.loadFilter();
 
+    document.getElementsByClassName("refresh")[0].display = "block";
     document.getElementsByClassName("refresh")[0].onclick = pageManagementEmployees.refreshTable.bind(pageManagementEmployees); // Xét sự kiện cho button Refresh
 });

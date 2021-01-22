@@ -29,7 +29,8 @@ class Loader_tdb extends CreateHTMLTag_tdb{
             position: "fixed",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            backgroundColor: "#00000070",
         });
 
         this.loaderObject = this.createHTMLTag("div", null, {
@@ -44,6 +45,8 @@ class Loader_tdb extends CreateHTMLTag_tdb{
             borderTopWidth: this.runerWidth,
             borderTopStyle: "solid",
             borderTopColor: this.colorOfRuner,
+
+            opacity: "none"
         });
         this.container.appendChild(this.loaderObject);
         this.view.appendChild(this.container);

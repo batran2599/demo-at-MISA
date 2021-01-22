@@ -20,6 +20,8 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
         this.bgFocus = "#019160";
         this.textColorFocus = "#ffffff";
         this.tickIcon = "/public/icon/tick.svg";
+
+        this.addData = {};
     }
 
     /**
@@ -129,7 +131,7 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
             $.each(this.data, (index, value)=>{
                 option = this.createHTMLTag("div", {class: "tdb-option"});
                 icon = this.createHTMLTag("div", {class: "tdb-icon"});
-                content = this.createHTMLTag("div", {class: "tdb-content", value: value[this.configData.value]});
+                content = this.createHTMLTag("div", {class: "tdb-content", value: value[this.configData.value], title: value[this.configData.title]});
                 content.innerText = value[this.configData.title];
                 option.appendChild(icon);
                 option.appendChild(content);
@@ -141,6 +143,10 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
         } else {
             console.error("Chưa có data hoặc chưa cấu hình data cho DropDown");
         }
+
+    }
+
+    setOptionDefault(order) {
 
     }
 }

@@ -68,16 +68,18 @@ class Filter {
      * @param {string} typeMoneyAfter Ký hiệu tiền tệ đằng sau giá trị tiền
      * CreatedBy: Trần Duy Bá (24/12/2020)
      */
-    static convertMoney(value, typeMoneyBefore = "", typeMoneyAfter = "") {
-        value = this.general(value);
-        if(value != "...") {
+    static convertMoney(value, typeMoneyBefore = "", typeMoneyAfter = "", checkEmpty = true) {
+        if(checkEmpty) {
+            value = this.general(value);
+        }
+        if(!Number.isNaN(Number(value))) {
             let money = value.toString();
             let localOfDot = money.indexOf(".");
             let moneyLeft = "";
             let moneyRight = "";
             if(localOfDot >= 0) {
                 moneyLeft = money.substr(0, localOfDot);
-                moneyRight = money.splice(localOfDot);
+                moneyRight = money.slice(localOfDot);
             } else {
                 moneyLeft = money;
             }

@@ -55,11 +55,11 @@
         </div>
         <div class="content">
             <div class="header-title">
-                <div id="titleManagementPage" class="title">Danh sách khách hàng</div>
+                <div id="titleManagementPage" class="title">...</div>
                 <div class="feature">
                     <button class="tdb-button add-customer">
                         <div class="button-icon"></div>
-                        <div class="content-icon">Thêm khách hàng</div>
+                        <div class="content-icon">Thêm nhân viên</div>
                     </button>
                 </div>
             </div>
@@ -142,32 +142,32 @@
                                     </div>
                                     <div class="input-dialog">
                                         <p>Ngày sinh</p>
-                                        <input class="date-picker" name="DateOfBirth" placeholder="mm/dd/yyyy"/>
+                                        <input class="date-picker" name="DateOfBirth" type="date" placeholder="mm/dd/yyyy"/>
                                     </div>
                                     <div class="input-dialog">
                                         <p>Giới tính</p>
-                                        <div class="customer-group-list"></div>
+                                        <div class="gender"></div> <!--Dropdown-->
                                     </div>
                                     <div class="input-dialog">
                                         <p>Số CMTND/ Căn cước (<span style="color: red;">*</span>)</p>
-                                        <input name="FullName" required/>
+                                        <input name="IdCard" required/>
                                     </div>
                                     <div class="input-dialog">
                                         <p>Ngày cấp</p>
-                                        <input class="date-picker" name="DateOfBirth" placeholder="mm/dd/yyyy"/>
+                                        <input class="date-picker" name="DateOfIdCard" type="date" placeholder="mm/dd/yyyy"/>
                                     </div>
                                     <div class="input-dialog">
                                         <p>Nơi cấp</p>
-                                        <input name="FullName" required/>
+                                        <input name="PlaceOfIdCard"/>
                                     </div>
                                     <div class="input-dialog"></div>
                                     <div class="input-dialog">
                                         <p>Email (<span style="color: red;">*</span>)</p>
-                                        <input name="FullName" required/>
+                                        <input name="Email" type="email" required/>
                                     </div>
                                     <div class="input-dialog">
                                         <p>Số điện thoại (<span style="color: red;">*</span>)</p>
-                                        <input name="FullName" required/>
+                                        <input name="PhoneNumber" required/>
                                     </div>
                                 </div>
                             </div>
@@ -179,27 +179,28 @@
                                 <div class="work-info">
                                     <div class="input-dialog">
                                         <p>Vị trí (<span style="color: red;">*</span>)</p>
-                                        <div class="customer-group-list"></div> <!--DropDown-->
+                                        <div class="qualification"></div> <!--DropDown-->
                                     </div>
                                     <div class="input-dialog">
                                         <p>Phòng ban</p>
-                                        <div class="customer-group-list"></div> <!--DropDown-->
+                                        <div class="department"></div> <!--DropDown-->
                                     </div>
                                     <div class="input-dialog">
                                         <p>Mã số thuế cá nhân</p>
-                                        <input name="CompanyTaxCode" placeholder="Mã số thuế công ty" />
+                                        <input name="PersonalTaxCode" />
                                     </div>
                                     <div class="input-dialog">
                                         <p>Mức lương cơ bản</p>
-                                        <input name="Address" />
+                                        <input name="Salary" />
+                                        <p><i>(VNĐ)</i></p>
                                     </div>
                                     <div class="input-dialog">
                                         <p>Ngày gia nhập công ty</p>
-                                        <input class="date-picker" name="CompanyTaxCode" placeholder="mm/dd/yyyy" />
+                                        <input class="date-picker" name="DataOfJoinCompany" type="date" placeholder="mm/dd/yyyy" />
                                     </div>
                                     <div class="input-dialog">
                                         <p>Tình trạng công việc</p>
-                                        <div class="customer-group-list"></div> <!--DropDown-->
+                                        <div class="work-status"></div> <!--DropDown-->
                                     </div>
                                 </div>
                             </div>
@@ -220,9 +221,7 @@
         <script type="text/javascript" src="/js/base/Table_tdb.js"></script>
         <script type="text/javascript" src="/js/base/DropDown_tdb.js"></script>
         <script type="text/javascript" src="/js/common/Dialog_tdb.js"></script>
-        <script type="text/javascript" src="/js/common/managementPage.js"></script>
         <script type="text/javascript" src="/js/page/managements/ManagementEmployees.js"></script>
-        <script type="text/javascript" src="/js/page/managements/ManagementCustomers.js"></script>
         <script type="text/javascript" src="/js/page/managements/index.js"></script>
     </body>
 </html>

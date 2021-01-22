@@ -5,12 +5,23 @@ class Dialog_tdb {
      * @param {String} endPoin router lấy data
      * CreatedBy: Trần Duy Bá (14/01/2021)
      */
-    constructor(host = "", endPoint = ""){
-        this.host = host;
-        this.endPoint = endPoint;
-        this.customerGroup = new DropDown_tdb(".customer-group-list", "customerGroupId", {title: "CustomerGroupName", value: "CustomerGroupId"});
+    constructor(){
+        this.listGender = null;
+        
+        this.urlAPIQualification = null;
+        this.listQualification = null;
+
+        this.urlAPIDepartment = null;
+        this.listDepartment = null;
+
+        this.urlAPIWorkStatus = null;
+        this.listWorkStatus = null;
+
         this.loader = new Loader_tdb();
         this.recordId = "recordId";
+
+        this.setMenuDropdown();
+        this.formatSalary();
     }
 
     /**
@@ -27,11 +38,18 @@ class Dialog_tdb {
             // ManaCustomers.RefreshTable();
         });
         
-        let that = this;
-        $(".data-table > tbody").on("click", "tr",function(){
-            that.findObject($(this).data(that.recordId));
-            $(".tdb-dialog").css("display", "block");
-        });
+        // let that = this;
+        // $(".data-table > tbody").on("click", "tr",function(){
+        //     that.findObject($(this).data(that.recordId));
+        //     $(".tdb-dialog").css("display", "block");
+        // });
+    }
+
+    /**
+     * Làm sạch dữ liệu trong các thẻ input
+     */
+    clearValueOfInput() {
+        
     }
 
     /**
@@ -45,11 +63,88 @@ class Dialog_tdb {
     }
 
     /**
-     * 
-     * @param {url} apiCustomerGroup Địa chỉ API lấy dữ liệu về nhóm khách hàng để tạo menu dropdown
+     * Định dạng ô nhập tiền lương
      */
-    menuCustomerGroup(apiCustomerGroup) {
-        this.customerGroup.setDataWithAPI(apiCustomerGroup);
+    formatSalary() {
+        let salary = 0;
+        $(".input-dialog > input[name='Salary']").keyup(function(){
+            salary = $(this).val();
+            while(salary.indexOf(",") > 0) {
+                salary = salary.replace(",", "");
+            }
+            if(!Number.isNaN(Number(salary))) {
+                console.log(salary);
+                $(this).val(Filter.convertMoney(salary,"","",false));
+            }
+        });
+    }
+
+    /**
+     * Thực thi các hàm cài đặt hiển thị cho các menudropdown
+     */
+    setMenuDropdown() {
+        this.setListGender();
+        this.setListQualification();
+        this.setListDepartment();
+        this.setListWorkStatus();
+    }
+
+    /**
+     * Cài đặt hiển thị cho danh sách lựa chọn giới tính
+     */
+    setListGender() {
+        let data = [
+            {
+                genderName: "Nam",
+                genderCode: 0
+            },
+            {
+                genderName: "Nữ",
+                genderCode: 1
+            },
+            {
+                genderName: "Khác",
+                genderCode: 2
+            }
+        ];
+
+        this.listGender = new DropDown_tdb(".gender", "Gender", {title: "genderName", value: "genderCode"}, data);
+        this.listGender.create();
+    }
+
+    /**
+     * Cài đặt hiển thị cho danh sách lựa chọn chức vụ
+     */
+    setListQualification() {
+        this.urlAPIQualification = "http://api.manhnv.net/api/customergroups";
+        this.listQualification = new DropDown_tdb(".qualification", "Qualitification", {title: "CustomerGroupName", value: "CustomerGroupId"});
+        this.listQualification.setDataWithAPI(this.urlAPIQualification);
+    }
+
+    // Cài đặt hiển thị cho danh sách phòng ban
+    setListDepartment() {
+        this.urlAPIDepartment = "http://api.manhnv.net/api/customergroups";
+        this.listDepartment = new DropDown_tdb(".department", "Department", {title: "CustomerGroupName", value: "CustomerGroupId"});
+        this.listDepartment.setDataWithAPI(this.urlAPIDepartment);
+    }
+
+    /**
+     * Cài đặt hiển thị cho danh sách tình trạng công việc
+     */
+    setListWorkStatus() {
+        let data = [
+            {
+                statusName: "Đã nghỉ",
+                statusCode: 0
+            },
+            {
+                statusName: "Đang làm",
+                statusCode: 1
+            }
+        ];
+
+        this.listWorkStatus = new DropDown_tdb(".work-status", "WorkStatus", {title: "statusName", value: "statusCode"}, data);
+        this.listWorkStatus.create();
     }
 
     /**
@@ -70,7 +165,7 @@ class Dialog_tdb {
      */
     findObject(id) {
         console.log(this.host + this.endPoint + "/" + id);
-        this.loader.Create();
+        this.loader.create();
         $.ajax({
             url: this.host + this.endPoint + "/" + id,
             method: "GET",
