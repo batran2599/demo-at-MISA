@@ -38,8 +38,10 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
         }).done((res)=>{
             this.data = res;
             this.create();
-        }).fail(function(){
-            alert("Lỗi lấy dữ liệu cho DropDown!");
+        }).fail(function(res){
+
+            //alert("Lỗi lấy dữ liệu cho DropDown!");
+            console.log(res);
         });
     }
 
@@ -166,7 +168,7 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
      * @param {object} option Đối tượng chứa thông tin option mới
      */
     addOption(option = null) {
-        if(option != null) {
+        if(option != null && this.data != null) {
             this.data.unshift(option);
         }
     }

@@ -8,12 +8,14 @@ class Dialog_tdb {
     constructor(){
         this.listGender = null;
 
-        this.urlAPIFind = "http://api.manhnv.net/api/employees";
+        this.host = "http://localhost:56447";
+
+        this.urlAPIFind = this.host + "/api/v1/employees";
         
-        this.urlAPIQualification = null;
+        this.urlAPIQualification = this.host + "/api/v1/positions";
         this.listQualification = null;
 
-        this.urlAPIDepartment = null;
+        this.urlAPIDepartment = this.host + "/api/v1/departments";
         this.listDepartment = null;
 
         this.urlAPIWorkStatus = null;
@@ -52,7 +54,7 @@ class Dialog_tdb {
     onOfDialogForm() {
         $(".add-customer").click(()=>{
             this.openDialog();
-            $(".input-dialog > input[name='EmployeeCode']").focus();
+            $(".input-dialog > input[name='employeeCode']").focus();
         });
         
         let that = this;
@@ -95,7 +97,7 @@ class Dialog_tdb {
      */
     formatSalary() {
         let salary = 0;
-        $(".input-dialog > input[name='Salary']").keyup(function(){
+        $(".input-dialog > input[name='salary']").keyup(function(){
             salary = $(this).val();
             while(salary.indexOf(",") > 0) {
                 salary = salary.replace(",", "");
@@ -137,7 +139,7 @@ class Dialog_tdb {
             }
         ];
 
-        this.listGender = new DropDown_tdb(".gender", "Gender", {title: "genderName", value: "genderCode"}, data);
+        this.listGender = new DropDown_tdb(".gender", "gender", {title: "genderName", value: "genderCode"}, data);
         this.listGender.create();
     }
 
@@ -146,9 +148,8 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (23/01/2021)
      */
     setListQualification() {
-        this.urlAPIQualification = "http://api.manhnv.net/api/customergroups";
-        this.listQualification = new DropDown_tdb(".qualification", "Qualitification", {title: "CustomerGroupName", value: "CustomerGroupId"});
-        this.listQualification.setDataWithAPI(this.urlAPIQualification);
+        this.listQualification = new DropDown_tdb(".qualification", "qualitification", {title: "positionName", value: "positionId"});
+        this.listQualification.setDataWithAPI(this.urlAPIQualification, "GET", {async: false});
     }
 
     /**
@@ -156,9 +157,8 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (23/01/2021)
      */
     setListDepartment() {
-        this.urlAPIDepartment = "http://api.manhnv.net/api/customergroups";
-        this.listDepartment = new DropDown_tdb(".department", "Department", {title: "CustomerGroupName", value: "CustomerGroupId"});
-        this.listDepartment.setDataWithAPI(this.urlAPIDepartment);
+        this.listDepartment = new DropDown_tdb(".department", "department", {title: "departmentName", value: "departmentId"});
+        this.listDepartment.setDataWithAPI(this.urlAPIDepartment, "GET", {async: false});
     }
 
     /**
@@ -174,6 +174,10 @@ class Dialog_tdb {
             {
                 statusName: "Đang làm",
                 statusCode: 1
+            },
+            {
+                statusName: "Thử việc",
+                statusCode: 2
             }
         ];
 
@@ -182,29 +186,31 @@ class Dialog_tdb {
     }
 
     /**
-     * Load dữ liệu của cho dialog
+     * Load dữ liệu của cho dialog và focus option cho các menu
      * @param {Object} data Dữ liệu cần load cho dialog
      * CreatedBy: Trần Duy Bá (15/01/2021)
      */
     setDialog(data) {
         $.each(data, (index, value)=>{
-            // if(index == "Salary") {
-            //     $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(Filter.convertMoney(value));
-            // } else if(index == "Gender") {
-            //     this.listGender.chooseOption(value);
-            // }else {
-            //     $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(value);
-            // }
             switch(index) {
-                case "Salary":
+                case "basicSalary":
                     $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(Filter.convertMoney(value));
                 break;
-                case "Gender":
+                case "gender":
                     this.listGender.chooseOption(value);
                 break;
-                case "DateOfBirth":
-                case "IdentityDate":
-                case "JoinDate":
+                case "departmentId":
+                    this.listDepartment.chooseOption(value);
+                break;
+                case "positionId":
+                    this.listQualification.chooseOption(value);
+                break;
+                case "workStatus":
+                    this.listWorkStatus.chooseOption(value);
+                break;
+                case "dateOfBirth":
+                case "createdDateOfIdentityCard":
+                case "dateOfJoin":
                     $(`.tdb-dialog .input-dialog > input[name="${index}"]`).val(Filter.formatDate(value, "yyyy-mm-dd"));
                 break;
                 default:
@@ -219,7 +225,6 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (15/01/2021)
      */
     findObject(id) {
-        console.log(this.urlAPIFind + "/" + id);
         this.loader.create();
         $.ajax({
             url: this.urlAPIFind + "/" + id,
@@ -253,10 +258,10 @@ class Dialog_tdb {
         
                 let inputData = $(".tdb-dialog input");
                 $.each(inputData, function(){
-                    if(this.name != "Gender") {
+                    if(this.name != "gender") {
                         infoCustomer[this.name] = this.value;
                     } else {
-                        infoCustomer[this.name] =  $('.tdb-dialog input[name="Gender"]:checked').val();
+                        infoCustomer[this.name] =  $('.tdb-dialog input[name="gender"]:checked').val();
                     }
                 });
         

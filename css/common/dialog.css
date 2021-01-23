@@ -146,7 +146,7 @@
                                     box-sizing: border-box;
                                 }
 
-                                    .tdb-dialog .dialog-form .dialog-body .right .input-dialog > input[name="Salary"] {
+                                    .tdb-dialog .dialog-form .dialog-body .right .input-dialog > input[name="basicSalary"] {
                                         padding-right: 55px;
                                         text-align: right;
                                     }

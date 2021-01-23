@@ -13,16 +13,17 @@ class ManagementEmployees extends Table_tdb {
         super();
         this.dialog = new Dialog_tdb();
 
+        this.host = "http://localhost:56447"
         /**
          * Cấu hình hiển thị filter phòng ban
          */
-        this.urlAPIDepartmentFilter = "http://api.manhnv.net/api/customergroups";
+        this.urlAPIDepartmentFilter = this.host + "/api/v1/departments";
         this.filterDepartment = null;
 
         /**
          * Cấu hình hiển thị filter chức vụ
          */
-        this.urlAPIQualificationFilter = "http://api.manhnv.net/api/customergroups";
+        this.urlAPIQualificationFilter = this.host + "/api/v1/positions";
         this.filterQualification = null;
 
         /**
@@ -38,54 +39,51 @@ class ManagementEmployees extends Table_tdb {
 
     /**
      * Cài đặt hiển thị cho bảng dữ liệu
+     * CreatedBy: Trần Duy Bá (30/12/2020)
      */
     loadTable() {
-        this.urlAPI = "http://api.manhnv.net/api/employees";  // API lấy dữ liệu thông tin nhân viên
+        this.urlAPI = this.host + "/api/v1/employees";  // API lấy dữ liệu thông tin nhân viên
         this.method = "GET"; // Phương thức gửi API
         this.tableSelector = ".data-table"; // Selector truy xuất với bảng chứa dữ liệu
-        this.recordId = {attrName: "employeeId", fieldName: "EmployeeId"}; // Cấu hình recordId để add recordId cho từng row
+        this.recordId = {attrName: "employeeId", fieldName: "employeeId"}; // Cấu hình recordId để add recordId cho từng row
         this.configTable = { // Cấu hình hiển thị khi show dữ liệu vào bảng
-            EmployeeCode: {
+            employeeCode: {
                 titleColumn: "Mã nhân viên", // Tiêu đề cột
                 filterName: Filter.type.general // Tên loại filter
             },
-            FullName: {
+            fullName: {
                 titleColumn: "Họ tên",
                 filterName: Filter.type.general
             },
-            Gender: {
+            gender: {
                 titleColumn: "Giới tính",
                 filterName: Filter.type.gender
             },
-            DateOfBirth: {
+            dateOfBirth: {
                 titleColumn: "Ngày sinh",
                 filterName: Filter.type.formatDate
             },
-            PhoneNumber: {
+            phoneNumber: {
                 titleColumn: "Số điện thoại",
                 filterName: Filter.type.general
             },
-            Email: {
+            email: {
                 titleColumn: "Email",
                 filterName: Filter.type.general
             },
-            QualificationName: {
+            positionId: {
                 titleColumn: "Chức vụ",
                 filterName: Filter.type.general
             },
-            DepartmentName: {
+            departmentId: {
                 titleColumn: "Phòng ban",
                 filterName: Filter.type.general
             },
-            Salary: {
+            basicSalary: {
                 titleColumn: "Mức lương hiện tại",
                 filterName: Filter.type.convertMoney
             },
-            Address: {
-                titleColumn: "Địa chỉ",
-                filterName: Filter.type.general
-            },
-            WorkStatusName: {
+            workStatus: {
                 titleColumn: "Tình trạng công việc",
                 filterName: Filter.type.general
             }
@@ -94,21 +92,22 @@ class ManagementEmployees extends Table_tdb {
 
     /**
      * Cài đặt hiển thị cho các menu filter
+     * CreatedBy: Trần Duy Bá (30/12/2020)
      */
     loadFilter() {
-        this.filterDepartment = new DropDown_tdb(".department-filter", "departmentFilter", {title: "CustomerGroupName", value: "CustomerGroupId"});
+        this.filterDepartment = new DropDown_tdb(".department-filter", "departmentFilter", {title: "departmentName", value: "departmentId"});
         this.filterDepartment.setDataWithAPI(this.urlAPIDepartmentFilter, "GET", {async: false});
         this.filterDepartment.addOption({
-            CustomerGroupName: "Tất cả phòng ban",
-            CustomerGroupId: "all"
+            departmentName: "Tất cả phòng ban",
+            departmentId: "all"
         });
         this.filterDepartment.create("all");
 
-        this.filterQualification = new DropDown_tdb(".qualification-filter", "qualificationFilter", {title: "CustomerGroupName", value: "CustomerGroupId"});
+        this.filterQualification = new DropDown_tdb(".qualification-filter", "qualificationFilter", {title: "positionName", value: "positionId"});
         this.filterQualification.setDataWithAPI(this.urlAPIQualificationFilter, "GET", {async: false});
         this.filterQualification.addOption({
-            CustomerGroupName: "Tất cả vị trí",
-            CustomerGroupId: "all"
+            positionName: "Tất cả vị trí",
+            positionId: "all"
         });
         this.filterQualification.create("all");
     }
@@ -140,6 +139,7 @@ class ManagementEmployees extends Table_tdb {
 
     /**
      * Tạo các sự kiện phục vụ mở dialog
+     * CreatedBy: Trần Duy Bá (30/12/2020)
      */
     dialogEmployees() {
         this.dialog.onOfDialogForm();

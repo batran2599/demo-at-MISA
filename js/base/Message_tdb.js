@@ -14,15 +14,20 @@ class Message_tdb extends CreateHTMLTag_tdb {
 
         this.iconTypeDone = "done.svg";
         this.iconRemoveTypeDone = "x-done.svg";
+        this.backgroundFormDone = "#BAFFE7";
 
         this.iconTypeWarning = "warning.svg";
         this.iconRemoveTypeWarning = "x-warning.svg";
+        this.backgroundFormWarning = "#FFE7AF";
 
         this.iconTypeError = "error.svg";
         this.iconRemoveTypeError = "x-error.svg";
+        this.backgroundFormError = "#FFCECE";
 
         this.iconTypeInfo = "info.svg";
         this.iconRemoveTypeInfo = "x-info.svg";
+        this.backgroundFormInfo = "#D8EAFF";
+
     }
 
     /**
@@ -63,13 +68,15 @@ class Message_tdb extends CreateHTMLTag_tdb {
      * Cấu hình style cho message
      * @param {string} content Nội dung message
      * @param {string} iconName Tên file icon tương ứng với kiểu message
-     * @param {string} iconRemove tên file icon remove tương ứng với message
+     * @param {string} iconRemove Tên file icon remove tương ứng với message
+     * @param {color} backgroundColorOfForm Màu nền của form menu
      * CreatedBy: Trần Duy Bá (23/01/2020)
      */
-    configStyleOfForm(content, iconName, iconRemove) {
+    configStyleOfForm(content, iconName, iconRemove, backgroundColorOfForm) {
         this.content.innerHTML = content;
         this.iconOfType.src = `${this.urlIcon}/${iconName}`;
         this.buttonRemove.style.backgroundImage = `url(${this.urlIcon}/${iconRemove})`;
+        this.form.style.backgroundColor = backgroundColorOfForm;
     }
 
     /**
@@ -79,7 +86,7 @@ class Message_tdb extends CreateHTMLTag_tdb {
      */
     done(content = "Đã xong !") {
         this.createFormMessage();
-        this.configStyleOfForm(content, this.iconTypeDone, this.iconRemoveTypeDone);
+        this.configStyleOfForm(content, this.iconTypeDone, this.iconRemoveTypeDone, this.backgroundFormDone);
     }
 
     /**
@@ -89,7 +96,7 @@ class Message_tdb extends CreateHTMLTag_tdb {
      */
     error(content = "Có vẫn đề !") {
         this.createFormMessage();
-        this.configStyleOfForm(content, this.iconTypeError, this.iconRemoveTypeError);
+        this.configStyleOfForm(content, this.iconTypeError, this.iconRemoveTypeError, this.backgroundFormError);
     }
 
     /**
@@ -99,7 +106,7 @@ class Message_tdb extends CreateHTMLTag_tdb {
      */
     warning(content = "Cảnh báo !") {
         this.createFormMessage();
-        this.configStyleOfForm(content, this.iconTypeWarning, this.iconRemoveTypeWarning);
+        this.configStyleOfForm(content, this.iconTypeWarning, this.iconRemoveTypeWarning, this.backgroundFormWarning);
     }
 
     /**
@@ -109,9 +116,7 @@ class Message_tdb extends CreateHTMLTag_tdb {
      */
     info(content = "Thông báo !") {
         this.createFormMessage();
-        this.content.innerHTML = content;
-        this.iconOfType.src = `${this.urlIcon}/${this.iconTypeInfo}`;
-        this.buttonRemove.style.backgroundImage = `url(${this.urlIcon}/${this.iconRemoveTypeInfo})`;
+        this.configStyleOfForm(content, this.iconTypeInfo, this.iconRemoveTypeInfo, this.backgroundFormInfo);
     }
 
     /**

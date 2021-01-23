@@ -44,12 +44,12 @@ $("#employeesList").click(function() {
 });
 $("#employeesList").click();
 let modal = new Modal_tdb();
-modal.message(()=>{
-    console.log("ABC !");
-});
-modal.error(()=>{
-    console.log("DEF !");
-});
+// modal.message(()=>{
+//     console.log("ABC !");
+// });
+// modal.error(()=>{
+//     console.log("DEF !");
+// });
 let message = new Message_tdb();
 // message.done();
 // message.error();
@@ -72,13 +72,13 @@ setTimeout(()=>{
 }, 5000);
 
 setTimeout(()=>{
-    message.info();
+    message.done();
 }, 6000);
 setTimeout(()=>{
-    message.info();
+    message.error();
 }, 7000);
 setTimeout(()=>{
-    message.info();
+    message.warning();
 }, 8000);
 setTimeout(()=>{
     message.info();
@@ -86,6 +86,3 @@ setTimeout(()=>{
 setTimeout(()=>{
     message.info();
 }, 10000);
-setTimeout(()=>{
-    message.info();
-}, 11000);
