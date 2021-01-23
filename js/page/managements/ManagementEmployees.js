@@ -97,10 +97,20 @@ class ManagementEmployees extends Table_tdb {
      */
     loadFilter() {
         this.filterDepartment = new DropDown_tdb(".department-filter", "departmentFilter", {title: "CustomerGroupName", value: "CustomerGroupId"});
-        this.filterDepartment.setDataWithAPI(this.urlAPIDepartmentFilter);
+        this.filterDepartment.setDataWithAPI(this.urlAPIDepartmentFilter, "GET", {async: false});
+        this.filterDepartment.addOption({
+            CustomerGroupName: "Tất cả phòng ban",
+            CustomerGroupId: "all"
+        });
+        this.filterDepartment.create("all");
 
         this.filterQualification = new DropDown_tdb(".qualification-filter", "qualificationFilter", {title: "CustomerGroupName", value: "CustomerGroupId"});
-        this.filterQualification.setDataWithAPI(this.urlAPIQualificationFilter);
+        this.filterQualification.setDataWithAPI(this.urlAPIQualificationFilter, "GET", {async: false});
+        this.filterQualification.addOption({
+            CustomerGroupName: "Tất cả vị trí",
+            CustomerGroupId: "all"
+        });
+        this.filterQualification.create("all");
     }
 
     /**

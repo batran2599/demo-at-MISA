@@ -20,8 +20,6 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
         this.bgFocus = "#019160";
         this.textColorFocus = "#ffffff";
         this.tickIcon = "/public/icon/tick.svg";
-
-        this.addData = {};
     }
 
     /**
@@ -105,14 +103,10 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
     }
 
     /**
-     * Tạo một DropDown
-     * @param {String} selectorContainingObject Selector đến đối tượng HTML chứa Dropdown
-     * @param {Object} attribute Đối tượng chứa các cặp thuộc tính và giá trị tương ứng để cấu hình các attribute cho đối tượng hiển thị option đã chọn trong Menu
-     * @param {Object} configData Đối tượng chứa 2 thuộc tính là title, value có giá trị là tên trường title và value muốn lấy trong đối tượng data
-     * @param {*} data Đối tượng chứa các trường dữ liệu là đối tượng configData yêu cầu
-     * CreatedBy: Trần Duy Bá (13/01/2021)
+     * Khởi tạo đối tượng menu dropdown
+     * @param {string} valueOfOption Gía trị của option muốn chọn
      */
-    create() {
+    create(valueOfOption = null) {
         if(this.data != null || this.configData == null) {
             this.containingObject.innerHTML = "";
             this.containingObject.classList.add("tdb-dropdown");
@@ -139,6 +133,10 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
             });
             this.containingObject.appendChild(containOption);
             this.setEventChooseOption();
+
+            if(valueOfOption != null) {
+                this.chooseOption(valueOfOption);
+            }
         } else {
             console.error("Chưa có data hoặc chưa cấu hình data cho DropDown");
         }
@@ -147,19 +145,29 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
 
     /**
      * Chọn option nhất định
-     * @param {string} value Gía trị của option muốn chọn
+     * @param {string} valueOfOption Gía trị của option muốn chọn
      */
-    chooseOption(value) {
+    chooseOption(valueOfOption = null) {
         let tagChild = null;
         for(let i = 0; i < this.listOption.length; i++) {
             tagChild = this.listOption[i].childNodes;
-            if(value != null && tagChild[1].getAttribute("value") == value.toString()) {
+            if(valueOfOption != null && tagChild[1].getAttribute("value") == valueOfOption.toString()) {
                 this.focusOption(this.listOption[i]);
                 break;
             } else {
-                this.inputSaveOption.value = "";
+                this.inputSaveOption.valueOfOption = "";
                 this.displayOption.innerText= "";
             }
         }
     } 
+
+    /**
+     * Thêm lựa chọn 
+     * @param {object} option Đối tượng chứa thông tin option mới
+     */
+    addOption(option = null) {
+        if(option != null) {
+            this.data.unshift(option);
+        }
+    }
 }

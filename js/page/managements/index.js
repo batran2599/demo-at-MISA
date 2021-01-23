@@ -19,7 +19,7 @@ let data = [
 ];
 
 this.listDownRestaurant = new DropDown_tdb(".restaurant-list", "tdb-display-option-restaurant", {title: "restaurantName", value: "restaurantCode"}, data);
-this.listDownRestaurant.create();
+this.listDownRestaurant.create("NH001");
 
 /**
  * -----------------------------------------------------------------
@@ -42,5 +42,50 @@ $("#employeesList").click(function() {
     document.getElementsByClassName("refresh")[0].display = "block";
     document.getElementsByClassName("refresh")[0].onclick = pageManagementEmployees.refreshTable.bind(pageManagementEmployees); // Xét sự kiện cho button Refresh
 });
+$("#employeesList").click();
+let modal = new Modal_tdb();
+modal.message(()=>{
+    console.log("ABC !");
+});
+modal.error(()=>{
+    console.log("DEF !");
+});
+let message = new Message_tdb();
+// message.done();
+// message.error();
+// message.warning();
+// message.info();
+setTimeout(()=>{
+    message.done();
+}, 1000);
+setTimeout(()=>{
+    message.error();
+}, 2000);
+setTimeout(()=>{
+    message.warning();
+}, 3000);
+setTimeout(()=>{
+    message.info();
+}, 4000);
+setTimeout(()=>{
+    message.info();
+}, 5000);
 
-// new Modal_tdb().create();
+setTimeout(()=>{
+    message.info();
+}, 6000);
+setTimeout(()=>{
+    message.info();
+}, 7000);
+setTimeout(()=>{
+    message.info();
+}, 8000);
+setTimeout(()=>{
+    message.info();
+}, 9000);
+setTimeout(()=>{
+    message.info();
+}, 10000);
+setTimeout(()=>{
+    message.info();
+}, 11000);
