@@ -8,14 +8,17 @@ class Dialog_tdb {
     constructor(){
         this.listGender = null;
 
-        this.host = "http://localhost:56447";
+        this.host = null;
 
-        this.urlAPIFind = this.host + "/api/v1/employees";
+        this.urlAPICreate = null;
+        this.urlAPIUpdate = null;
+
+        this.endPointAPIFind = null;
         
-        this.urlAPIQualification = this.host + "/api/v1/positions";
+        this.endPointAPIGetQualification = null;
         this.listQualification = null;
 
-        this.urlAPIDepartment = this.host + "/api/v1/departments";
+        this.endPointAPIGetDepartment = null;
         this.listDepartment = null;
 
         this.urlAPIWorkStatus = null;
@@ -24,10 +27,21 @@ class Dialog_tdb {
         this.loader = new Loader_tdb();
         this.recordId = "recordId"; // Tên record id mặc định, có thể cấu hình lại khi gọi (Đã được cấu hình lại bên ManagementEmployees.js)
 
-        this.setMenuDropdown();
-        this.formatSalary();
-
         this.typeDialog = null;
+
+        this.message = new Message_tdb();
+        this.modal = new Modal_tdb();
+
+        this.formatSalary();
+        this.onOfDialogForm();
+        this.setEventSendData();
+        this.valiDate();
+        this.checkEmployeeCode()
+
+        this.urlAPIGetLastEmployeeCode = null;
+        this.valueRecordId = null;
+
+        this.actionRefreshTable = null;
     }
 
     /**
@@ -55,12 +69,16 @@ class Dialog_tdb {
         $(".add-customer").click(()=>{
             this.openDialog();
             $(".input-dialog > input[name='employeeCode']").focus();
+            this.typeDialog = "create";
+            $(".input-dialog > input[name='employeeCode']").val(this.createEmployeeCode());
         });
         
         let that = this;
         $(".data-table > tbody").on("click", "tr",function(){
-            that.findObject($(this).data(that.recordId));
-            $(".tdb-dialog").css("display", "block");
+            that.valueRecordId = $(this).data(that.recordId);
+            that.findObject(that.valueRecordId);
+            that.openDialog();
+            that.typeDialog = "update";
         });
 
         $(".dialog-modal").click(()=>{
@@ -88,7 +106,6 @@ class Dialog_tdb {
     valiDate() {
         Validate_tdb.required(".input-dialog > input[required]");
 
-        // Validate_tdb.email(".input-dialog > input[type=email]");
     }
 
     /**
@@ -97,7 +114,7 @@ class Dialog_tdb {
      */
     formatSalary() {
         let salary = 0;
-        $(".input-dialog > input[name='salary']").keyup(function(){
+        $(".input-dialog > input[name='basicSalary']").keyup(function(){
             salary = $(this).val();
             while(salary.indexOf(",") > 0) {
                 salary = salary.replace(",", "");
@@ -144,24 +161,6 @@ class Dialog_tdb {
     }
 
     /**
-     * Cài đặt hiển thị cho danh sách lựa chọn chức vụ
-     * CreatedBy: Trần Duy Bá (23/01/2021)
-     */
-    setListQualification() {
-        this.listQualification = new DropDown_tdb(".qualification", "qualitification", {title: "positionName", value: "positionId"});
-        this.listQualification.setDataWithAPI(this.urlAPIQualification, "GET", {async: false});
-    }
-
-    /**
-     * Cài đặt hiển thị cho danh sách phòng ban
-     * CreatedBy: Trần Duy Bá (23/01/2021)
-     */
-    setListDepartment() {
-        this.listDepartment = new DropDown_tdb(".department", "department", {title: "departmentName", value: "departmentId"});
-        this.listDepartment.setDataWithAPI(this.urlAPIDepartment, "GET", {async: false});
-    }
-
-    /**
      * Cài đặt hiển thị cho danh sách tình trạng công việc
      * CreatedBy: Trần Duy Bá (23/01/2021)
      */
@@ -183,6 +182,24 @@ class Dialog_tdb {
 
         this.listWorkStatus = new DropDown_tdb(".work-status", "WorkStatus", {title: "statusName", value: "statusCode"}, data);
         this.listWorkStatus.create();
+    }
+
+    /**
+     * Cài đặt hiển thị cho danh sách lựa chọn chức vụ
+     * CreatedBy: Trần Duy Bá (23/01/2021)
+     */
+    setListQualification() {
+        this.listQualification = new DropDown_tdb(".qualification", "positionId", {title: "positionName", value: "positionId"});
+        this.listQualification.setDataWithAPI(this.host + this.endPointAPIGetQualification, "GET", {async: false});
+    }
+
+    /**
+     * Cài đặt hiển thị cho danh sách phòng ban
+     * CreatedBy: Trần Duy Bá (23/01/2021)
+     */
+    setListDepartment() {
+        this.listDepartment = new DropDown_tdb(".department", "departmentId", {title: "departmentName", value: "departmentId"});
+        this.listDepartment.setDataWithAPI(this.host + this.endPointAPIGetDepartment, "GET", {async: false});
     }
 
     /**
@@ -227,7 +244,7 @@ class Dialog_tdb {
     findObject(id) {
         this.loader.create();
         $.ajax({
-            url: this.urlAPIFind + "/" + id,
+            url: this.host + this.endPointAPIFind + "/" + id,
             method: "GET",
         }).done((res)=>{
             this.loader.remove();
@@ -241,44 +258,135 @@ class Dialog_tdb {
      * Sự kiện thực hiện gửi dữ liệu qua API
      * CreatedBy: Trần Duy Bá (14/01/2021)
      */
-    sendDialog() {
+    setEventSendData() {
         $(".save-dialog").click(()=>{
-            $.each($('input[required], input[type=email]'), ()=>{
+            $(".input-dialog > input[name='employeeCode']").change();
+            $.each($('input[required]'), function(){
                $(this).trigger("blur");
             });
         
             if($('input[validate="false"]').length > 0) {
-                $.each($('input[validate="false"]'), ()=>{
+                $.each($('input[validate="false"]'), function(){
                     $(this).trigger("blur");
                 });
                 $('input[validate="false"]')[0].focus();
+                this.message.error("Dữ liệu không hợp lệ !");
             } else {    
-        
-                let infoCustomer = {};
-        
-                let inputData = $(".tdb-dialog input");
-                $.each(inputData, function(){
-                    if(this.name != "gender") {
-                        infoCustomer[this.name] = this.value;
-                    } else {
-                        infoCustomer[this.name] =  $('.tdb-dialog input[name="gender"]:checked').val();
-                    }
-                });
-        
-                $.ajax({
-                    url: this.host + this.endPoint,
-                    method: "POST",
-                    data: JSON.stringify(infoCustomer),
-                    contentType: "application/json"
-                }).done((res)=>{
-                    alert("Thêm thành công !");
-                    // ManaCustomers.RefreshTable();
-                }).fail((res)=>{
-                    console.log(this.host + this.endPoint);
-                    console.log(infoCustomer);
-                    console.log(res);
-                });
+                if(this.typeDialog == "update") {
+                    this.modal.warning(()=>{this.sendData();}, "Cảnh báo", "Bạn muốn sửa bản ghi này chứ ?");
+                } else {
+                    this.sendData();
+                }
             }
+        });
+    }
+
+    /**
+     * Thực hiện gửi dữ liệu qua API
+     * CreatedBy: Trần Duy Bá (24/01/2021)
+     */
+    sendData() {
+        let that = this;
+        let infoEmployee = {};
+        
+        let inputData = $(".tdb-dialog input");
+        $.each(inputData, function(){
+            if(this.name == "basicSalary") {
+                infoEmployee[this.name] = that.removeCommaInString(this.value);
+            } else if(this.type == "date" && this.value == "") {
+                infoEmployee[this.name] = "0000-00-00";
+            } else {
+                infoEmployee[this.name] = this.value;
+            }
+        });
+        if(this.typeDialog != null) {
+            let url = null;
+            let method = null;
+            if(this.typeDialog == "update") {
+                url = this.urlAPIUpdate;
+                method = "PUT";
+                infoEmployee["employeeId"] = this.valueRecordId;
+            } else if(this.typeDialog == "create") {
+                url = this.urlAPICreate;
+                method = "POST";
+            } else {
+                this.message.error("Loại dialog không phù hợp");
+            }
+            if(url != null) {
+                $.ajax({
+                    url: this.host + url,
+                    method: method,
+                    data: JSON.stringify(infoEmployee),
+                    contentType: "application/json",
+                    async: false
+                }).done((res)=>{
+                    if(this.typeDialog == "create") {
+                        this.message.done("Thêm nhân viên thành công !");
+                    } else if(this.typeDialog  == "update") {
+                        console.log(res);
+                        this.message.done("Chỉnh sửa thông tin thành công !");
+                    }
+                    this.actionRefreshTable();
+                    this.cancelDialog();
+                }).fail((res)=>{
+                    this.message.error("Thao tác không thành công !");
+                });
+            } else {
+                this.message.error("Lỗi không gửi được dữ liệu !");
+            }
+        } 
+    }
+
+    /**
+     * Lấy mã nhân viên cuối cùng trong bảng dữ liệu và tăng thêm 1 để tạo mã nhân viên mới
+     */
+    createEmployeeCode() {
+        let employeeCodeNow = null;
+        let nextEmployeeCode = 0;
+        $.ajax({
+            url: this.host + this.urlAPIGetLastEmployeeCode,
+            method: "GET",
+            async: false
+        }).done((res)=>{
+            employeeCodeNow = res[0].employeeCode;
+            employeeCodeNow = employeeCodeNow.slice(2);
+            nextEmployeeCode = "NV" + (Number(employeeCodeNow) + 1);
+        }).fail((res)=>{
+            this.message("Không thể tạo mới mã nhân viên !");
+            nextEmployeeCode =  null;
+        });
+        return nextEmployeeCode;
+    }
+
+    /**
+     * Loại bỏ dấu phẩy trong chuỗi
+     * @param {string} str Chuỗi cần loại bỏ dấu 
+     * CreateBy: Trần Duy Bá (24/01/2021)
+     */
+    removeCommaInString(str) {
+        while(str.indexOf(",") != -1) {
+            str = str.replace(",", "");
+        }
+        return str;
+    }
+
+    /**
+     * Kiểm tra mã nhân viên có bị trùng không
+     * CreateBy: Trần Duy Bá (24/01/2021)
+     */
+    checkEmployeeCode() {
+        $(".input-dialog > input[name='employeeCode']").change(()=>{
+            $.ajax({
+                url: this.host + "/api/v1/employees/byCode/" + $(".input-dialog > input[name='employeeCode']").val(),
+                method: "GET"
+            }).done((res)=>{
+                if(res.employeeCode != undefined && this.typeDialog != "update") {
+                    this.modal.warning(null, "Cảnh báo", "Bị trùng mã nhân viên !");
+                    $(".input-dialog > input[name='employeeCode']").attr("validate",  "false");
+                }
+            }).fail(()=>{
+                this.message.warning(null, "Cảnh báo", "Có lỗi !");
+            })
         });
     }
 }

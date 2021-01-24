@@ -41,7 +41,7 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
         }).fail(function(res){
 
             //alert("Lỗi lấy dữ liệu cho DropDown!");
-            console.log(res);
+            //console.log(res);
         });
     }
 

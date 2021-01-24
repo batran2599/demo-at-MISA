@@ -17,13 +17,13 @@ class ManagementEmployees extends Table_tdb {
         /**
          * Cấu hình hiển thị filter phòng ban
          */
-        this.urlAPIDepartmentFilter = this.host + "/api/v1/departments";
+        this.endPointAPIGetDepartmentFilter = "/api/v1/departments";
         this.filterDepartment = null;
 
         /**
          * Cấu hình hiển thị filter chức vụ
          */
-        this.urlAPIQualificationFilter = this.host + "/api/v1/positions";
+        this.endPointAPIGetQualificationFilter = "/api/v1/positions";
         this.filterQualification = null;
 
         /**
@@ -35,6 +35,12 @@ class ManagementEmployees extends Table_tdb {
         this.recordId = null; // Cấu hình recordId để add recordId cho từng row
         this.configTable = null; // Cấu hình hiển thị khi show dữ liệu vào bảng 
         this.loadTable(); // Thực thi cấu hình
+
+        this.urlAPIForFilterDepartment = "/api/v1/employees/byDepartmentId";
+        this.inputNameOfFilterDepartment = "departmentFilter";
+
+        this.urlAPIForFilterPosition = "/api/v1/employees/byPositionId";
+        this.inputNameOfFilterPosition = "qualificationFilter";
     }
 
     /**
@@ -71,11 +77,11 @@ class ManagementEmployees extends Table_tdb {
                 titleColumn: "Email",
                 filterName: Filter.type.general
             },
-            positionId: {
+            positionName: {
                 titleColumn: "Chức vụ",
                 filterName: Filter.type.general
             },
-            departmentId: {
+            departmentName: {
                 titleColumn: "Phòng ban",
                 filterName: Filter.type.general
             },
@@ -85,7 +91,7 @@ class ManagementEmployees extends Table_tdb {
             },
             workStatus: {
                 titleColumn: "Tình trạng công việc",
-                filterName: Filter.type.general
+                filterName: Filter.type.workStatus
             }
         }; 
     }
@@ -95,21 +101,23 @@ class ManagementEmployees extends Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      */
     loadFilter() {
-        this.filterDepartment = new DropDown_tdb(".department-filter", "departmentFilter", {title: "departmentName", value: "departmentId"});
-        this.filterDepartment.setDataWithAPI(this.urlAPIDepartmentFilter, "GET", {async: false});
+        this.filterDepartment = new DropDown_tdb(".department-filter", this.inputNameOfFilterDepartment, {title: "departmentName", value: "departmentId"});
+        this.filterDepartment.setDataWithAPI(this.host + this.endPointAPIGetDepartmentFilter, "GET", {async: false});
         this.filterDepartment.addOption({
             departmentName: "Tất cả phòng ban",
             departmentId: "all"
         });
         this.filterDepartment.create("all");
+        this.filterByDepartment();
 
-        this.filterQualification = new DropDown_tdb(".qualification-filter", "qualificationFilter", {title: "positionName", value: "positionId"});
-        this.filterQualification.setDataWithAPI(this.urlAPIQualificationFilter, "GET", {async: false});
+        this.filterQualification = new DropDown_tdb(".qualification-filter", this.inputNameOfFilterPosition, {title: "positionName", value: "positionId"});
+        this.filterQualification.setDataWithAPI(this.host + this.endPointAPIGetQualificationFilter, "GET", {async: false});
         this.filterQualification.addOption({
             positionName: "Tất cả vị trí",
             positionId: "all"
         });
         this.filterQualification.create("all");
+        this.filterByPosition();
     }
 
     /**
@@ -142,10 +150,40 @@ class ManagementEmployees extends Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      */
     dialogEmployees() {
-        this.dialog.onOfDialogForm();
-        this.dialog.valiDate();
-        this.dialog.sendDialog();
+        this.dialog.host = this.host;
+        this.dialog.endPointAPIFind = "/api/v1/employees";
+        this.dialog.endPointAPIGetDepartment = "/api/v1/departments";
+        this.dialog.endPointAPIGetQualification = "/api/v1/positions";
+        this.dialog.urlAPIUpdate = "/api/v1/employees";
+        this.dialog.urlAPICreate = "/api/v1/employees"
+        this.dialog.urlAPIGetLastEmployeeCode = "/api/v1/employees/getLastEmployeeCode";
+        this.dialog.setMenuDropdown();
         this.dialog.recordId = this.recordId.attrName == undefined ? "recordId" : this.recordId.attrName;
+        this.dialog.actionRefreshTable = ()=>{this.refreshTable()};
+    }
+
+    filterByDepartment() {
+        let departmentId = null;
+        $(".department-filter .tdb-list-option").on("click", ".tdb-option", ()=>{
+            departmentId = $(`input[name=${this.inputNameOfFilterDepartment}]`).val();
+            if(departmentId != "all") {
+                this.setDataWithAPI(this.host + this.urlAPIForFilterDepartment + "/" + departmentId);
+            } else {
+                this.loadDataForTable();
+            }
+        });
+    }
+
+    filterByPosition() {
+        let positionId = null;
+        $(".qualification-filter .tdb-list-option").on("click", ".tdb-option", ()=>{
+            positionId = $(`input[name=${this.inputNameOfFilterPosition}]`).val();
+            if(positionId != "all") {
+                this.setDataWithAPI(this.host + this.urlAPIForFilterPosition + "/" + positionId);
+            } else {
+                this.loadDataForTable();
+            }
+        });
     }
 }
 

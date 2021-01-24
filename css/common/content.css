@@ -114,24 +114,32 @@
                 .content .content-table .data-table > tbody > tr:nth-child(odd) {
                     background-color: #E9EBEE;
                 }
-
-                    .content .content-table .data-table > tbody > tr > td {
-                        height: 40px;
-                        line-height: 40px;
-                        padding-left: 18px;
-                        max-width: 250px;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        overflow: hidden;
+                    .content .content-table .data-table > tbody > tr:hover {
+                        background-color: #2FBE8E;
                     }
 
-                    .content .content-table .data-table > tbody > tr > td:nth-child(4) {
-                        text-align: center;
-                    }
+                        .content .content-table .data-table > tbody > tr:hover > td {
+                            color: #ffffff;
+                        }
 
-                    .content .content-table .data-table > tbody > tr > td:nth-child(9) {
-                        text-align: right;
-                    }
+                        .content .content-table .data-table > tbody > tr > td {
+                            height: 40px;
+                            line-height: 40px;
+                            padding-left: 18px;
+                            max-width: 250px;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        }
+
+
+                        .content .content-table .data-table > tbody > tr > td:nth-child(4) {
+                            text-align: center;
+                        }
+
+                        .content .content-table .data-table > tbody > tr > td:nth-child(9) {
+                            text-align: right;
+                        }
 
     .content .list-order-table {
         height: 56px;
