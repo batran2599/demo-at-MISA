@@ -57,11 +57,12 @@ namespace MISA.CukCuk.Web.Controllers
             return Ok(employeeCode);
         }
 
-        [HttpPut]
-        public IActionResult UpdateEmployee(Employee infoEmployee)
+        [HttpGet("search/{info}")]
+        public IActionResult SearchEmployee(string info)
         {
-            var status = _employeeService.UpdateEmployee(infoEmployee);
-            return Ok(status);
+            var employees = _employeeService.SearchEmployee(info);
+            return Ok(employees);
         }
+
     }
 }

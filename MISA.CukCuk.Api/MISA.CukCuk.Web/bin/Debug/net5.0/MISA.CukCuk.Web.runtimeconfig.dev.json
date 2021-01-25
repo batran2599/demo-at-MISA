@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\TranDuyBa\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\TranDuyBa\\.nuget\\packages"
+      "C:\\Users\\tdba\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\tdba\\.nuget\\packages"
     ]
   }
 }

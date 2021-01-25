@@ -12,6 +12,7 @@ class Dialog_tdb {
 
         this.urlAPICreate = null;
         this.urlAPIUpdate = null;
+        this.urlAPIDelete = null;
 
         this.endPointAPIFind = null;
         
@@ -35,13 +36,15 @@ class Dialog_tdb {
         this.formatSalary();
         this.onOfDialogForm();
         this.setEventSendData();
+        this.setEventDeleteData();
         this.valiDate();
-        this.checkEmployeeCode()
+        this.checkEmployeeCode();
 
         this.urlAPIGetLastEmployeeCode = null;
         this.valueRecordId = null;
+        this.valueEmployeeCode = null;
 
-        this.actionRefreshTable = null;
+        this.actionRefreshTable = ()=>{};
     }
 
     /**
@@ -50,6 +53,12 @@ class Dialog_tdb {
      */
     openDialog() {
         $(".tdb-dialog").css("display", "block");
+        if(this.typeDialog == "create") {
+            $(".delete-dialog").css("display", "none");
+        } else {
+            $(".delete-dialog").css("display", "block");
+        }
+        this.valueEmployeeCode = $(".input-dialog > input[name='employeeCode']").val();
     }
 
     /**
@@ -59,6 +68,8 @@ class Dialog_tdb {
     cancelDialog() {
         $(".tdb-dialog").css("display", "none");
         this.clearValueOfInput();
+        this.actionRefreshTable = null;
+        this.valueRecordId = null;
     }
 
     /**
@@ -67,18 +78,18 @@ class Dialog_tdb {
      */
     onOfDialogForm() {
         $(".add-customer").click(()=>{
-            this.openDialog();
-            $(".input-dialog > input[name='employeeCode']").focus();
             this.typeDialog = "create";
+            $(".input-dialog > input[name='employeeCode']").focus();
             $(".input-dialog > input[name='employeeCode']").val(this.createEmployeeCode());
+            this.openDialog();
         });
         
         let that = this;
         $(".data-table > tbody").on("click", "tr",function(){
+            that.typeDialog = "update";
             that.valueRecordId = $(this).data(that.recordId);
             that.findObject(that.valueRecordId);
             that.openDialog();
-            that.typeDialog = "update";
         });
 
         $(".dialog-modal").click(()=>{
@@ -87,7 +98,6 @@ class Dialog_tdb {
         
         $(".cancel-dialog").click(()=>{
             this.cancelDialog();
-            // ManaCustomers.RefreshTable();
         });
     }
 
@@ -249,6 +259,7 @@ class Dialog_tdb {
         $.ajax({
             url: this.host + this.endPointAPIFind + "/" + id,
             method: "GET",
+            async: false
         }).done((res)=>{
             this.loader.remove();
             this.setDialog(res);
@@ -282,6 +293,16 @@ class Dialog_tdb {
                 }
             }
         });
+    }
+
+    /**
+     * Sự kiện thực hiện xóa dữ liệu qua API
+     * CreatedBy: Trần Duy Bá (25/01/2021)
+     */
+    setEventDeleteData() {
+        $(".delete-dialog").click(()=>{
+            this.deleteData();
+        })
     }
 
     /**
@@ -331,12 +352,36 @@ class Dialog_tdb {
                     this.actionRefreshTable();
                     this.cancelDialog();
                 }).fail((res)=>{
+                    console.log(res);
+                    console.log(infoEmployee);
                     this.message.error("Thao tác không thành công !");
                 });
             } else {
                 this.message.error("Lỗi không gửi được dữ liệu !");
             }
         } 
+    }
+
+    /**
+     * Xóa dữ liệu
+     * CreatedBy: Trần Duy Bá (25/01/2021)
+     */
+    deleteData() {
+        this.modal.warning(()=>{
+            // 
+            $.ajax({
+                url: this.host + this.urlAPIDelete + "/" + this.valueRecordId,
+                method: "DELETE",
+                async: false
+            }).done(()=>{
+                this.message.done("Xóa dữ liệu thành công !");
+                this.actionRefreshTable();
+                this.cancelDialog();
+            }).fail((res)=>{
+                console.log(res);
+                this.message.error("Xóa dữ liệu không thành công !");
+            });
+        }, "Cảnh báo", "Bạn có chắc muốn xóa nhân viên này không ? <br> Dữ liệu sẽ không thể khôi phục sau khi xóa !", "Hủy", "Xóa");
     }
 
     /**
@@ -388,15 +433,18 @@ class Dialog_tdb {
     checkEmployeeCode() {
         $(".input-dialog > input[name='employeeCode']").change(()=>{
             $.ajax({
-                url: this.host + "/api/v1/employees/byCode/" + $(".input-dialog > input[name='employeeCode']").val(),
-                method: "GET"
+                url: this.host + "/api/v1/employees/byCode/" + this.valueEmployeeCode,
+                method: "GET",
+                async: false
             }).done((res)=>{
-                if(res.employeeCode != undefined && this.typeDialog != "update") {
+                if(res != undefined && this.typeDialog != "update") {
                     this.modal.warning(null, "Cảnh báo", "Bị trùng mã nhân viên !");
                     $(".input-dialog > input[name='employeeCode']").attr("validate",  "false");
+                } else {
+                    $(".input-dialog > input[name='employeeCode']").attr("validate",  "true");
                 }
             }).fail(()=>{
-                this.message.warning(null, "Cảnh báo", "Có lỗi !");
+                this.message.error("Có lỗi !");
             })
         });
     }

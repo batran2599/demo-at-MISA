@@ -25,11 +25,7 @@ namespace MISA.ApplicationCore.Interface
         /// <returns></returns>
         IEnumerable<Employee> GetLastEmployeeCode();
 
-        /// <summary>
-        /// Cập nhật dữ liệu nhân viên
-        /// </summary>
-        /// <param name="infoEmployee"></param>
-        /// <returns></returns>
-        IEnumerable<Employee> UpdateEmployee(Employee infoEmployee);
+        IEnumerable<Employee> SearchEmployee(string info);
+
     }
 }

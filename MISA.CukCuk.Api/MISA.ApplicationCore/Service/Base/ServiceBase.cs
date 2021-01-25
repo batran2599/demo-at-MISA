@@ -19,6 +19,7 @@ namespace MISA.ApplicationCore
             _respositoryBase = respositoryBase;
         }
 
+        #region Method
         /// <summary>
         /// Thêm đối tượng mới
         /// </summary>
@@ -77,7 +78,6 @@ namespace MISA.ApplicationCore
             return serviceResult;
         }
 
-        #region Method
         /// <summary>
         /// Lấy ra toàn bộ thông thông tin của tất cả các đối tượng
         /// </summary>
@@ -108,8 +108,8 @@ namespace MISA.ApplicationCore
         /// <returns>Thông tin khách hàng</returns>
         public T GetByCode(string objCode)
         {
-            var customers = _respositoryBase.GetByCode(objCode);
-            return customers;
+            var res = _respositoryBase.GetByCode(objCode);
+            return res;
         }
 
         /// <summary>
@@ -119,17 +119,19 @@ namespace MISA.ApplicationCore
         /// <returns></returns>
         public int Update(T obj)
         {
-            throw new NotImplementedException();
+            var res = _respositoryBase.Update(obj);
+            return res;
         }
 
         /// <summary>
         /// Xóa đối tượng khỏi danh sách thông qua Id
         /// </summary>
-        /// <param name="customerId">Id của đối tượng</param>
+        /// <param name="objId">Id của đối tượng</param>
         /// <returns></returns>
-        public int Delete(Guid customerId)
+        public int Delete(Guid objId)
         {
-            throw new NotImplementedException();
+            var res = _respositoryBase.Delete(objId);
+            return res;
         }
         #endregion
     }

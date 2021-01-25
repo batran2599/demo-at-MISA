@@ -48,9 +48,9 @@ namespace MISA.ApplicationCore.Interface
         /// <summary>
         /// Xóa thông tin của của đối tượng
         /// </summary>
-        /// <param name="customerId">Id của khách hàng</param>
+        /// <param name="objId">Id của khách hàng</param>
         /// <returns>Số bản ghi bị ảnh hưởng</returns>
         /// CreadtedBy: Trần Duy Bá (19/01/2021)
-        int Delete(Guid? customerId);
+        int Delete(Guid? objId);
     }
 }

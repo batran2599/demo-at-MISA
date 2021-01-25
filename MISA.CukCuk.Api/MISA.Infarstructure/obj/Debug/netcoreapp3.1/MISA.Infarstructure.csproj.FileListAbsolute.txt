@@ -22,3 +22,15 @@ D:\ProgramFiles\Xampp\htdocs\MyProject\Learning-Csharp\MISA.CukCuk.Api\MISA.Infa
 D:\ProgramFiles\Xampp\htdocs\MyProject\Learning-Csharp\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.pdb
 F:\tdba\Learning-Csharp\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.dll
 F:\tdba\Learning-Csharp\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.pdb
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.Infarstructure.deps.json
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.Infarstructure.dll
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.Infarstructure.pdb
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.dll
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.pdb
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.csprojAssemblyReference.cache
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.AssemblyInfoInputs.cache
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.AssemblyInfo.cs
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.csproj.CoreCompileInputs.cache
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.csproj.CopyComplete
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.dll
+F:\tdba\demo01-at-MISA\MISA.CukCuk.Api\MISA.Infarstructure\obj\Debug\netcoreapp3.1\MISA.Infarstructure.pdb

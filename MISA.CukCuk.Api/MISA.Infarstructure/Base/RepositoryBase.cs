@@ -40,7 +40,7 @@ namespace MISA.Infarstructure
         {
 
             // Khởi tạo các commandText:
-            var objects = _dbConnection.Query<T>($"Proc_Get{_tableName}ById", new { EmployeeId =  objId.ToString() }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var objects = _dbConnection.Query<T>($"Proc_Get{_tableName}ById", new { objId =  objId.ToString() }, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return objects;
         }
 
@@ -48,7 +48,7 @@ namespace MISA.Infarstructure
         {
 
             // Khởi tạo các commandText:
-            var objects = _dbConnection.Query<T>($"Proc_Get{_tableName}ByCode", new { EmployeeCode = objCode.ToString() }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var objects = _dbConnection.Query<T>($"Proc_Get{_tableName}ByCode", new { objCode = objCode.ToString() }, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return objects;
         }
 
@@ -62,14 +62,16 @@ namespace MISA.Infarstructure
             return data;
         }
 
-        public int Delete(Guid? customerId)
+        public int Delete(Guid? objId)
         {
-            throw new NotImplementedException();
+            var rowAffect = _dbConnection.Execute($"Proc_Delete{_tableName}", new { objId = objId.ToString() },commandType: CommandType.StoredProcedure);
+            return rowAffect;
         }
 
-        public int Update(T customer)
+        public int Update(T obj)
         {
-            throw new NotImplementedException();
+            var rowAffect = _dbConnection.Execute($"Proc_Update{_tableName}", MappingDbType<T>(obj), commandType: CommandType.StoredProcedure);
+            return rowAffect;
         }
 
         /// <summary>
@@ -78,6 +80,7 @@ namespace MISA.Infarstructure
         /// <typeparam name="Object"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         protected DynamicParameters MappingDbType<Object>(Object obj)
         {
             var properties = obj.GetType().GetProperties();

@@ -13,7 +13,7 @@ namespace MISA.CukCuk.Web.ControllerBaseX
     [ApiController]
     public class ControllerBaseX<T> : ControllerBase
     {
-       IServiceBase<T> _serviceBase;
+        IServiceBase<T> _serviceBase;
         public ControllerBaseX(IServiceBase<T> serviceBase)
         {
             _serviceBase = serviceBase;
@@ -32,7 +32,7 @@ namespace MISA.CukCuk.Web.ControllerBaseX
         /// <summary>
         /// Tìm khách hàng theo mã Id đối tượng
         /// </summary>
-        /// <param name="customerCode">Mã đối tượng</param>
+        /// <param name="objId">Mã đối tượng</param>
         /// <returns></returns>        
         [HttpGet("{objId}")]
         public IActionResult Get(Guid? objId)
@@ -41,9 +41,9 @@ namespace MISA.CukCuk.Web.ControllerBaseX
         }
 
         /// <summary>
-        /// Tìm khách hàng theo mã code đối tượng
+        /// Tìm đối tượng theo mã code đối tượng
         /// </summary>
-        /// <param name="customerCode">Mã đối tượng</param>
+        /// <param name="objCode">Mã đối tượng</param>
         /// <returns></returns>        
         [HttpGet("byCode/{objCode}")]
         public IActionResult Get(string objCode)
@@ -52,9 +52,9 @@ namespace MISA.CukCuk.Web.ControllerBaseX
         }
 
         /// <summary>
-        /// đối tượng hàng mới
+        /// Tạo bản ghi mới
         /// </summary>
-        /// <param name="customer">Đối tượng chưa thông tin đối tượng</param>
+        /// <param name="obj">Đối tượng chưa thông tin đối tượng</param>
         /// <returns></returns>
         [HttpPost()]
         public IActionResult Post(T obj)
@@ -73,5 +73,31 @@ namespace MISA.CukCuk.Web.ControllerBaseX
                 return NoContent();
             }
         }
+
+        /// <summary>
+        /// Cập nhật thông tin đối tượng
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
+        [HttpPut]
+        public IActionResult Update(T obj)
+        {
+            var res = _serviceBase.Update(obj);
+            return Ok(res);
+        }
+
+        /// <summary>
+        /// Xóa đối tượng theo Id
+        /// </summary>
+        /// <param name="objId">Id của đối tượng</param>
+        /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
+        [HttpDelete("{objId}")]
+        public IActionResult Delete(Guid objId)
+        {
+            var res = _serviceBase.Delete(objId);
+            return Ok(res);
+        } 
     }
 }

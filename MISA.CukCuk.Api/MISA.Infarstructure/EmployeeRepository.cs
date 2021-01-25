@@ -12,6 +12,7 @@ namespace MISA.Infarstructure
 {
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
+        #region method
         public EmployeeRepository(IConfiguration configuration) : base(configuration)
         {
 
@@ -35,10 +36,12 @@ namespace MISA.Infarstructure
             return employeeCode;
         }
 
-        public IEnumerable<Employee> UpdateEmployee(Employee infoEmployee)
+        public IEnumerable<Employee> SearchEmployee(string info)
         {
-            var status = _dbConnection.Query<Employee>("Proc_UpdateEmployee", MappingDbType<Employee>(infoEmployee), commandType: CommandType.StoredProcedure);
-            return status;
+            var employees = _dbConnection.Query<Employee>("Proc_SearchEmployees", new { Info = info }, commandType: CommandType.StoredProcedure);
+            return employees;
         }
+        #endregion
+
     }
 }

@@ -33,10 +33,10 @@ namespace MISA.ApplicationCore.Service
             return employeeCode;
         }
 
-        public IEnumerable<Employee> UpdateEmployee(Employee infoEmployee)
+        public IEnumerable<Employee> SearchEmployee(string info)
         {
-            var status = _employeeRespository.UpdateEmployee(infoEmployee);
-            return status;
+            var employees = _employeeRespository.SearchEmployee(info);
+            return employees;
         }
     }
 }

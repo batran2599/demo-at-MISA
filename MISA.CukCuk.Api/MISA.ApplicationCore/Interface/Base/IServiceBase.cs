@@ -45,8 +45,8 @@ namespace MISA.ApplicationCore.Interface
         /// <summary>
         /// Xóa dữ liệu theo Id
         /// </summary>
-        /// <param name="Id">Id dữ liệu cần xóa</param>
+        /// <param name="objId">Id dữ liệu cần xóa</param>
         /// <returns></returns>
-        int Delete(Guid Id);
+        int Delete(Guid objId);
     }
 }

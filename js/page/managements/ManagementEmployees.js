@@ -155,7 +155,8 @@ class ManagementEmployees extends Table_tdb {
         this.dialog.endPointAPIGetDepartment = "/api/v1/departments";
         this.dialog.endPointAPIGetQualification = "/api/v1/positions";
         this.dialog.urlAPIUpdate = "/api/v1/employees";
-        this.dialog.urlAPICreate = "/api/v1/employees"
+        this.dialog.urlAPICreate = "/api/v1/employees";
+        this.dialog.urlAPIDelete = "/api/v1/employees";
         this.dialog.urlAPIGetLastEmployeeCode = "/api/v1/employees/getLastEmployeeCode";
         this.dialog.setMenuDropdown();
         this.dialog.recordId = this.recordId.attrName == undefined ? "recordId" : this.recordId.attrName;
