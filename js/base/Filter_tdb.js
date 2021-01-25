@@ -94,7 +94,8 @@ class Filter {
         }
         if(!Number.isNaN(Number(value))) {
             let money = value.toString();
-            let localOfDot = money.indexOf(".");
+            money = money.replace(".", ",")
+            let localOfDot = money.indexOf(",");
             let moneyLeft = "";
             let moneyRight = "";
             if(localOfDot >= 0) {
@@ -113,7 +114,7 @@ class Filter {
             let index = length; // Đặt vị trí bắt đầu nhảy ở cuối chuỗi
             for(let i = 0; i < step; i++) {
                 index -= 3;
-                moneyLeft.splice(index, 0, ",");
+                moneyLeft.splice(index, 0, ".");
             }
             
             return typeMoneyBefore + moneyLeft.join("") + moneyRight + typeMoneyAfter; // Nối phần nguyên trước và sau sấu "," lại với nhau và nối ký hiệu tiền tệ

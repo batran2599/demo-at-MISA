@@ -116,8 +116,11 @@ class Dialog_tdb {
         let salary = 0;
         $(".input-dialog > input[name='basicSalary']").keyup(function(){
             salary = $(this).val();
+            while(salary.indexOf(".") > 0) {
+                salary = salary.replace(".", "");
+            }
             while(salary.indexOf(",") > 0) {
-                salary = salary.replace(",", "");
+                salary = salary.replace(",", ".");
             }
             if(!Number.isNaN(Number(salary))) {
                 $(this).val(Filter.convertMoney(salary,"","",false));
@@ -292,9 +295,9 @@ class Dialog_tdb {
         let inputData = $(".tdb-dialog input");
         $.each(inputData, function(){
             if(this.name == "basicSalary") {
-                infoEmployee[this.name] = that.removeCommaInString(this.value);
+                infoEmployee[this.name] = that.convertNumber(this.value);
             } else if(this.type == "date" && this.value == "") {
-                infoEmployee[this.name] = "0000-00-00";
+                infoEmployee[this.name] = null;
             } else {
                 infoEmployee[this.name] = this.value;
             }
@@ -323,7 +326,6 @@ class Dialog_tdb {
                     if(this.typeDialog == "create") {
                         this.message.done("Thêm nhân viên thành công !");
                     } else if(this.typeDialog  == "update") {
-                        console.log(res);
                         this.message.done("Chỉnh sửa thông tin thành công !");
                     }
                     this.actionRefreshTable();
@@ -363,11 +365,20 @@ class Dialog_tdb {
      * @param {string} str Chuỗi cần loại bỏ dấu 
      * CreateBy: Trần Duy Bá (24/01/2021)
      */
-    removeCommaInString(str) {
-        while(str.indexOf(",") != -1) {
-            str = str.replace(",", "");
+    convertNumber(numberTypeString) {
+        let numberOfDot = 0;
+        while(numberTypeString.indexOf(".") > 0) {
+            numberTypeString = numberTypeString.replace(".", "");
         }
-        return str;
+        while(numberTypeString.indexOf(",") > 0) {
+            ++numberOfDot;
+            numberTypeString = numberTypeString.replace(",", ".");
+        }
+        if(numberOfDot <= 1) {
+            return numberTypeString;
+        } else {
+            return null;
+        }
     }
 
     /**
