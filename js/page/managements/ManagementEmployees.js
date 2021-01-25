@@ -163,6 +163,10 @@ class ManagementEmployees extends Table_tdb {
         this.dialog.actionRefreshTable = ()=>{this.refreshTable()};
     }
 
+    /**
+     * Lọc theo phòng ban
+     * CreatedBy: Trần Duy Bá
+     */
     filterByDepartment() {
         let departmentId = null;
         $(".department-filter .tdb-list-option").on("click", ".tdb-option", ()=>{
@@ -175,6 +179,10 @@ class ManagementEmployees extends Table_tdb {
         });
     }
 
+    /**
+     * Lọc theo vị trí làm việc
+     * CreatedBy: Trần Duy Bá
+     */
     filterByPosition() {
         let positionId = null;
         $(".qualification-filter .tdb-list-option").on("click", ".tdb-option", ()=>{

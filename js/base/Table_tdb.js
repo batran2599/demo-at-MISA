@@ -69,7 +69,7 @@ class Table_tdb {
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
     setDataWithObjData(data = null) {
-        this.loader.Create();
+        this.loader.create();
         if(data !== null) {
             this.setDataForTable(data);
         }
@@ -122,6 +122,7 @@ class Table_tdb {
 
     /**
      * Xóa tiêu đề cột
+     * CreatedBy: Trần Duy Bá (24/12/2020)
      */
     removeTitleColumn() {
         $(`${this.tableSelector} > thead > tr`).remove();
@@ -129,6 +130,7 @@ class Table_tdb {
     
     /**
      * Xóa dữ liệu của bảng
+     * CreatedBy: Trần Duy Bá (24/12/2020)
      */
     removeContentTable() {
         $(`${this.tableSelector} > tbody > tr`).remove();

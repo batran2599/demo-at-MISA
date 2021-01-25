@@ -1,4 +1,4 @@
-class Validate_tdb {
+class Validate_tdb extends Message_tdb{
 
     /**
      * Tạo cảnh báo yêu cầu bắt buộc nhập với các thẻ input nhập liệu
@@ -29,25 +29,19 @@ class Validate_tdb {
      * CopyIn: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
      * EditBy: Trần Duy Bá (12/01/2021)
      */
-    static email(selectorInput, styleWarning = {borderColor: "#F65454"}) {
+    static email(selectorInput, required = false, styleWarning = {borderColor: "#F65454"}) {
         $(selectorInput).blur(function(){
-            if(this.value != "") {
-                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                let check = re.test(String($(this).val()).toLowerCase());
-                if(!check) {
-                    $(this).attr("title", "Email không hợp lệ");
-                    $.each(styleWarning, (index, value)=>{
-                        this.style[index] = value;
-                    });
-                    $(this).attr("validate", "false");
-                } else {
-                    $(this).removeAttr("title");
-                    this.style = "";
-                }
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let check = re.test(String($(this).val()).toLowerCase());
+            if(!check) {
+                $(this).attr("title", "Email không hợp lệ");
+                $.each(styleWarning, (index, value)=>{
+                    this.style[index] = value;
+                });
+                $(this).attr("validate", "false");
             } else {
                 $(this).removeAttr("title");
-                $(this).removeAttr("style");
-                $(this).removeAttr("validate");
+                this.style = "";
             }
         });
     }
