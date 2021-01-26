@@ -217,8 +217,8 @@
             }
 
             .tdb-dialog .dialog-form .dialog-bottom .cancel-dialog:hover {
-                background-color: #0075FF;
-                color: white;
+                border: 1px solid #454545;
+                /* color: white; */
                 transition: 0.2s;
             }
 

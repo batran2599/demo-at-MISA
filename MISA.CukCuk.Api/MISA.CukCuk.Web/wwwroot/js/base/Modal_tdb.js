@@ -86,6 +86,9 @@ class Modal_tdb extends CreateHTMLTag_tdb {
         this.listButtonCancelF.push(this.buttonCancelF);
         this.listButtonConfirmF.push(this.buttonConfirmF);
 
+        this.formModal.style.animationName = "fadeInDown";
+        this.formModal.style.animationDuration = "0.6s";
+
     }
 
     /**
@@ -193,12 +196,6 @@ class Modal_tdb extends CreateHTMLTag_tdb {
      */
     message(action = null, title = "Thông báo", content = "...", titleButtonCancel = "Hủy", titleButtonConfirm = "OK") {
         this.createFormModal();
-        this.titleModal.innerText = title;
-        this.containIcon.style.display = "none";
-        this.modalContent.innerText = content;
-        this.buttonCancelF.innerText = titleButtonCancel;
-        this.buttonConfirmF.innerText = titleButtonConfirm;
-        this.buttonConfirmF.style.backgroundColor = this.bagColorOfButtonConfirmInfo;
         this.configStyleOfFormModal(
             title,
             content,

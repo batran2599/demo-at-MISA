@@ -107,6 +107,7 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
     /**
      * Khởi tạo đối tượng menu dropdown
      * @param {string} valueOfOption Gía trị của option muốn chọn
+     * CreatedBy: Trần Duy Bá
      */
     create(valueOfOption = null) {
         if(this.data != null || this.configData == null) {
@@ -148,6 +149,7 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
     /**
      * Chọn option nhất định
      * @param {string} valueOfOption Gía trị của option muốn chọn
+     * CreatedBy: Trần Duy Bá
      */
     chooseOption(valueOfOption = null) {
         let tagChild = null;
@@ -166,10 +168,20 @@ class DropDown_tdb extends CreateHTMLTag_tdb {
     /**
      * Thêm lựa chọn 
      * @param {object} option Đối tượng chứa thông tin option mới
+     * CreatedBy: Trần Duy Bá
      */
     addOption(option = null) {
         if(option != null && this.data != null) {
             this.data.unshift(option);
         }
+    }
+
+    /**
+     * Xét hiển thị và giá trị về mặc định
+     * CreatedBy: Trần Duy Bá
+     */
+    setDefault() {
+        this.unfocusAllOption();
+        this.inputSaveOption.value = "";
     }
 }

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\MISA.Infarstructure\MISA.Infarstructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\page\" />
+  </ItemGroup>
+
 </Project>

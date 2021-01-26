@@ -15,9 +15,11 @@ class Validate_tdb extends Message_tdb{
                 });
                 $(this).attr("validate", "false");
             } else {
-                $(this).removeAttr("title");
-                $(this).removeAttr("style");
-                $(this).removeAttr("validate");
+                if(this.name != "employeeCode"){
+                    $(this).removeAttr("title");
+                    $(this).removeAttr("style");
+                    $(this).removeAttr("validate");
+                }
             }
         });
     }

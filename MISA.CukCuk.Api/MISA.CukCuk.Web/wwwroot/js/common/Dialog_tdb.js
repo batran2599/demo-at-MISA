@@ -6,8 +6,7 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     constructor(){
-        this.listGender = null;
-
+        
         this.host = null;
 
         this.urlAPICreate = null;
@@ -15,6 +14,8 @@ class Dialog_tdb {
         this.urlAPIDelete = null;
 
         this.endPointAPIFind = null;
+
+        this.listGender = null;
         
         this.endPointAPIGetQualification = null;
         this.listQualification = null;
@@ -67,8 +68,9 @@ class Dialog_tdb {
      */
     cancelDialog() {
         $(".tdb-dialog").css("display", "none");
-        this.clearValueOfInput();
+        this.clearValueAndStyleOfInput();
         this.valueRecordId = null;
+        this.setDefaltMenuDropdown();
     }
 
     /**
@@ -101,11 +103,12 @@ class Dialog_tdb {
     }
 
     /**
-     * Làm sạch dữ liệu trong các thẻ input
+     * Làm sạch dữ liệu và style trong các thẻ input
      * CreatedBy: Trần Duy Bá (23/01/2021)
      */
-    clearValueOfInput() {
+    clearValueAndStyleOfInput() {
         $(".input-dialog > input").val("");
+        $(".input-dialog > input").attr("style", "");
     }
 
     /**
@@ -148,6 +151,17 @@ class Dialog_tdb {
         this.setListQualification();
         this.setListDepartment();
         this.setListWorkStatus();
+    }
+
+    /**
+     * Đặt hiển thị và giá trị mặc định cho các menu dropdown
+     * CreatedBy: Trần Duy Bá (23/01/2021)
+     */
+    setDefaltMenuDropdown() {
+        this.listGender.setDefault();
+        this.listDepartment.setDefault();
+        this.listQualification.setDefault();
+        this.listWorkStatus.setDefault();
     }
 
     /**
@@ -276,15 +290,14 @@ class Dialog_tdb {
     setEventSendData() {
         $(".save-dialog").click(()=>{
             $(".input-dialog > input[name='employeeCode']").trigger("change");
-            $.each($('input[required]'), function(){
+            $.each($('.input-dialog > input[required]'), function(){
                $(this).trigger("blur");
             });
-        
-            if($('input[validate="false"]').length > 0) {
+            if($('.input-dialog > input[validate="false"]').length > 0) {
                 $.each($('input[validate="false"]'), function(){
                     $(this).trigger("blur");
                 });
-                $('input[validate="false"]')[0].focus();
+                $('.input-dialog > input[validate="false"]')[0].focus();
                 this.message.error("Dữ liệu không hợp lệ !");
             } else {    
                 this.loader.create();
@@ -315,8 +328,6 @@ class Dialog_tdb {
         $.each(inputData, function(){
             if(this.name == "basicSalary") {
                 infoEmployee[this.name] = that.convertNumber(this.value);
-            } else if(this.type == "date" && this.value == "") {
-                infoEmployee[this.name] = null;
             } else {
                 infoEmployee[this.name] = this.value;
             }
@@ -351,9 +362,12 @@ class Dialog_tdb {
                     this.actionRefreshTable();
                     this.cancelDialog();
                 }).fail((res)=>{
+                    console.log(res);
+                    this.loader.remove();
                     this.message.error("Thao tác không thành công !");
                 });
             } else {
+                this.loader.remove();
                 this.message.error("Lỗi không gửi được dữ liệu !");
             }
         } 
@@ -374,7 +388,6 @@ class Dialog_tdb {
                 this.message.done("Xóa dữ liệu thành công !");
                 this.actionRefreshTable();
                 this.cancelDialog();
-                console.log("123");
             }).fail((res)=>{
                 console.log(res);
                 this.message.error("Xóa dữ liệu không thành công !");
@@ -430,7 +443,12 @@ class Dialog_tdb {
      */
     checkEmployeeCode() {
         $(".input-dialog > input[name='employeeCode']").change(()=>{
-            if(this.valueEmployeeCode != $(".input-dialog > input[name='employeeCode']").val()){
+            if(!/NV[0-9]+/.test($(".input-dialog > input[name='employeeCode']").val())) {
+                this.message.warning("Mã nhân viên phải bắt đầu bằng 'NV' theo sau là số !");
+                $(".input-dialog > input[name='employeeCode']").attr("title", "Mã nhân viên phải bắt đầu bằng 'NV' theo sau là số !");
+                $(".input-dialog > input[name='employeeCode']").attr("validate",  "false");
+                $(".input-dialog > input[name='employeeCode']").css("border",  "1px solid #F65454");
+            } else if(this.valueEmployeeCode != $(".input-dialog > input[name='employeeCode']").val()){
                 $.ajax({
                     url: this.host + "/api/v1/employees/byCode/" + $(".input-dialog > input[name='employeeCode']").val(),
                     method: "GET",
@@ -439,8 +457,11 @@ class Dialog_tdb {
                     if(res != undefined || res != null) {
                         this.message.warning("Bị trùng mã nhân viên !");
                         $(".input-dialog > input[name='employeeCode']").attr("validate",  "false");
+                        $(".input-dialog > input[name='employeeCode']").css("border",  "1px solid #F65454");
                     } else {
                         $(".input-dialog > input[name='employeeCode']").attr("validate",  "true");
+                        $(".input-dialog > input[name='employeeCode']").removeAttr("title");
+                        $(".input-dialog > input[name='employeeCode']").removeAttr("style");
                     }
                 }).fail(()=>{
                     this.message.error("Có lỗi !");

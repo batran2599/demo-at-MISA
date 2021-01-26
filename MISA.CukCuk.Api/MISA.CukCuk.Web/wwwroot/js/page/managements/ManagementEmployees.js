@@ -87,9 +87,9 @@ class ManagementEmployees extends Table_tdb {
         /**
          * Thực thi các method hiển thị và các sự kiện
          */
+        this.loadFilter();
         this.refreshTable();
         this.dialogEmployees();
-        this.loadFilter();
         this.eventSearchEmloyee();
     }
 
@@ -136,6 +136,8 @@ class ManagementEmployees extends Table_tdb {
      */
     refreshTable() {
         try {
+            this.filterDepartment.chooseOption("");
+            this.filterQualification.chooseOption("");
             this.loadDataForTable();
         } catch(e) {
             console.error("Có lỗi !");
@@ -169,6 +171,7 @@ class ManagementEmployees extends Table_tdb {
         $(".department-filter .tdb-list-option").on("click", ".tdb-option", function(){
             that.checkValueOfFilter();
             that.employeeFiltering();
+            that.message.done("Đã lọc theo phòng ban: " + this.innerText);
         });
     }
 
@@ -181,6 +184,7 @@ class ManagementEmployees extends Table_tdb {
         $(".qualification-filter .tdb-list-option").on("click", ".tdb-option", function(){
             that.checkValueOfFilter();
             that.employeeFiltering();
+            that.message.done("Đã lọc theo vị trí: " + this.innerText);
         });
     }
 
@@ -201,7 +205,6 @@ class ManagementEmployees extends Table_tdb {
     employeeFiltering() {
         this.configAjax = {async: false};
         this.setDataWithAPI(this.host + this.urlAPIFilter + `?departmentId=${this.valueFilterDepartment}&positionId=${this.valueFilterPosition}`);
-        this.message.done("Đã lọc !");
         this.configAjax = null;
     }
 
@@ -213,7 +216,7 @@ class ManagementEmployees extends Table_tdb {
     eventSearchEmloyee() {
         let that = this;
         $(".search").keyup(function(){
-            that.setDataWithAPI(that.host + that.urlAPISearch + this.value);
+            that.setDataWithAPI(that.host + that.urlAPISearch + this.value, "GET", false);
         })
     }
 }

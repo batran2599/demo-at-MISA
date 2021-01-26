@@ -77,6 +77,7 @@ class Message_tdb extends CreateHTMLTag_tdb {
         this.iconOfType.src = `${this.urlIcon}/${iconName}`;
         this.buttonRemove.style.backgroundImage = `url(${this.urlIcon}/${iconRemove})`;
         this.form.style.backgroundColor = backgroundColorOfForm;
+        this.content.title = content;
     }
 
     /**
@@ -126,20 +127,27 @@ class Message_tdb extends CreateHTMLTag_tdb {
      */
     removeFormMessage(button) {
         let index = this.listButtonRemove.indexOf(button);
-        let numNull = 0;
-        this.listMessages[index].style.animationName = "fadeOutRight";
-        this.listMessages[index].style.animationDuration = "0.6s";
-        setTimeout(()=>{
-            this.containMessages.removeChild(this.listMessages[index]);
-            // this.listMessages.replace(index, null);
-            // this.listButtonRemove.replace(index, null);
-            // if(this.listMessages.length == 0) {
-            //     this.view.removeChild(this.containMessages);
-            //     this.listMessages = null;
-            //     this.listButtonRemove = null;
-            //     this.containMessages = null;
-            // }
-        }, 500);
+        if(index >= 0) {
+            let numNull = 0;
+            this.listMessages[index].style.animationName = "fadeOutRight";
+            this.listMessages[index].style.animationDuration = "0.6s";
+            setTimeout(()=>{
+                this.containMessages.removeChild(this.listMessages[index]);
+                this.listMessages.splice(index, 1, null);
+                this.listButtonRemove.splice(index, 1, null);
+                this.listMessages.forEach((value)=>{
+                    if(value === null)
+                        ++numNull;
+                });
+                if(numNull == this.listButtonRemove.length) {
+                    this.view.removeChild(this.containMessages);
+                    this.listMessages = [];
+                    this.listButtonRemove = [];
+                    this.containMessages = null;
+                }
+                
+            }, 500);
+        }
     }
 
     /**
