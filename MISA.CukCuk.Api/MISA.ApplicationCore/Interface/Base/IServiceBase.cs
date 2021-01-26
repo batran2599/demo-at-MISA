@@ -12,6 +12,7 @@ namespace MISA.ApplicationCore.Interface
         /// Lấy tất cả dữ liệu
         /// </summary>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         IEnumerable<T> GetAll();
 
         /// <summary>
@@ -19,6 +20,7 @@ namespace MISA.ApplicationCore.Interface
         /// </summary>
         /// <param name="objId">Id của đối tượng</param>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         T GetById(Guid? objId);
 
         /// <summary>
@@ -26,6 +28,7 @@ namespace MISA.ApplicationCore.Interface
         /// </summary>
         /// <param name="objId">Id của đối tượng</param>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         T GetByCode(string objCode);
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace MISA.ApplicationCore.Interface
         /// </summary>
         /// <param name="obj">Đối tượng dữ liệu cần thêm</param>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         ServiceResult Add(T obj);
 
         /// <summary>
@@ -40,6 +44,7 @@ namespace MISA.ApplicationCore.Interface
         /// </summary>
         /// <param name="obj">Dữ liệu cần cập nhật</param>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         int Update(T obj);
 
         /// <summary>
@@ -47,6 +52,7 @@ namespace MISA.ApplicationCore.Interface
         /// </summary>
         /// <param name="objId">Id dữ liệu cần xóa</param>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         int Delete(Guid objId);
     }
 }

@@ -18,18 +18,6 @@ namespace MISA.Infarstructure
 
         }
 
-        public IEnumerable<Employee> GetByDepartmentId(Guid? departmentId)
-        {
-            var employees = _dbConnection.Query<Employee>("Proc_GetEmployeeByDepartmentId", new { DepartmentId =  departmentId.ToString()}, commandType: CommandType.StoredProcedure);
-            return employees;
-        }
-
-        public IEnumerable<Employee> GetByPositionId(Guid? positionId)
-        {
-            var employees = _dbConnection.Query<Employee>("Proc_GetEmployeeByPositionId", new { PositionId = positionId.ToString()}, commandType: CommandType.StoredProcedure);
-            return employees;
-        }
-
         public IEnumerable<Employee> GetLastEmployeeCode()
         {
             var employeeCode = _dbConnection.Query<Employee>("Proc_GetLastEmployeeCode", commandType: CommandType.StoredProcedure);
@@ -38,7 +26,13 @@ namespace MISA.Infarstructure
 
         public IEnumerable<Employee> SearchEmployee(string info)
         {
-            var employees = _dbConnection.Query<Employee>("Proc_SearchEmployees", new { Info = info }, commandType: CommandType.StoredProcedure);
+            var employees = _dbConnection.Query<Employee>("Proc_SearchEmployees", new { info = info }, commandType: CommandType.StoredProcedure);
+            return employees;
+        }
+
+        public IEnumerable<Employee> EmployeeFiltering(Guid? departmentId, Guid? positionId)
+        {
+            var employees = _dbConnection.Query<Employee>("Proc_EmployeeFiltering", new { DepartmentId = departmentId.ToString(), PositionId = positionId.ToString() }, commandType: CommandType.StoredProcedure);
             return employees;
         }
         #endregion

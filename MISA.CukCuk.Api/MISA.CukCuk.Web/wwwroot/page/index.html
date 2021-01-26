@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Công ty Misa</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/css/common/config.css" />
+        <link rel="stylesheet" type="text/css" href="/css/base/base-tdb.css" />
+        <link rel="stylesheet" type="text/css" href="/css/common/dialog.css" />
+        <link rel="stylesheet" type="text/css" href="/css/common/menu.css" />
+        <link rel="stylesheet" type="text/css" href="/css/common/header.css" />
+        <link rel="stylesheet" type="text/css" href="/css/common/content.css" />
+    </head>
+    <body>
+        <div class="menu">
+            <div class="menu-logo">
+                <div class="toggle-icon"></div>
+                <div class="amis-logo"></div>
+            </div>
+            <div class="menu-content">
+                <div class="option-menu">
+                    <div class="icon-option"></div>
+                    <div class="option-content">Tổng quan</div>
+                </div>
+                <div class="option-menu">
+                    <div class="icon-option"></div>
+                    <div class="option-content">Báo cáo</div>
+                </div>
+                <div class="option-menu">
+                    <div class="icon-option"></div>
+                    <div class="option-content">Mua hàng</div>
+                </div>
+                <div id="employeesList" class="option-menu">
+                    <div class="icon-option"></div>
+                    <div class="option-content">Danh mục nhân viên</div>
+                </div>
+                <div id="customersList" class="option-menu">
+                    <div class="icon-option"></div>
+                    <div class="option-content">Danh mục khách hàng</div>
+                </div>
+                <div class="option-menu">
+                    <div class="icon-option"></div>
+                    <div class="option-content">Thiết lập hệ thống</div>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="left">
+                <!-- Menu dropdown  -->
+                <div class="restaurant-list"></div>
+            </div>
+            <div class="right">
+                <div class="avatar"></div>
+                <div class="admin-name">Trần Duy Bá</div>
+                <div class="option"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="header-title">
+                <div id="titleManagementPage" class="title">...</div>
+                <div class="feature">
+                    <button class="tdb-button add-customer">
+                        <div class="button-icon"></div>
+                        <div class="content-icon">Thêm nhân viên</div>
+                    </button>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="left">
+                    <input class="tdb-input search" placeholder="Tìm theo mã, tên hoặc số điện thoại" />
+                    <div class="department-filter dropdown-filter"></div>
+                    <div class="qualification-filter dropdown-filter"></div>
+                </div>
+                <div class="right">
+                    <button class="refresh"></button>
+                </div>
+            </div>
+            <!-- Bảng dữ liệu -->
+            <div id="managementTable" class="content-table">
+                <table class="data-table">
+                    <thead>
+                        <!-- Tiêu đề cột -->
+                    </thead>
+                    <tbody>
+                        <!-- Nội dung của bảng  -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="list-order-table">
+                <div class="info-left">Hiển thị <b>1-10/1000</b> Khách hàng</div>
+                <div class="order-table">
+                    <div class="order-arrow-left">
+                        <button class="arrow-button first-page"></button>
+                        <button class="arrow-button next-page-left"></button>
+                    </div>
+                    <div class="list-table-number">
+                        <div class="table-number">1</div>
+                        <div class="table-number">2</div>
+                        <div class="table-number">3</div>
+                        <div class="table-number">4</div>
+                        <div class="table-number">5</div>
+                    </div>
+                    <div class="order-arrow-left">
+                        <button class="arrow-button back-page"></button>
+                        <button class="arrow-button last-page-right"></button>
+                    </div>
+                </div>
+                <div class="info-right"><b>10</b> Khách hàng/trang</div>
+            </div>
+            <div class="tdb-dialog">
+                <div class="dialog-modal"></div>
+                <div class="dialog-form">
+                    <div class="dialog-header">
+                        <p class="dialog-title"><b>THÔNG TIN NHÂN VIÊN</b></p>
+                        <button class="cancel-dialog">
+                            <img class="icon-cancel" src="/public/icon/x.svg" />
+                        </button>
+                    </div>
+                    <div class="dialog-body">
+                        <div class="left">
+                            <div class="avatar">
+                                <div class="avatar-img">
+                                    <img src="/public/img/default-avatar.jpg" />
+                                </div>
+                                <p class="discription-type-avatar">Vui lòng chọn ảnh có định dạng<br>
+                                    <b>.jpg, .jpge, .png, .gif</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="dialog-body-top">
+                                <div class="info-type">
+                                    <p><b>A. THÔNG TIN CHUNG:</b></p>
+                                    <div></div>
+                                </div>
+                                <div class="general-info">
+                                    <div class="input-dialog">
+                                        <p>Mã nhân viên(<span style="color: red;">*</span>)</p>
+                                        <input name="employeeCode" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Họ và tên(<span style="color: red;">*</span>)</p>
+                                        <input name="fullName" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Ngày sinh</p>
+                                        <input class="date-picker" name="dateOfBirth" type="date" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Giới tính</p>
+                                        <div class="gender"></div> <!--Dropdown-->
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Số CMTND/ Căn cước (<span style="color: red;">*</span>)</p>
+                                        <input name="identityCardNumber" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Ngày cấp</p>
+                                        <input class="date-picker" name="createdDateOfIdentityCard" type="date" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Nơi cấp</p>
+                                        <input name="placeCreatedForIdentityCard"/>
+                                    </div>
+                                    <div class="input-dialog"></div>
+                                    <div class="input-dialog">
+                                        <p>Email (<span style="color: red;">*</span>)</p>
+                                        <input name="email" type="email" required/>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Số điện thoại (<span style="color: red;">*</span>)</p>
+                                        <input name="phoneNumber" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dialog-body-bottom">
+                                <div class="info-type">
+                                    <p><b>B. THÔNG CÔNG VIỆC:</b></p>
+                                    <div></div>
+                                </div>
+                                <div class="work-info">
+                                    <div class="input-dialog">
+                                        <p>Vị trí</p>
+                                        <div class="qualification"></div> <!--DropDown-->
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Phòng ban</p>
+                                        <div class="department"></div> <!--DropDown-->
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Mã số thuế cá nhân</p>
+                                        <input name="personalTaxCode" />
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Mức lương cơ bản</p>
+                                        <input name="basicSalary" />
+                                        <p><i>(VNĐ)</i></p>
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Ngày gia nhập công ty</p>
+                                        <input class="date-picker" name="dateOfJoin" type="date" placeholder="mm/dd/yyyy" />
+                                    </div>
+                                    <div class="input-dialog">
+                                        <p>Tình trạng công việc</p>
+                                        <div class="work-status"></div> <!--DropDown-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dialog-bottom">
+                        <button class="cancel-dialog tdb-dialog-button">Hủy</button>
+                        <button class="save-dialog tdb-dialog-button"><b>Lưu</b></button>
+                        <button class="delete-dialog tdb-dialog-button">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/js/lib/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="/js/base/CreateHTMLTag_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Modal_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Message_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Loader_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Filter_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Validate_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/Table_tdb.js"></script>
+        <script type="text/javascript" src="/js/base/DropDown_tdb.js"></script>
+        <script type="text/javascript" src="/js/common/Dialog_tdb.js"></script>
+        <script type="text/javascript" src="/js/page/managements/ManagementEmployees.js"></script>
+        <script type="text/javascript" src="/js/page/managements/index.js"></script>
+    </body>
+</html>
