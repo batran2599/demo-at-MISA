@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kBKe51Tsxb2jya4pS0Hyhqjf3m1WRo41GLIfdI8TrLFrt2HPXTZwKVNXsV+TIsvI7t6NHLgb27kmtfaQPcweOw==",
+  "dgSpecHash": "+eCaNVuOSK21/AUh5l0O6+8BT3Ta4lo9ky6Og8upcSCxEtAekbm5eUiwlNLI6HvJX+5DSEEqOxE+9nHmIZYUwQ==",
   "success": true,
-  "projectFilePath": "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
+  "projectFilePath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.Infarstructure\\MISA.Infarstructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tdba\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
     "C:\\Users\\tdba\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",

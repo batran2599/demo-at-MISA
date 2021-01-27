@@ -21,35 +21,10 @@ namespace MISA.CukCuk.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy thông nhân viên theo mã phòng ban
-        /// </summary>
-        /// <param name="departmentId">Mã phòng ban</param>
-        /// <returns></returns>
-        /// CreatedBy: Trần Duy Bá (24/01/20201)
-        [HttpGet ("byDepartmentId/{DepartmentId}")]
-        public IActionResult GetByDepartmentId(Guid? departmentId)
-        {
-            var employees = _employeeService.GetByDepartmentId(departmentId);
-            return Ok(employees);
-        }
-
-        /// <summary>
-        /// Lấy thông tin nhân viên theo mã vị trí làm việc
-        /// </summary>
-        /// <param name="positionId">Mã vị trí làm việc</param>
-        /// <returns></returns>
-        /// CreatedBy: Trần Duy Bá (24/01/20201)
-        [HttpGet ("byPositionId/{positionId}")]
-        public IActionResult GetByPositionId(Guid? positionId)
-        {
-            var employees = _employeeService.GetByPositionId(positionId);
-            return Ok(employees);
-        }
-
-        /// <summary>
         /// Lấy mã nhân viên được thêm vào cuối cùng
         /// </summary>
         /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
         [HttpGet("getLastEmployeeCode")]
         public IActionResult GetLastEmployeeCode()
         {
@@ -57,11 +32,32 @@ namespace MISA.CukCuk.Web.Controllers
             return Ok(employeeCode);
         }
 
-        [HttpGet("search/{info}")]
+
+        /// <summary>
+        /// Tìm nhân viên theo Mã, tên hoặc số điện thoại
+        /// </summary>
+        /// <param name="info">Thông tin dùng để tìm kiếm</param>
+        /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
+        [HttpGet("search")]
         public IActionResult SearchEmployee(string info)
         {
             var employees = _employeeService.SearchEmployee(info);
             return Ok(employees);
+        }
+
+        /// <summary>
+        /// Lọc nhân viên theo phòng ban và vị trí
+        /// </summary>
+        /// <param name="departmentId">Mã phòng ban</param>
+        /// <param name="positionId">Mã vị trí</param>
+        /// <returns></returns>
+        /// CreatedBy: Trần Duy Bá
+        [HttpGet("filter")]
+        public IActionResult EmployeeFiltering(Guid? departmentId, Guid? positionId)
+        {
+            var emloyees = _employeeService.EmployeeFiltering(departmentId, positionId);
+            return Ok(emloyees);
         }
 
     }

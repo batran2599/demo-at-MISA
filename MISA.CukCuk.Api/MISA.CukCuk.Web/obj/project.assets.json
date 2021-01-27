@@ -6144,11 +6144,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
+      "projectUniqueName": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
       "projectName": "MISA.CukCuk.Web",
-      "projectPath": "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
+      "projectPath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Web\\MISA.CukCuk.Web.csproj",
       "packagesPath": "C:\\Users\\tdba\\.nuget\\packages\\",
-      "outputPath": "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.CukCuk.Web\\obj\\",
+      "outputPath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.CukCuk.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tdba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6165,11 +6165,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
-              "projectPath": "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
+            "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+              "projectPath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
             },
-            "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {
-              "projectPath": "F:\\tdba\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.Infarstructure\\MISA.Infarstructure.csproj"
+            "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.Infarstructure\\MISA.Infarstructure.csproj": {
+              "projectPath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.Infarstructure\\MISA.Infarstructure.csproj"
             }
           }
         }

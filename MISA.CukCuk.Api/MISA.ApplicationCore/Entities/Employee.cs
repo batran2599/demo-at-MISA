@@ -77,7 +77,7 @@ public class Employee
         /// <summary>
         /// Lương cơ bản
         /// </summary>
-        public float? BasicSalary { get; set; }
+        public double? BasicSalary { get; set; }
 
         /// <summary>
         /// Ngày gia nhập công ty

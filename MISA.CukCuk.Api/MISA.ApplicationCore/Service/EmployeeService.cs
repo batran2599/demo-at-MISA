@@ -15,18 +15,6 @@ namespace MISA.ApplicationCore.Service
             _employeeRespository = employeeRespository;
         }
 
-        public IEnumerable<Employee> GetByDepartmentId(Guid? departmentId)
-        {
-            var employees = _employeeRespository.GetByDepartmentId(departmentId);
-            return employees;
-        }
-
-        public IEnumerable<Employee> GetByPositionId(Guid? positionId)
-        {
-            var employees = _employeeRespository.GetByPositionId(positionId);
-            return employees;
-        }
-
         public IEnumerable<Employee> GetLastEmployeeCode()
         {
             var employeeCode = _employeeRespository.GetLastEmployeeCode();
@@ -36,6 +24,12 @@ namespace MISA.ApplicationCore.Service
         public IEnumerable<Employee> SearchEmployee(string info)
         {
             var employees = _employeeRespository.SearchEmployee(info);
+            return employees;
+        }
+
+        public IEnumerable<Employee> EmployeeFiltering(Guid? departmentId, Guid? positionId)
+        {
+            var employees = _employeeRespository.EmployeeFiltering(departmentId, positionId);
             return employees;
         }
     }

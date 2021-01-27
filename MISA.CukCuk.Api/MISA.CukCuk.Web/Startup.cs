@@ -62,6 +62,8 @@ namespace MISA.CukCuk.Web
             //------------------------------------------------------------------------------
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
