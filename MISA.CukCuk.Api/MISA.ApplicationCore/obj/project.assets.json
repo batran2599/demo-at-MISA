@@ -5649,19 +5649,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tdba\\.nuget\\packages\\": {}
+    "C:\\Users\\TranDuyBa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
       "projectName": "MISA.ApplicationCore",
       "projectPath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
       "packagesPath": "C:\\Users\\tdba\\.nuget\\packages\\",
       "outputPath": "F:\\tdba\\MISA_CuckCuk\\MISA.CukCuk.Api\\MISA.ApplicationCore\\obj\\",
+=======
+      "projectUniqueName": "D:\\ProgramFiles\\Xampp\\htdocs\\MyProject\\MISA_CukCuk\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+      "projectName": "MISA.ApplicationCore",
+      "projectPath": "D:\\ProgramFiles\\Xampp\\htdocs\\MyProject\\MISA_CukCuk\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+      "packagesPath": "C:\\Users\\TranDuyBa\\.nuget\\packages\\",
+      "outputPath": "D:\\ProgramFiles\\Xampp\\htdocs\\MyProject\\MISA_CukCuk\\demo01-at-MISA\\MISA.CukCuk.Api\\MISA.ApplicationCore\\obj\\",
+>>>>>>> 10e0d3875dba70e0ae50bedc8efb9de787d33838
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tdba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TranDuyBa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5711,7 +5719,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

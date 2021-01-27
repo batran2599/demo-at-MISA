@@ -17,6 +17,7 @@ class Table_tdb {
         this.configTable = null;
         this.configAjax = null;
         this.recordId = null;
+
         this.loader = new Loader_tdb();
     }
 
@@ -40,16 +41,17 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    setDataWithAPI(urlAPI, method) {
-        this.loader.create();
+    setDataWithAPI(urlAPI, method, loader = true) {
+        if(loader) {
+            this.loader.create();
+        }
         $.ajax({
             url: urlAPI,
             method: method,
             ...this.configAjax
         }).done((res)=>{
-            this.setDataForTable(res);
+            this.setDataForTable(res, loader);
         }).fail(()=>{
-            this.loader.remove();
             console.error("Lỗi khi lấy dữ liệu cho bảng !");
         });
     }
@@ -68,10 +70,12 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (30/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    setDataWithObjData(data = null) {
-        this.loader.create();
+    setDataWithObjData(data = null, loader = true) {
         if(data !== null) {
-            this.setDataForTable(data);
+            if(loader) {
+                this.loader.create();
+            }
+            this.setDataForTable(data, loader);
         }
     }
 
@@ -89,7 +93,7 @@ class Table_tdb {
      * CreatedBy: Trần Duy Bá (24/12/2020)
      * UpdateBy: Trần Duy Bá (14/01/2021)
      */
-    setDataForTable(data) {
+    setDataForTable(data, loader) {
         this.removeTitleColumn();
         this.removeContentTable()
         this.setTitleForColumn();
@@ -117,7 +121,9 @@ class Table_tdb {
             tdTag = "";
             $(`${this.tableSelector} > tbody`).append(rowData);
         });
-        this.loader.remove();
+        if(loader) {
+            this.loader.remove();
+        }
     }
 
     /**

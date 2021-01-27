@@ -68,7 +68,6 @@ class Dialog_tdb {
     cancelDialog() {
         $(".tdb-dialog").css("display", "none");
         this.clearValueOfInput();
-        this.actionRefreshTable = null;
         this.valueRecordId = null;
     }
 
@@ -114,8 +113,10 @@ class Dialog_tdb {
      * CreatedBy: Trần Duy Bá (14/01/2021)
      */
     valiDate() {
+        
         Validate_tdb.required(".input-dialog > input[required]");
-
+        
+        Validate_tdb.email(".input-dialog > input[name='email']");
     }
 
     /**
@@ -349,6 +350,7 @@ class Dialog_tdb {
                     } else if(this.typeDialog  == "update") {
                         this.message.done("Chỉnh sửa thông tin thành công !");
                     }
+                    console.log(this.actionRefreshTable);
                     this.actionRefreshTable();
                     this.cancelDialog();
                 }).fail((res)=>{
@@ -420,7 +422,7 @@ class Dialog_tdb {
             numberTypeString = numberTypeString.replace(",", ".");
         }
         if(numberOfDot <= 1) {
-            return numberTypeString;
+            return Number(numberTypeString);
         } else {
             return null;
         }
@@ -432,20 +434,23 @@ class Dialog_tdb {
      */
     checkEmployeeCode() {
         $(".input-dialog > input[name='employeeCode']").change(()=>{
-            $.ajax({
-                url: this.host + "/api/v1/employees/byCode/" + this.valueEmployeeCode,
-                method: "GET",
-                async: false
-            }).done((res)=>{
-                if(res != undefined && this.typeDialog != "update") {
-                    this.modal.warning(null, "Cảnh báo", "Bị trùng mã nhân viên !");
-                    $(".input-dialog > input[name='employeeCode']").attr("validate",  "false");
-                } else {
-                    $(".input-dialog > input[name='employeeCode']").attr("validate",  "true");
-                }
-            }).fail(()=>{
-                this.message.error("Có lỗi !");
-            })
+            console.log(this.valueEmployeeCode + "====" + $(".input-dialog > input[name='employeeCode']").val());
+            if(this.valueEmployeeCode != $(".input-dialog > input[name='employeeCode']").val()){
+                $.ajax({
+                    url: this.host + "/api/v1/employees/byCode/" + $(".input-dialog > input[name='employeeCode']").val(),
+                    method: "GET",
+                    async: false
+                }).done((res)=>{
+                    if(res != undefined || res != null) {
+                        this.modal.warning(null, "Cảnh báo", "Bị trùng mã nhân viên !");
+                        $(".input-dialog > input[name='employeeCode']").attr("validate",  "false");
+                    } else {
+                        $(".input-dialog > input[name='employeeCode']").attr("validate",  "true");
+                    }
+                }).fail(()=>{
+                    this.message.error("Có lỗi !");
+                })   
+            }
         });
     }
 }

@@ -278,6 +278,7 @@ F:\tdba\MISA_CuckCuk\demo01-at-MISA\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\ne
 F:\tdba\MISA_CuckCuk\demo01-at-MISA\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\ref\MISA.CukCuk.Web.dll
 F:\tdba\MISA_CuckCuk\demo01-at-MISA\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\MISA.CukCuk.Web.pdb
 F:\tdba\MISA_CuckCuk\demo01-at-MISA\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\MISA.CukCuk.Web.genruntimeconfig.cache
+<<<<<<< HEAD
 F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\bin\Debug\net5.0\appsettings.Development.json
 F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\bin\Debug\net5.0\appsettings.json
 F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\bin\Debug\net5.0\MISA.CukCuk.Web.exe
@@ -334,3 +335,5 @@ F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\MISA.CukCu
 F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\ref\MISA.CukCuk.Web.dll
 F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\MISA.CukCuk.Web.pdb
 F:\tdba\MISA_CuckCuk\MISA.CukCuk.Api\MISA.CukCuk.Web\obj\Debug\net5.0\MISA.CukCuk.Web.genruntimeconfig.cache
+=======
+>>>>>>> 10e0d3875dba70e0ae50bedc8efb9de787d33838

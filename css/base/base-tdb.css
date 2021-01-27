@@ -381,7 +381,7 @@ Tạo Modal
     min-height: 50vh;
     max-height: 100vh;
     position: fixed;
-    z-index: 900;
+    z-index: 999;
     left: 0;
     bottom: 0px;
     display: flex;
